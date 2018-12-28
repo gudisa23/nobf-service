@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2005 U (http://www.xmlspy.com) by Directv Warehouse (Directv Warehouse) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ent="http://ei.directv.com/schemas/entities/v3_2" targetNamespace="http://ei.directv.com/schemas/entities/v3_2" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="./BasicElementDefinitions.xsd"/>
+	<xs:include schemaLocation="./ProductInformation.xsd"/>
+	<xs:element name="packages">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ent:package" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="categories">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ent:category" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="news">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="text" type="xs:string" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="id" type="xs:long" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="schedules">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ent:schedule" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="games">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ent:game" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="package">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="description" type="xs:string"/>
+				<xs:element name="dvrEnabled" type="xs:boolean"/>
+				<xs:element ref="ent:images" minOccurs="0"/>
+				<xs:element name="stmsProduct" type="ent:ProductCodeEntity"/>
+				<xs:element name="price" type="ent:PriceType"/>
+			</xs:sequence>
+			<xs:attribute name="id" type="xs:long" use="required"/>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+			<xs:attribute name="type" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="category">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ent:images" minOccurs="0"/>
+				<xs:element ref="ent:gameId" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="id" type="xs:long" use="required"/>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+			<xs:attribute name="type" type="xs:string" use="required"/>
+			<xs:attribute name="new" type="xs:boolean" use="required"/>
+			<xs:attribute name="hideOnWeb" type="xs:boolean"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="schedule">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ent:gameId" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="id" type="xs:string" use="required"/>
+			<xs:attribute name="startDateUTC" type="xs:string" use="required"/>
+			<xs:attribute name="endDateUTC" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="authorization">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="packageId" type="xs:string"/>
+			</xs:sequence>
+			<xs:attribute name="id" type="xs:string" use="required"/>
+			<xs:attribute name="CAURI" type="xs:string" use="required"/>
+			<xs:attribute name="startDateUTC" type="xs:string" use="required"/>
+			<xs:attribute name="endDateUTC" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="game">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="title" type="xs:string"/>
+				<xs:element name="overview" type="xs:string"/>
+				<xs:element name="description" type="xs:string"/>
+				<xs:element name="howToPlay" type="xs:string"/>
+				<xs:element name="dvrEnabled" type="xs:boolean"/>
+				<xs:element name="tokenTournamentEnabled" type="xs:boolean"/>
+				<xs:element name="cashTournamentEnabled" type="xs:boolean"/>
+				<xs:element name="tokenChallengeEnabled" type="xs:boolean"/>
+				<xs:element name="cashChallengeEnabled" type="xs:boolean"/>
+				<xs:element name="leaderboardEnabled" type="xs:boolean"/>
+				<xs:element name="pNpEnabled" type="xs:boolean"/>
+				<xs:element name="expiryDateUTC" type="xs:string"/>
+				<xs:element name="TVURI" type="xs:string" minOccurs="0"/>
+				<xs:element ref="ent:images" minOccurs="0"/>
+				<xs:element ref="ent:keywords" minOccurs="0"/>
+				<xs:element name="broadbandTrailerLocation" type="xs:string" minOccurs="0"/>
+				<xs:element name="narrowbandTrailerLocation" type="xs:string" minOccurs="0"/>
+				<xs:element name="rating" type="xs:string"/>
+				<xs:element name="ageRange" type="xs:string"/>
+				<xs:element name="skillJamId" type="xs:string" minOccurs="0"/>
+				<xs:element ref="ent:tokens" minOccurs="0"/>
+				<xs:element name="categoryId" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="packageId" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="id" type="xs:long" use="required"/>
+			<xs:attribute name="status" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="images">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="image" type="ent:imageLocation" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="keywords">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="keyword" type="xs:string" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="gameId" type="xs:long"/>
+	<xs:complexType name="imageLocation">
+		<xs:sequence>
+			<xs:element name="imageLocation" type="xs:string"/>
+		</xs:sequence>
+		<xs:attribute name="destination" type="xs:string" use="required"/>
+		<xs:attribute name="type" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:element name="tokens">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="token" type="ent:tokenType" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="tokenType">
+		<xs:sequence>
+			<xs:element name="score" type="xs:long"/>
+			<xs:element name="numberOfTokens" type="xs:long"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="authorizations">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ent:authorization" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="PriceType">
+		<xs:sequence>
+			<xs:element name="priceCode" type="xs:string" minOccurs="0"/>
+			<xs:element ref="ent:price"/>
+			<xs:element name="discountPriceCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="discountPrice" type="ent:AmountEntity" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

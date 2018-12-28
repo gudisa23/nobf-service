@@ -1,0 +1,49 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header>
+      <v3:ei xmlns:v3="http://ei.directv.com/schemas/envelope/v3_0">
+         <v3:type>response</v3:type>
+         <v3:service>
+            <v3:name>requestScrubAddress</v3:name>
+            <v3:version>3.1</v3:version>
+         </v3:service>
+         <v3:originator>?</v3:originator>
+         <v3:businessProcessName>?</v3:businessProcessName>
+         <v3:servicerInfo>
+            <v3:servicerId>?</v3:servicerId>
+            <v3:primaryOwner>?</v3:primaryOwner>
+            <v3:secondaryOwner>?</v3:secondaryOwner>
+         </v3:servicerInfo>
+         <v3:requestDateTime>2018-05-07T17:52:17.577Z</v3:requestDateTime>
+         <v3:sourceSystemTransactionId>?</v3:sourceSystemTransactionId>
+         <v3:sequenceNumber>?</v3:sequenceNumber>
+         <v3:user>
+            <v3:id>?</v3:id>
+            <v3:group>?</v3:group>
+         </v3:user>
+         <v3:transactionReference>aac60a4d-3d95-41d8-bf84-2f72bb3c6c0d</v3:transactionReference>
+         <v3:expirationSeconds>?</v3:expirationSeconds>
+         <v3:additionalParameters>
+            <v3:param>
+               <v3:name>?</v3:name>
+               <v3:value>?</v3:value>
+            </v3:param>
+         </v3:additionalParameters>
+         <v3:result>
+            <v3:status>success</v3:status>
+            <v3:provider>EI</v3:provider>
+            <v3:detail>
+               <v3:code>100015</v3:code>
+               <v3:text>Originator is not authorized for this service (No Role)</v3:text>
+               <v3:severity>error</v3:severity>
+               <v3:category>business</v3:category>
+               <v3:dataState>clean</v3:dataState>
+               <v3:retryAllowed>false</v3:retryAllowed>
+               <v3:additionalInformation>Authorization failed for Originator: '?', Business Process Name: '?'-100015</v3:additionalInformation>
+            </v3:detail>
+         </v3:result>
+      </v3:ei>
+   </soapenv:Header>
+   <soapenv:Body>
+      <svc:response xmlns:svc="http://ei.directv.com/schemas/wsdl/propertyServices/v3_1/requestScrubAddress"/>
+   </soapenv:Body>
+</soapenv:Envelope>

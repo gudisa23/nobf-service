@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ent="http://ei.directv.com/schemas/entities/v4_0" targetNamespace="http://ei.directv.com/schemas/entities/v4_0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:documentation>This Schema contains all Core Types. Core types are simple data types that are reused in several other XSDs. This Schema have any external references</xs:documentation>
+	</xs:annotation>
+	<xs:simpleType name="AccessCardIdEntity">
+		<xs:annotation>
+			<xs:documentation>Used for all references to smart cards</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="AccessCardStatusEntity">
+		<xs:annotation>
+			<xs:documentation>Status of an Access card</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="AccountStatusTypeEntity">
+		<xs:annotation>
+			<xs:documentation>Account Status Type</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="AccountTypeEntity">
+		<xs:annotation>
+			<xs:documentation>Valid Account Type</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="AmountEntity">
+		<xs:annotation>
+			<xs:documentation>An Entity that represents an Amount</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:double"/>
+	</xs:simpleType>
+	<xs:simpleType name="BankAccountNumberEntity">
+		<xs:annotation>
+			<xs:documentation>Bank Account Number</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="BankRoutingNumberEntity">
+		<xs:annotation>
+			<xs:documentation>ABA Routing Number</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:long"/>
+	</xs:simpleType>
+	<xs:simpleType name="BillingAccountIdEntity">
+		<xs:annotation>
+			<xs:documentation>Billing Account Id Entity</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:long"/>
+	</xs:simpleType>
+	<xs:simpleType name="BooleanEntity">
+		<xs:annotation>
+			<xs:documentation>Indicates a Boolean value (true/false)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:boolean"/>
+	</xs:simpleType>
+	<xs:simpleType name="CamcIdEntity">
+		<xs:annotation>
+			<xs:documentation>The subscriber ID assigned by the CAMC.  Used for all references to CAMC subscrber Id (CAMC SUBID)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:long"/>
+	</xs:simpleType>
+	<xs:simpleType name="CityEntity">
+		<xs:annotation>
+			<xs:documentation>City</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="CodeEntity">
+		<xs:annotation>
+			<xs:documentation>Used for a reference field that is a longword.  </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:long"/>
+	</xs:simpleType>
+	<xs:simpleType name="CountyCodeEntity">
+		<xs:annotation>
+			<xs:documentation>County Code</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="CountyNameEntity">
+		<xs:annotation>
+			<xs:documentation>Indicates a County Name</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="CustomerIdEntity">
+		<xs:annotation>
+			<xs:documentation>Reference to a customer Id</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:long"/>
+	</xs:simpleType>
+	<xs:simpleType name="DateEntity">
+		<xs:annotation>
+			<xs:documentation>Date</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="DateTimeEntity">
+		<xs:annotation>
+			<xs:documentation>Used for Date and Time</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:dateTime"/>
+	</xs:simpleType>
+	<xs:simpleType name="DayOfMonthEntity">
+		<xs:annotation>
+			<xs:documentation>Used to indicate the day of the month.  </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:nonNegativeInteger"/>
+	</xs:simpleType>
+	<xs:simpleType name="DisconnectTypeEntity">
+		<xs:annotation>
+			<xs:documentation>Disconnect type</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="EmailAddressEntity">
+		<xs:annotation>
+			<xs:documentation>Indicates an Email Address</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[\p{L}\p{N}_\-]+(\.[\p{L}\p{N}_\-]+)*@[\p{L}\p{N}_\-]+(\.[\p{L}\p{N}_\-]+)+"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FirstNameEntity">
+		<xs:annotation>
+			<xs:documentation>Valid First Name</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="GenericNameEntity">
+		<xs:annotation>
+			<xs:documentation>A Generic Name</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="LastNameEntity">
+		<xs:annotation>
+			<xs:documentation>Valid Last Name</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="MessageCodeEntity">
+		<xs:annotation>
+			<xs:documentation>Message Code returned after processing</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="MessageTextEntity">
+		<xs:annotation>
+			<xs:documentation>Message Text returned after processing</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="MiddleInitialEntity">
+		<xs:annotation>
+			<xs:documentation>Valid Middle Initial</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="MonthYearEntity">
+		<xs:annotation>
+			<xs:documentation>Valid Month and 4 digit Year</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="PhoneAreaCodeEntity">
+		<xs:annotation>
+			<xs:documentation>Valid Phone Area Code</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="PhoneExtensionEntity">
+		<xs:annotation>
+			<xs:documentation>Valid Phone Extension</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="PhoneNumberEntity">
+		<xs:annotation>
+			<xs:documentation>Valid Phone number (Straight numbers; no dash/space etc)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="ProductTypeEntity">
+		<xs:annotation>
+			<xs:documentation>Valid Product TYpe</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="SecondaryOwnerEntity">
+		<xs:annotation>
+			<xs:documentation>Valid Secondary Owner</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="StreetNameEntity">
+		<xs:annotation>
+			<xs:documentation>Street Name</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="SystemTypeEntity">
+		<xs:annotation>
+			<xs:documentation>System type that responds to user requests. Value stored in the Provider of the returned message</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="TargetIdEntity">
+		<xs:annotation>
+			<xs:documentation>IDentifies a Target</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="TimeEntity">
+		<xs:annotation>
+			<xs:documentation>Used for times without dates.  </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:time"/>
+	</xs:simpleType>
+	<xs:simpleType name="ValidCreditCardNumberEntity">
+		<xs:annotation>
+			<xs:documentation>Valid Credit Card Number</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="ZipCodeEntity">
+		<xs:annotation>
+			<xs:documentation>Zip Code</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<!-- sjb -->
+	<xs:element name="offerDescription">
+		<xs:annotation>
+			<xs:documentation>Offer Description</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="optionDescription">
+		<xs:annotation>
+			<xs:documentation>Offer Option Description</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="longDescriptionURL">
+		<xs:annotation>
+			<xs:documentation>Long Description of product</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="vipLevel">
+		<xs:annotation>
+			<xs:documentation>Indicates the level of VIP - level1 or level3</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="relationshipType">
+		<xs:annotation>
+			<xs:documentation>Relationship types - can be things like parentChild, sibling etc. </xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:simpleType name="ServiceRequestIdType">
+		<xs:annotation>
+			<xs:documentation>Service Request ID for a Work order present in the RIO system</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="WorkOrderIdType">
+		<xs:annotation>
+			<xs:documentation>Order Id Type for a Work order present in the RIO system</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="WorkOrderLineItemIdType">
+		<xs:annotation>
+			<xs:documentation>Order Detail Id Type for a Work order present in the RIO system</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="DeliveryMethodType">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="SlotType">
+		<xs:annotation>
+			<xs:documentation>Defines the Slot type for start and end time of a Work Order Slot</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+</xs:schema>

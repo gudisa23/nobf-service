@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *==========================================================================================
+ *  D I R E C T V     E N T E R P R I S E     I N T E G R A T I O N 
+ *==========================================================================================
+ *  Service   : ValidateCustomer
+ *  Generated : 2008/06/10 10:23:46 
+ *  URL       : http://
+:/webservices/ValidateCustomer/ValidateCustomerService
+ *==========================================================================================
+ * Change Control
+ *
+ * $Log::   $
+ * 
+ *    Rev 1.0   Jun 13 2008 11:36:06   directv
+ * Initial revision.
+-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	targetNamespace="http://ei.directv.com/schemas/envelope/v3_0" 
+	elementFormDefault="qualified" attributeFormDefault="unqualified" 
+	xmlns:tns="http://ei.directv.com/schemas/envelope/v3_0" 
+	xmlns:svc="http://ei.directv.com/schemas/wsdl/billingServices/v3_1/validateCustomer">
+		<xs:import namespace="http://ei.directv.com/schemas/wsdl/billingServices/v3_1/validateCustomer" 
+			schemaLocation="ValidateCustomer.xsd"/>
+		<xs:element name="request" type="svc:ValidateCustomerRequestEntity"/>
+		<xs:element name="response" type="svc:ValidateCustomerResponseEntity"/>
+</xs:schema>

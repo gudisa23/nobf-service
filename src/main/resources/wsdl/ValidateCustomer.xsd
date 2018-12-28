@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2005 rel. 3 U (http://www.altova.com) by Directv Warehouse (Directv Warehouse) -->
+<xs:schema xmlns:ent="http://ei.directv.com/schemas/entities/v3_1" xmlns:svc="http://ei.directv.com/schemas/wsdl/billingServices/v3_1/validateCustomer" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://ei.directv.com/schemas/wsdl/billingServices/v3_1/validateCustomer" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://ei.directv.com/schemas/entities/v3_1" schemaLocation="entities/v3.1/Entities.xsd"/>
+	<xs:complexType name="ValidateCustomerRequestEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="svc:customerName"/>
+					<xs:element ref="svc:serviceAddress"/>
+					<xs:element name="billingAddressInfo" type="svc:BillingAddressInfoEntity" minOccurs="0"/>
+					<xs:element ref="svc:customerPhoneNumber"/>
+					<xs:element ref="ent:socialSecurityNumber" minOccurs="0"/>
+					<xs:element ref="ent:authorizedCreditCheck"/>
+					<xs:element ref="ent:dealerId" minOccurs="0"/>
+					<xs:element ref="ent:dateOfBirth" minOccurs="0"/>
+					<xs:element ref="ent:yearsAtCurrentAddress" minOccurs="0"/>
+					<xs:element name="previousAddressInfo" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Previous Address info should be populated with the customers previous address or a flag indicating if the previous address is out of the country</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:choice>
+								<xs:element ref="svc:customerAddress"/>
+								<xs:element ref="ent:previousAddressOutOfCountryFlag"/>
+							</xs:choice>
+						</xs:complexType>
+					</xs:element>
+					<xs:element ref="ent:ownedModelFlag" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="request" type="svc:ValidateCustomerRequestEntity">
+		<xs:annotation>
+			<xs:documentation>Request element</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ValidateCustomerResponseEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence minOccurs="0">
+					<xs:element ref="ent:accountOwner"/>
+					<xs:element ref="ent:dtvRefNumber" minOccurs="0"/>
+					<xs:element ref="ent:customerStatus"/>
+					<xs:element ref="ent:accountStatusCode" minOccurs="0"/>
+					<xs:element ref="ent:accountBalanceCode" minOccurs="0"/>
+					<xs:element ref="ent:accountTypeCode" minOccurs="0"/>
+					<xs:element ref="ent:accountWriteOffBalanceCode" minOccurs="0"/>
+					<xs:element ref="ent:accountDisconnectTimeframeCode" minOccurs="0"/>
+					<xs:element ref="svc:possibleCountiesList" minOccurs="0"/>
+					<xs:element ref="ent:creditScoreRequestId" minOccurs="0"/>
+					<xs:element ref="ent:proprietarySegment" minOccurs="0"/>
+					<xs:element ref="ent:factActMessage" minOccurs="0"/>
+					<xs:element ref="ent:creditScoreResultText" minOccurs="0"/>
+					<xs:element ref="ent:creditBand" minOccurs="0"/>
+					<xs:element ref="ent:dataReviewPassedFlag" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="checksum" type="xs:string"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="customerPhoneNumber">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ent:phoneAreaCode"/>
+				<xs:element ref="ent:phoneNumber"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="customerName">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ent:firstName"/>
+				<xs:element ref="ent:middleInitial" minOccurs="0"/>
+				<xs:element ref="ent:lastName"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="customerAddress" type="svc:AddressEntity"/>
+	<xs:element name="serviceAddress" type="svc:AddressEntity">
+		<xs:annotation>
+			<xs:documentation>Address where Customer will receive service</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="AddressEntity">
+		<xs:sequence>
+			<xs:element ref="ent:streetNumber"/>
+			<xs:element ref="ent:streetName"/>
+			<xs:element ref="ent:address2" minOccurs="0"/>
+			<xs:element ref="ent:apartmentNumber" minOccurs="0"/>
+			<xs:element ref="ent:city"/>
+			<xs:element ref="ent:state"/>
+			<xs:element ref="ent:zipCode"/>
+			<xs:element ref="ent:countyCode" minOccurs="0"/>
+			<xs:element ref="ent:countyName" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BillingAddressInfoEntity">
+		<xs:choice>
+			<xs:element ref="ent:sameAsServiceAddressFlag"/>
+			<xs:element name="billingAddress" type="svc:AddressEntity"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="ProspectEntity">
+		<xs:sequence/>
+	</xs:complexType>
+	<xs:complexType name="CountyEntity">
+		<xs:sequence>
+			<xs:element ref="ent:countyName"/>
+			<xs:element ref="ent:countyCode"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="county" type="svc:CountyEntity"/>
+	<xs:element name="response" type="svc:ValidateCustomerResponseEntity"/>
+	<xs:element name="possibleCountiesList">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="svc:county" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

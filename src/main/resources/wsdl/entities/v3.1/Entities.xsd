@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * ENTERPRISE INTEGRATION
+ * Change Control
+ *
+ * $Log::   $
+ * 
+ *    Rev 1.0   Jul 10 2006 10:59:48   skovilmadam
+ * Initial revision.
+ * 
+ *    Rev 1.2   Dec 01 2005 16:35:38   skondaka
+ * No change.
+ * 
+ *    Rev 1.1   Jan 12 2005 13:13:20   skovilmadam
+ * Changed following canonical entities to xsd data types due to ICAN bug. Using these entities
+ * resulted in the data types being defined as strings
+ * "ent:AmountEntity" to "xs:decimal",
+ * "ent:BankRoutingNumberEntity" to "xs:long",
+ * "ent:BillingAccountIdEntity" to "xs:long",
+ * "ent:BooleanEntity" to "xs:boolean",
+ * "ent:CamcIdEntity" to "xs:long",
+ * "ent:CodeEntity" to "xs:long",
+ * "ent:CustomerIdEntity" to "xs:long",
+ * "ent:DateEntity" to "xs:date",
+ * "ent:DateTimeEntity" to "xs:dateTime",
+ * "ent:DayOfMonthEntity" to "xs:nonNegativeInteger",
+ * "ent:TimeEntity" to "xs:time",
+ * "ent:ValidCreditCardNumberEntity" to "xs:long"
+ * 
+ *    Rev 1.0   Dec 07 2004 18:53:18   skovilmadam
+ * Initial revision.
+ -->
+<xs:schema xmlns:ent="http://ei.directv.com/schemas/entities/v3_1" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://ei.directv.com/schemas/entities/v3_1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:annotation>
+        <xs:documentation>This is the file that is used while importing by Service definition Xsds. This should contain all the entities that may be needed by the services. If Schemas have an include hierarchy, the topmost level Schema is the only thing that is included here</xs:documentation>
+    </xs:annotation>
+    <xs:include schemaLocation="./OrderDefinitions.xsd"/>
+</xs:schema>

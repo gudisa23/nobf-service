@@ -1,0 +1,602 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 (http://www.altova.com) by DIRECTV MISSOULA CALL CENTER (DIRECTV MISSOULA CALL CENTER) -->
+<!-- edited with XMLSPY v2004 rel. 4 U (http://www.xmlspy.com) by Sara (dtv) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ei.directv.com/schemas/entities/v3_0" targetNamespace="http://ei.directv.com/schemas/entities/v3_0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="./CommonTypes.xsd"/>
+	<xs:include schemaLocation="./BaseTypes.xsd"/>
+	<xs:annotation>
+		<xs:documentation>This XSD defines all Service Request and associated order related types		</xs:documentation>
+	</xs:annotation>
+	<xs:simpleType name="ServiceRequestIdType">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="15"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ServiceRequestActivityIdType">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="15"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="WorkOrderIdType">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="15"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="WorkOrderLineItemIdType">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="ReasonType">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="30"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SRAreaType">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="30"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SRTypeType">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="30"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SlotType">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="SRAccountTypeType">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="30"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="ActivityServiceRegionType">
+		<xs:attribute name="name" use="optional">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="50"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="timezone" use="optional">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="100"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="TechnicianType">
+		<xs:attribute name="id" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="15"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="typecode" use="optional">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="30"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ServiceRequestActivityBaseType">
+		<xs:sequence>
+			<xs:element name="activityUID" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="30"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="combineDuration" type="tns:YesNoType" default="no" minOccurs="0"/>
+			<xs:element name="timeSlot" type="tns:TimeSlotType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="serviceRegion" type="tns:ActivityServiceRegionType" minOccurs="0"/>
+			<xs:element name="primaryHSPFlag" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="corporateId" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="30"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="activityId" type="xs:string" use="required"/>
+		<xs:attribute name="status" type="tns:ActivityStatusType" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="ServiceRequestActivityType">
+		<xs:sequence>
+			<!--
+		<xs:complexContent>
+			<-xs:extension base="tns:ServiceRequestActivityBaseType">
+		-->
+			<!-- Brought in from BaseType -->
+			<xs:element name="activityUID" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="30"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="combineDuration" type="tns:YesNoType" default="no" minOccurs="0"/>
+			<xs:element name="timeSlot" type="tns:TimeSlotType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="serviceRegion" type="tns:ActivityServiceRegionType" minOccurs="0"/>
+			<xs:element name="primaryHSPFlag" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="corporateId" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="30"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<!-- End brought in from BaseType -->
+			<xs:element name="reason" type="tns:ReasonType" minOccurs="0"/>
+			<xs:element name="drivingDirections" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="technician" type="tns:TechnicianType" minOccurs="0"/>
+			<xs:element name="comments" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="2000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="updated" type="tns:UpdateInformationType" minOccurs="0"/>
+			<xs:element name="resolution" minOccurs="0" maxOccurs="unbounded">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="100"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="scheduledStartDateTime" type="xs:string" minOccurs="0"/>
+			<xs:element name="scheduledEndDateTime" type="xs:string" minOccurs="0"/>
+			<xs:element name="acutalInstallDateTime" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="activityId" type="xs:string" use="required"/>
+		<xs:attribute name="status" type="tns:ActivityStatusType" use="optional"/>
+		<!-- Brought in from BaseType -->
+		<!-- End brought in from BaseType -->
+		<!--
+			</xs:extension>
+		</xs:complexContent>
+		-->
+	</xs:complexType>
+	<xs:complexType name="TimeSlotType">
+		<xs:sequence>
+			<xs:element name="requestId">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="15"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="regionId">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="15"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="slotStart" type="tns:SlotType"/>
+			<xs:element name="slotEnd" type="tns:SlotType"/>
+			<xs:element name="slotStartInSRTimeZone" type="tns:SlotType"/>
+			<xs:element name="slotEndInSRTimeZone" type="tns:SlotType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ServiceRequestAccountType">
+		<xs:sequence>
+			<xs:element name="name" type="tns:NameType" minOccurs="0"/>
+			<xs:element name="type" type="tns:SRAccountTypeType" minOccurs="0"/>
+			<xs:element name="language" type="tns:LanguageCodeType" minOccurs="0"/>
+			<xs:element name="vip" minOccurs="0">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="source" use="optional">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="30"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:attribute>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="address" type="tns:AddressType" minOccurs="0"/>
+			<xs:element name="phone" type="tns:PhoneType" minOccurs="0"/>
+			<xs:element name="alternatePhone" type="tns:PhoneType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:long" use="required"/>
+		<!-- Changed to type xs:long to get around ICAN bug	-->
+		<!--xs:attribute name="id" type="tns:BillingAccountIdType" use="required"/-->
+	</xs:complexType>
+	<xs:simpleType name="WorkOrderSubTypeType">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="30"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="WorkOrderTypeType">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="30"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="WorkOrderStatusType">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="30"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ActivityStatusType">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="30"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="WorkOrderLineItemActionList">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="30"/>
+			<xs:enumeration value="add"/>
+			<xs:enumeration value="update"/>
+			<xs:enumeration value="delete"/>
+			<xs:enumeration value="other"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DeliveryMethodType">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="30"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="InstallType">
+		<xs:sequence>
+			<xs:element name="type" type="xs:string"/>
+			<xs:element name="value" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="InstallTypeList">
+		<xs:sequence>
+			<xs:element name="installType" type="tns:InstallType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CapabilitiesType">
+		<xs:sequence>
+			<xs:element name="name" type="xs:string"/>
+			<xs:element name="value" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="neededCapabilities">
+		<xs:sequence>
+			<xs:element name="neededCapability" type="tns:CapabilitiesType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="DeactivateAccessCardIdType">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="30"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="WorkOrderProductType">
+		<xs:sequence>
+			<xs:element name="line">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="100"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="type" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="100"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="id">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="100"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<!-- Temporarily disabled due to ICAN bug:
+	<xs:simpleType name="WorkOrderLineItemQuantityType">
+		<xs:restriction base="xs:int">
+			<xs:minExclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+-->
+	<xs:complexType name="UpdateInformationType">
+		<xs:sequence>
+			<xs:element name="by">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="30"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="date" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="ReceiverStatusType">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="30"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="EquipmentType">
+		<xs:sequence>
+			<xs:element name="manufacturer">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="30"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="model">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="15"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="serialNumber">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="25"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="SAPModel">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="30"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="SAPManufacturer">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="30"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ManufacturersModelsType">
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="SAPName" use="optional">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="30"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:attribute>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="model" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="SAPName" use="optional">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="30"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:attribute>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ReceiverType">
+		<xs:sequence>
+			<xs:element name="activationDate" type="xs:string"/>
+			<xs:element name="RID">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="12"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="status">
+				<xs:simpleType>
+					<xs:restriction base="tns:ReceiverStatusType">
+						<xs:maxLength value="15"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="equipment" type="tns:EquipmentType"/>
+		</xs:sequence>
+		<xs:attribute name="id" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="100"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ServiceRequestType">
+		<xs:sequence>
+			<xs:element name="type" type="tns:SRTypeType"/>
+			<xs:element name="area" type="tns:SRAreaType"/>
+			<xs:element name="billable" type="xs:string" minOccurs="0"/>
+			<xs:element name="entitlementFlag" type="xs:string" minOccurs="0"/>
+			<xs:element name="protectionPlan" type="xs:string" minOccurs="0"/>
+			<xs:element name="activationApproved" type="xs:string" minOccurs="0"/>
+			<xs:element name="reason" minOccurs="0">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="tns:ReasonType">
+							<xs:attribute name="source" use="optional">
+								<xs:simpleType>
+									<xs:restriction base="xs:string"/>
+								</xs:simpleType>
+							</xs:attribute>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="repeatService" type="xs:string" minOccurs="0"/>
+			<xs:element name="resolution" minOccurs="0" maxOccurs="unbounded">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="100"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="SRId" type="tns:ServiceRequestIdType" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="WorkOrderBaseType">
+		<xs:sequence>
+			<xs:element name="sourceSystemOrderId">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="22"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="lineItem" type="tns:WorkOrderLineItemBaseType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="orderId" type="tns:WorkOrderIdType" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="WorkOrderType">
+		<xs:sequence>
+			<xs:element name="type" type="tns:WorkOrderTypeType"/>
+			<xs:element name="subtype" type="tns:WorkOrderSubTypeType"/>
+			<xs:element name="status" type="tns:WorkOrderStatusType"/>
+			<xs:element name="installTypeList" type="tns:InstallTypeList" minOccurs="0"/>
+			<xs:element name="sourceSystemOrderId" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="15"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="initiativeId" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="30"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="initiativeDescription" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="100"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="dealerId" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="9"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="dnis" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="10"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="chainNumber" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="protectionPlan" type="xs:string" minOccurs="0"/>
+			<xs:element name="reason" type="tns:ReasonType" minOccurs="0"/>
+			<xs:element name="updated" type="tns:UpdateInformationType" minOccurs="0"/>
+			<xs:element name="lineItem" type="tns:WorkOrderLineItemType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="orderId" type="tns:WorkOrderIdType" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="WorkOrderLineItemType">
+		<xs:sequence>
+			<xs:element name="sourceSystemOrderLineItemId" type="tns:WorkOrderLineItemIdType"/>
+			<xs:element name="lineItemAction">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="30"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="deliveryMethod" type="tns:DeliveryMethodType"/>
+			<xs:element name="quantity" type="xs:int"/>
+			<xs:element name="OLIStatus" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="30"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="product" type="tns:WorkOrderProductType"/>
+			<xs:element name="actionRequired">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="30"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="IRDAction" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="30"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="partStatus" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="30"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="equipmentOwnership" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="10"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="receiver" type="tns:ReceiverType" minOccurs="0"/>
+			<xs:element name="neededCapabilityList" type="tns:neededCapabilities" minOccurs="0"/>
+			<xs:element name="deactivateAccessCardId" type="tns:DeactivateAccessCardIdType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="lineItemId" type="tns:WorkOrderLineItemIdType" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="WorkOrderLineItemBaseType">
+		<xs:sequence>
+			<xs:element name="sourceSystemOrderLineItemId" type="tns:WorkOrderLineItemIdType"/>
+		</xs:sequence>
+		<xs:attribute name="lineItemId" type="tns:WorkOrderLineItemIdType" use="required"/>
+	</xs:complexType>
+</xs:schema>

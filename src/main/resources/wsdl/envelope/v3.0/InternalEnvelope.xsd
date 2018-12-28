@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2005 rel. 3 U (http://www.altova.com) by Directv Warehouse (Directv Warehouse) -->
+<!-- edited with XMLSPY v2004 rel. 4 U (http://www.xmlspy.com) by aa (bb) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ei.directv.com/schemas/envelope/v3_0" targetNamespace="http://ei.directv.com/schemas/envelope/v3_0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="./Envelope.xsd"/>
+	<xs:complexType name="CommonServicesDataType">
+		<xs:annotation>
+			<xs:documentation>Container for Common Services Data in the body</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:sequence>
+				<xs:element name="timestamp" type="xs:dateTime"/>
+				<xs:element name="logMessage" type="tns:LogMessageType" minOccurs="0"/>
+				<xs:element name="elapsedTimesInMilliSeconds" type="tns:ElapsedTimeType" minOccurs="0"/>
+				<xs:element name="originatorAwareOfResponse" type="xs:boolean"/>
+			</xs:sequence>
+		</xs:sequence>
+		<xs:anyAttribute namespace="##any" processContents="lax"/>
+	</xs:complexType>
+	<xs:complexType name="ElapsedTimeType">
+		<xs:annotation>
+			<xs:documentation>Container for the Elapsed Time</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="net" type="xs:int"/>
+			<xs:element name="detail" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:int">
+							<xs:attribute name="taskname" type="xs:string" use="required"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="InternalHeaderType">
+		<xs:annotation>
+			<xs:documentation>Internal Header container</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="originatorInfo">
+				<xs:annotation>
+					<xs:documentation>Information about the originaltor of the call</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="authorized" type="xs:boolean" use="required"/>
+							<xs:attribute name="group" type="xs:string" use="required"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="componentInfo">
+				<xs:annotation>
+					<xs:documentation>Information about the Component that is processing the cal</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="name" type="xs:string" use="required"/>
+							<xs:attribute name="layer" use="required">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="OCA"/>
+										<xs:enumeration value="IF"/>
+										<xs:enumeration value="DCA"/>
+										<xs:enumeration value="router"/>
+										<xs:enumeration value="commonServices"/>
+										<xs:enumeration value="other"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:attribute>
+							<xs:attribute name="hostName" type="xs:string" use="required"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="messageInfo">
+				<xs:annotation>
+					<xs:documentation>Information about the message</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="priority" type="xs:nonNegativeInteger" use="required"/>
+							<xs:attribute name="customerId" type="xs:string" use="optional"/>
+							<xs:attribute name="accountId" type="xs:string" use="optional"/>
+							<xs:attribute name="lastName" type="xs:string" use="optional"/>
+							<xs:attribute name="zipCode" type="xs:string" use="optional"/>
+							<xs:attribute name="areaCode" type="xs:string" use="optional"/>
+							<xs:attribute name="phoneNumber" type="xs:string" use="optional"/>
+							<xs:attribute name="orderId" type="xs:string" use="optional"/>
+							<xs:attribute name="smartcardId" type="xs:string" use="optional"/>
+							<xs:attribute name="receiverId" type="xs:string" use="optional"/>
+							<xs:attribute name="SRId" type="xs:string" use="optional"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="responseRequired" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>Indicates if this service requires a response</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="resultCategorizationIndicator" default="none">
+				<xs:annotation>
+					<xs:documentation>Indicates if the DCA/IF layer has already performed error categorization. The default is none. If the DCA/IF layers have performed full or retry flag categorization, they need to indicate it here; if not it will be overridden in the OCA layer</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="none"/>
+						<xs:enumeration value="categorized"/>
+						<xs:enumeration value="retry-flag-set"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="processState" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Any state information that the layers may want to save - useful for retries of  the same call. The state is alive only till the end of this call.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="tns:AdditionalParametersType"/>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="retryCount">
+				<xs:annotation>
+					<xs:documentation>Number of times this call has been retried.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="0"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="internalParameters" type="tns:AdditionalParametersType" minOccurs="0"/>
+			<xs:element name="commonServicesData" type="tns:CommonServicesDataType" minOccurs="0"/>
+			<xs:element name="apiUsageIndicator" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Indicates how this API was invoked - a text comment</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LogMessageType">
+		<xs:annotation>
+			<xs:documentation>Container for log messages</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="text" type="xs:string" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ResponseType">
+		<xs:annotation>
+			<xs:documentation>Container for the Response</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="destinationId" type="xs:string"/>
+			<xs:element name="destinationResponse" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="internalHeader" type="tns:InternalHeaderType">
+		<xs:annotation>
+			<xs:documentation>Internal Header element</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

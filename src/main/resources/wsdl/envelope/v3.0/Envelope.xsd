@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2005 rel. 3 U (http://www.altova.com) by Directv Warehouse (Directv Warehouse) -->
+<!-- edited with XMLSPY v2004 rel. 4 U (http://www.xmlspy.com) by aa (bb) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ei.directv.com/schemas/envelope/v3_0" targetNamespace="http://ei.directv.com/schemas/envelope/v3_0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:attributeGroup name="BodyAttributes">
+		<xs:annotation>
+			<xs:documentation>Attributes of the body</xs:documentation>
+		</xs:annotation>
+		<xs:anyAttribute namespace="##any" processContents="lax"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="EnvelopeAttributes">
+		<xs:annotation>
+			<xs:documentation>Attributes of the Envelope</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="version" type="tns:VersionType" use="required" fixed="3.0"/>
+	</xs:attributeGroup>
+	<xs:simpleType name="MessageType">
+		<xs:annotation>
+			<xs:documentation>Message Type</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="request"/>
+			<xs:enumeration value="response"/>
+			<xs:enumeration value="notification"/>
+			<xs:enumeration value="asyncAck"/>
+			<xs:enumeration value="asyncPoll"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OriginatorTransactionIdType">
+		<xs:annotation>
+			<xs:documentation>Originator Transaction Id Type </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="ReferenceIdType">
+		<xs:annotation>
+			<xs:documentation>Reference Id Type </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="ResultCategoryType">
+		<xs:annotation>
+			<xs:documentation>Category Enumerations</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="ResultCodeType">
+		<xs:annotation>
+			<xs:documentation>Result Code</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="ResultDataStateType">
+		<xs:annotation>
+			<xs:documentation>Data State</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="dirty"/>
+			<xs:enumeration value="clean"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ResultSeverityType">
+		<xs:annotation>
+			<xs:documentation>Severity Enumerations</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="information"/>
+			<xs:enumeration value="warning"/>
+			<xs:enumeration value="error"/>
+			<xs:enumeration value="fatal"/>
+			<xs:enumeration value="unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ResultStatusType">
+		<xs:annotation>
+			<xs:documentation>Status Enumerations </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="success"/>
+			<xs:enumeration value="failure"/>
+			<xs:enumeration value="partial"/>
+			<xs:enumeration value="inprogress"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ResultTextType">
+		<xs:annotation>
+			<xs:documentation>Text of the Result Message</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:element name="businessProcessName" type="xs:string" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Business Process Name in the Originator</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:simpleType name="SequenceType">
+		<xs:annotation>
+			<xs:documentation>Sequence Type</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="SystemType">
+		<xs:annotation>
+			<xs:documentation>System Type</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="VersionType">
+		<xs:annotation>
+			<xs:documentation>Version Type</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:complexType name="AdditionalMessagesResultDetail">
+		<xs:annotation>
+			<xs:documentation>Result Detail for Additional Messages</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="tns:code"/>
+			<xs:element ref="tns:text"/>
+			<xs:element ref="tns:severity"/>
+			<xs:element ref="tns:category"/>
+			<xs:element ref="tns:subcategory" minOccurs="0"/>
+			<xs:element ref="tns:additionalInformation" minOccurs="0"/>
+			<xs:element ref="tns:inputContext" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AdditionalParametersType">
+		<xs:annotation>
+			<xs:documentation>Additional Parameters</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="param" type="tns:NameValuePairType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Identifies a single parameter. Many such parameters may exist</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BodyType">
+		<xs:annotation>
+			<xs:documentation>Place holder for sending in the Body</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:any namespace="##any" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="tns:BodyAttributes"/>
+	</xs:complexType>
+	<xs:complexType name="EIHeaderType">
+		<xs:annotation>
+			<xs:documentation>Information stored in the EI header</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="tns:type"/>
+			<xs:element ref="tns:service"/>
+			<xs:element ref="tns:originator"/>
+			<xs:element ref="tns:businessProcessName" minOccurs="0"/>
+			<xs:element ref="tns:servicerInfo" minOccurs="0"/>
+			<xs:element ref="tns:requestDateTime"/>
+			<xs:element ref="tns:sourceSystemTransactionId" minOccurs="0"/>
+			<xs:element ref="tns:sequenceNumber" minOccurs="0"/>
+			<xs:element ref="tns:user" minOccurs="0"/>
+			<xs:element ref="tns:transactionReference" minOccurs="0"/>
+			<xs:element ref="tns:expirationSeconds" minOccurs="0"/>
+			<xs:element ref="tns:additionalParameters" minOccurs="0"/>
+			<xs:element ref="tns:result" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EnvelopeType">
+		<xs:annotation>
+			<xs:documentation>Holds information about the Envelope</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="header" type="tns:HeaderType">
+				<xs:annotation>
+					<xs:documentation>Contains some key elements that are required for processing the request, and standard response elements</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="body" type="tns:BodyType">
+				<xs:annotation>
+					<xs:documentation>Contains the message body.  Both request and response are sent in this structure. The type of message is indicated by using the type element of the header.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attributeGroup ref="tns:EnvelopeAttributes"/>
+	</xs:complexType>
+	<xs:complexType name="HeaderType">
+		<xs:annotation>
+			<xs:documentation>Information stored in the Header (Includes placeholder for internal header)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="tns:type"/>
+			<xs:element ref="tns:service"/>
+			<xs:element ref="tns:originator"/>
+			<xs:element ref="tns:businessProcessName" minOccurs="0"/>
+			<xs:element ref="tns:servicerInfo" minOccurs="0"/>
+			<xs:element ref="tns:sourceSystemTransactionId" minOccurs="0"/>
+			<xs:element ref="tns:sequenceNumber" minOccurs="0"/>
+			<xs:element ref="tns:user" minOccurs="0"/>
+			<xs:element ref="tns:transactionReference" minOccurs="0"/>
+			<xs:element ref="tns:expirationSeconds" minOccurs="0"/>
+			<xs:element ref="tns:additionalParameters" minOccurs="0"/>
+			<xs:element ref="tns:result" minOccurs="0"/>
+			<xs:element ref="tns:requestDateTime"/>
+			<xs:any namespace="##any" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NameValuePairType">
+		<xs:annotation>
+			<xs:documentation>Parameter Key Value Pair Type.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Each parameter should have a name.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="value" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>The value associated with the parameter is optional, and there can be any number of values associated with a single parameter. If value is not present, the name becomes a tagging parameter</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ResultBaseType">
+		<xs:annotation>
+			<xs:documentation>Base type for Result information</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="tns:status"/>
+			<xs:element ref="tns:provider"/>
+			<xs:element ref="tns:detail" minOccurs="0"/>
+			<xs:element name="additionalMessages" type="tns:AdditionalMessagesResultDetail" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ResultDetailType">
+		<xs:annotation>
+			<xs:documentation>Result Details</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="tns:code"/>
+			<xs:element ref="tns:text"/>
+			<xs:element ref="tns:severity"/>
+			<xs:element ref="tns:category"/>
+			<xs:element ref="tns:subcategory" minOccurs="0"/>
+			<xs:element ref="tns:dataState"/>
+			<xs:element ref="tns:retryAllowed"/>
+			<xs:element ref="tns:additionalInformation" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ResultType">
+		<xs:annotation>
+			<xs:documentation>Result Type</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="tns:ResultBaseType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ServiceIdentifierType">
+		<xs:annotation>
+			<xs:documentation>Service Identification</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Name of the service</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="tns:version"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ServicerType">
+		<xs:annotation>
+			<xs:documentation>Contains information about the Servicer</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="tns:servicerId" minOccurs="0"/>
+			<xs:element ref="tns:primaryOwner" minOccurs="0"/>
+			<xs:element ref="tns:secondaryOwner" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UserIdType">
+		<xs:annotation>
+			<xs:documentation>User Identification Information</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="id">
+				<xs:annotation>
+					<xs:documentation>Identifies the user</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="group" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>An optional grouping of users. This indicates the organization group that the user may belong to within the calling system's organization.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="additionalInformation" type="tns:ResultTextType">
+		<xs:annotation>
+			<xs:documentation>Any additional details are sent back in this field. Typically used for troubleshooting purposes, this data may be more detailed than what an end user may need to know. The consumer systems may choose not to make this information available to the consumer</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="additionalParameters" type="tns:AdditionalParametersType">
+		<xs:annotation>
+			<xs:documentation>Service specific additional header elements may be provided here</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="category" type="tns:ResultCategoryType" default="unknown">
+		<xs:annotation>
+			<xs:documentation>Category of the message. Messages can be either business messages, system messages or timeouts.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="code" type="tns:ResultCodeType">
+		<xs:annotation>
+			<xs:documentation>Message code</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="dataState" type="tns:ResultDataStateType" default="unknown">
+		<xs:annotation>
+			<xs:documentation>The state of the data after this error - indicates if the data is clean or dirty.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="detail" type="tns:ResultDetailType">
+		<xs:annotation>
+			<xs:documentation>Result Detail</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="envelope" type="tns:EnvelopeType">
+		<xs:annotation>
+			<xs:documentation>This document is a standard envelope used for communicating with the EI middleware. Both requests and responses are sent using this envelope</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="expirationSeconds" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>The total time the consumer will wait before the service response will be ignored and the consumer will go back with a timeout. If not given, the default timeout for the service will be used</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="inputContext" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>When additional messages are returned, the input Context identifies the context in which the mesage was generated. Typically this will refer to a primary key or a line item id</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="originator" type="tns:SystemType">
+		<xs:annotation>
+			<xs:documentation>Consumer system name. Used for authorization of requests</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="primaryOwner">
+		<xs:annotation>
+			<xs:documentation>Primary Owner (Servicer Info)</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="12"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="provider" type="tns:SystemType" default="EI">
+		<xs:annotation>
+			<xs:documentation>The System/layer that generated the message</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="requestDateTime" type="xs:dateTime">
+		<xs:annotation>
+			<xs:documentation>Timestamp generated by the Origination system</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="result" type="tns:ResultType">
+		<xs:annotation>
+			<xs:documentation>Result of the transaction</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="retryAllowed" type="xs:boolean" default="false">
+		<xs:annotation>
+			<xs:documentation>If this flag is set to true, the Originator may safely retry the request without changing the data, and expect to get consistent results. It is guaranteed that the data state remains consistent if this flag is set. If it is set to false, the Originator should not attempt to retry the request</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="secondaryOwner">
+		<xs:annotation>
+			<xs:documentation>Secondary Owner (Servicer Info)</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="12"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="sequenceNumber" type="tns:SequenceType">
+		<xs:annotation>
+			<xs:documentation>Sequence number to link the calls across various layers. If not given, the middleware will assume this to be 001.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="service" type="tns:ServiceIdentifierType">
+		<xs:annotation>
+			<xs:documentation>Identifies the service</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="servicerId" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Identifies the Servicer</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="servicerInfo" type="tns:ServicerType">
+		<xs:annotation>
+			<xs:documentation>Container for identification information of a servicer</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="severity" type="tns:ResultSeverityType" default="unknown">
+		<xs:annotation>
+			<xs:documentation>Severity of the message</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="mnemonic" type="tns:ResultTextType">
+		<xs:annotation>
+			<xs:documentation>Mnemonic for the error/result Message. Can be used for pager messages as well</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="subcategory" type="tns:ResultTextType">
+		<xs:annotation>
+			<xs:documentation>Sub Category for the result message</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="sourceSystemTransactionId" type="tns:OriginatorTransactionIdType">
+		<xs:annotation>
+			<xs:documentation>A transaction id for the source system</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="status" type="tns:ResultStatusType">
+		<xs:annotation>
+			<xs:documentation>Call status - Success or Failure</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="text" type="tns:ResultTextType">
+		<xs:annotation>
+			<xs:documentation>The message text. This is a consumer friendly message that indicates what happend to the request. </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="transactionReference" type="tns:ReferenceIdType">
+		<xs:annotation>
+			<xs:documentation>An EI generated reference number used for tracking the transaction all the way through. Also used for hybrid transactions when the consumer needs to come back for the response of the transaction</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="type" type="tns:MessageType" default="request">
+		<xs:annotation>
+			<xs:documentation>Type of the message e.g, Request Response etc</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="user" type="tns:UserIdType">
+		<xs:annotation>
+			<xs:documentation>Optionally identifies the user . Information is  used only for logging purposes, and is not required for processing</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="version" type="tns:VersionType">
+		<xs:annotation>
+			<xs:documentation>Version of the service</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="ei" type="tns:EIHeaderType">
+		<xs:annotation>
+			<xs:documentation>Version of the service</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

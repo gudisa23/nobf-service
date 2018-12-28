@@ -1,0 +1,20 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - chmod +x ./scripts/aws/mavenPrep.sh
+      - ./scripts/aws/mavenPrep.sh
+  build:
+    commands:
+      - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent deploy -U -B
+      - mvn sonar:sonar -U -B
+  post_build:
+    commands:
+      - mv target/nobf-service*.jar ./nobf-service.jar
+artifacts:
+  files:
+    - appspec.yml
+    - nobf-service.jar
+    - nobf-service.conf
+    - scripts/**/*

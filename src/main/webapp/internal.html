@@ -1,0 +1,45 @@
+<html>
+<head>
+  <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/bootstrap-table.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/bootstrap-table.min.css" rel="stylesheet" type="text/css" />
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+$.getJSON("http://localhost:8080/nobf-service/collaborateorder/v1/order/orderList", function (jsonFromFile) {
+	for (var i = 0, len = jsonFromFile.length; i < len; i++) {
+       // alert(jsonFromFile[i].orderType);
+    }
+	//alert("hi json="+jsonFromFile.rows.orderType);
+	$('#table').bootstrapTable({
+		data: jsonFromFile,
+	    search: true
+	})
+});
+});
+</script>
+</head>
+<body>
+hi there, this is an internal page
+
+
+
+<div class="container">
+	<table id="table">
+		<thead>
+			<tr>
+				<th data-field="orderType" data-sortable="true">orderType</th>
+				<th data-field="emailSent" data-sortable="true">Email Sent?</th>
+				<th data-field="createDate" data-sortable="true">Create Date</th>
+				<th data-field="lastModifiedDate" data-sortable="true">Last Modified Date</th>
+				<th data-field="data" data-sortable="true">data</th>
+				<th data-field="htmlText" data-sortable="true">htmlText</th>
+			</tr>
+		</thead>
+	</table>
+</div>
+</body>
+</html>

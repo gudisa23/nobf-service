@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2005 U (http://www.xmlspy.com) by Directv Warehouse (Directv Warehouse) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ent="http://ei.directv.com/schemas/entities/v4_0" targetNamespace="http://ei.directv.com/schemas/entities/v4_0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="./ProductInformation.xsd"/>
+	<xs:complexType name="DMAAffiliateEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:dmaAfflCallLetters" minOccurs="0"/>
+					<xs:element ref="ent:dmaAfflNetworkAssociatedWith" minOccurs="0"/>
+					<xs:element ref="ent:channel" minOccurs="0"/>
+					<xs:element ref="ent:channelForLegacyReceivers" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DMAAffiliateListEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:ListEntity">
+				<xs:sequence>
+					<xs:element ref="ent:dmaAffiliate" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CAMCServiceInfoListEntity">
+		<xs:annotation>
+			<xs:documentation>List of CAMC Service Information</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:camcServiceInfo" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CAMCServiceInfoEntity">
+		<xs:annotation>
+			<xs:documentation>CAMC Service Information</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:camcServiceId" minOccurs="0"/>
+			<xs:element ref="ent:serviceDescription" minOccurs="0"/>
+			<xs:element ref="ent:serviceType" minOccurs="0"/>
+			<xs:element ref="ent:payFreeIndicator" minOccurs="0"/>
+			<xs:element ref="ent:expirationDateTime" minOccurs="0"/>
+			<xs:element ref="ent:taping" minOccurs="0"/>
+			<xs:element ref="ent:privateNetworkApprovalCode" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EventEntity">
+		<xs:annotation>
+			<xs:documentation>Event details</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:ProgrammingProductEntity">
+				<xs:sequence>
+					<xs:element ref="ent:scheduledEventInfoList" minOccurs="0"/>
+					<xs:element ref="ent:eventSource" minOccurs="0"/>
+					<xs:element ref="ent:specialEventCode" minOccurs="0"/>
+					<xs:element ref="ent:mirroredFlag" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="EventHistorySelectionCriteriaEntity">
+		<xs:annotation>
+			<xs:documentation>Event History Selection criteria</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:effectiveBeginDate" minOccurs="0"/>
+			<xs:element ref="ent:effectiveEndDate" minOccurs="0"/>
+			<xs:element ref="ent:eventStatusCriteria" minOccurs="0"/>
+			<xs:element ref="ent:eventsAiredStatus" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EventListEntity">
+		<xs:annotation>
+			<xs:documentation>List of Events with details</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:ListEntity">
+				<xs:sequence>
+					<xs:element ref="ent:event" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="LocalChannelInfoEntity">
+		<xs:annotation>
+			<xs:documentation>Contains information about local channels</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:dmaCode" minOccurs="0"/>
+					<xs:element ref="ent:localChannelMarketName" minOccurs="0"/>
+					<xs:element ref="ent:orbitalSlot" minOccurs="0"/>
+					<xs:element ref="ent:futureOrbitalSlot" minOccurs="0"/>
+					<xs:element ref="ent:effectiveDate" minOccurs="0"/>
+					<xs:element ref="ent:dmaPromotionalMessage" minOccurs="0"/>
+					<xs:element ref="ent:nationalPBSFeedBlackedOutFlag" minOccurs="0"/>
+					<xs:element ref="ent:dmaAffiliateList" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="availableFlag" type="xs:boolean"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ProgrammingProductEntity">
+		<xs:annotation>
+			<xs:documentation>Common information for services and events</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:BasicProductEntity">
+				<xs:sequence>
+					<xs:element ref="ent:mediaResponseFlag" minOccurs="0"/>
+					<xs:element ref="ent:mediaType" minOccurs="0"/>
+					<xs:element ref="ent:ratingCode" minOccurs="0"/>
+					<xs:element ref="ent:ratingLevel" minOccurs="0"/>
+					<xs:element ref="ent:primaryOwner" minOccurs="0"/>
+					<xs:element ref="ent:secondaryOwner" minOccurs="0"/>
+					<xs:element ref="ent:seasonalFlag" minOccurs="0"/>
+					<xs:element ref="ent:taping" minOccurs="0"/>
+					<xs:element ref="ent:privateNetworkApprovalCode" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ProgrammingProductListEntity">
+		<xs:annotation>
+			<xs:documentation>List of Product information</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:ListEntity">
+				<xs:sequence>
+					<xs:element ref="ent:programmingProduct" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ServiceEntity">
+		<xs:annotation>
+			<xs:documentation>Service details</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:ProgrammingProductEntity">
+				<xs:sequence>
+					<xs:element ref="ent:serviceLength" minOccurs="0"/>
+					<xs:element ref="ent:mirroredFlag" minOccurs="0"/>
+					<xs:element ref="ent:expirationDate" minOccurs="0"/>
+					<xs:element ref="ent:airDate" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ServiceListEntity">
+		<xs:annotation>
+			<xs:documentation>List of Services with details</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:ListEntity">
+				<xs:sequence>
+					<xs:element ref="ent:service" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ServiceEventSelectionCriteriaEntity">
+		<xs:annotation>
+			<xs:documentation>Selection criteria used to retrieve services</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:selectionTitle" minOccurs="0"/>
+			<xs:element ref="ent:effectiveDate" minOccurs="0"/>
+			<xs:element ref="ent:subjectLevel0" minOccurs="0"/>
+			<xs:element ref="ent:subjectLevel1" minOccurs="0"/>
+			<xs:element ref="ent:subjectLevel2" minOccurs="0"/>
+			<xs:element ref="ent:subjectLevel3" minOccurs="0"/>
+			<xs:element ref="ent:subjectLevel4" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ScheduledEventInfoEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:scheduledEventCodeInfo" minOccurs="0"/>
+					<xs:element ref="ent:startAirDateTime" minOccurs="0"/>
+					<xs:element ref="ent:endAirDateTime" minOccurs="0"/>
+					<xs:element ref="ent:channel" minOccurs="0"/>
+					<xs:element ref="ent:stmsEventReference" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ScheduledEventInfoListEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:ListEntity">
+				<xs:sequence>
+					<xs:element ref="ent:scheduledEventInfo" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="SubscribedEventEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:EventEntity">
+				<xs:sequence>
+					<xs:element ref="ent:subscriptionInfo" minOccurs="0"/>
+					<xs:element ref="ent:eventRptBackDate" minOccurs="0"/>
+					<xs:element ref="ent:howOrdered" minOccurs="0"/>
+					<xs:element ref="ent:salesAgentId" minOccurs="0"/>
+					<xs:element ref="ent:cancelDateTime" minOccurs="0"/>
+					<xs:element ref="ent:startAirDateTime" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>The start air date time for the event in the user's timezone</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="ent:eventOrderDateTime" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="SubscribedEventListEntity">
+		<xs:annotation>
+			<xs:documentation>List of Subscriber Events</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:ListEntity">
+				<xs:sequence>
+					<xs:element ref="ent:subscribedEvent" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="SubscribedServiceEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:ServiceEntity">
+				<xs:sequence>
+					<xs:element ref="ent:subscriptionInfo" minOccurs="0"/>
+					<xs:element ref="ent:accessFeeBypassFlag" minOccurs="0"/>
+					<xs:element ref="ent:autoRenewFlag" minOccurs="0"/>
+					<xs:element ref="ent:daysWithoutserviceInMth" minOccurs="0"/>
+					<xs:element ref="ent:disconnectDate" minOccurs="0"/>
+					<xs:element ref="ent:activationDate" minOccurs="0"/>
+					<xs:element ref="ent:disconnectReason" minOccurs="0"/>
+					<xs:element ref="ent:freezeOrderDate" minOccurs="0"/>
+					<xs:element ref="ent:lastBillAmount" minOccurs="0"/>
+					<xs:element ref="ent:proratedAmount" minOccurs="0"/>
+					<xs:element ref="ent:numberOfBills" minOccurs="0"/>
+					<xs:element ref="ent:reinstallDate" minOccurs="0"/>
+					<xs:element ref="ent:renewCount" minOccurs="0"/>
+					<xs:element ref="ent:renewExpirationDate" minOccurs="0"/>
+					<xs:element ref="ent:renewStartDate" minOccurs="0"/>
+					<xs:element ref="ent:billEventFlag" minOccurs="0"/>
+					<xs:element ref="ent:actionCode" minOccurs="0"/>
+					<xs:element ref="ent:salesAgentId" minOccurs="0"/>
+					<xs:element ref="ent:reinstateFlag" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="SubscribedServiceListEntity">
+		<xs:annotation>
+			<xs:documentation>List of Subscriber Services</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:ListEntity">
+				<xs:sequence>
+					<xs:element ref="ent:subscribedService" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="SubscriptionInfoEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:billsRemaining" minOccurs="0"/>
+					<xs:element ref="ent:orderId" minOccurs="0"/>
+					<xs:element ref="ent:camcId" minOccurs="0"/>
+					<xs:element ref="ent:creditCardIndicator" minOccurs="0"/>
+					<xs:element ref="ent:dealerFlag" minOccurs="0"/>
+					<xs:element ref="ent:districtTaxCode" minOccurs="0"/>
+					<xs:element ref="ent:eftFlag" minOccurs="0"/>
+					<xs:element ref="ent:lastBillDate" minOccurs="0"/>
+					<xs:element ref="ent:nextBillDate" minOccurs="0"/>
+					<xs:element ref="ent:priorPeriodUnearned" minOccurs="0"/>
+					<xs:element ref="ent:billToAlternateAccountFlag" minOccurs="0"/>
+					<xs:element ref="ent:taxInfo" minOccurs="0"/>
+					<xs:element ref="ent:paymentMethod" minOccurs="0"/>
+					<xs:element ref="ent:camcServiceInfoList" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ServiceHistoryListEntity">
+		<xs:annotation>
+			<xs:documentation>List of Service History</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:serviceHistory" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ServiceHistoryEntity">
+		<xs:sequence>
+			<xs:element ref="ent:transactionDateTime" minOccurs="0"/>
+			<xs:element ref="ent:actionDescription" minOccurs="0"/>
+			<xs:element ref="ent:productType" minOccurs="0"/>
+			<xs:element ref="ent:productCode" minOccurs="0"/>
+			<xs:element ref="ent:productDescription" minOccurs="0"/>
+			<xs:element ref="ent:accessCardId" minOccurs="0"/>
+			<xs:element ref="ent:id" minOccurs="0"/>
+			<xs:element ref="ent:camcId" minOccurs="0"/>
+			<xs:element ref="ent:actionCode" minOccurs="0"/>
+			<xs:element ref="ent:effectiveDate" minOccurs="0"/>
+			<xs:element ref="ent:mirroredFlag" minOccurs="0"/>
+			<xs:element ref="ent:alternateAccountFlag" minOccurs="0"/>
+			<xs:element ref="ent:billToAlternateAccountId" minOccurs="0"/>
+			<xs:element ref="ent:billToAlternateAccountFlag" minOccurs="0"/>
+			<xs:element ref="ent:cableStatusFlag" minOccurs="0"/>
+			<xs:element ref="ent:campaignCode" minOccurs="0"/>
+			<xs:element ref="ent:commissionPaidFlag" minOccurs="0"/>
+			<xs:element ref="ent:commissionPaidCount" minOccurs="0"/>
+			<xs:element ref="ent:dealerFlag" minOccurs="0"/>
+			<xs:element ref="ent:mediaResponseFlag" minOccurs="0"/>
+			<xs:element ref="ent:mediaType" minOccurs="0"/>
+			<xs:element ref="ent:priceCode" minOccurs="0"/>
+			<xs:element ref="ent:priceBeginDateTime" minOccurs="0"/>
+			<xs:element ref="ent:promotionCode" minOccurs="0"/>
+			<xs:element ref="ent:registerNumber" minOccurs="0"/>
+			<xs:element ref="ent:serviceLevel" minOccurs="0"/>
+			<xs:element ref="ent:primaryOwner" minOccurs="0"/>
+			<xs:element ref="ent:secondaryOwner" minOccurs="0"/>
+			<xs:element ref="ent:group" minOccurs="0"/>
+			<xs:element ref="ent:transactionTicketNumber" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="camcServiceInfo" type="ent:CAMCServiceInfoEntity">
+		<xs:annotation>
+			<xs:documentation>CAMC Service Information</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="camcServiceInfoList" type="ent:CAMCServiceInfoListEntity">
+		<xs:annotation>
+			<xs:documentation>List of CAMC Service Information</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="dmaAffiliate" type="ent:DMAAffiliateEntity">
+		<xs:annotation>
+			<xs:documentation>A single DMA Affiliate information</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="dmaAffiliateList" type="ent:DMAAffiliateListEntity">
+		<xs:annotation>
+			<xs:documentation>A list of DMA Affiliates</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="event" type="ent:EventEntity">
+		<xs:annotation>
+			<xs:documentation>A Programming Event Product</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="eventList" type="ent:EventListEntity">
+		<xs:annotation>
+			<xs:documentation>A list of Programming Events</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="localChannelInfo" type="ent:LocalChannelInfoEntity">
+		<xs:annotation>
+			<xs:documentation>Information about Local Channels</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="programmingProduct" type="ent:ProgrammingProductEntity">
+		<xs:annotation>
+			<xs:documentation>A generic Programming Product (service/event)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="programmingProductList" type="ent:ProgrammingProductListEntity">
+		<xs:annotation>
+			<xs:documentation>A List of generic Programming Product (service/event)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="scheduledEventCodeInfo" type="ent:ProductCodeEntity">
+		<xs:annotation>
+			<xs:documentation>Identifies the Scheduled Event</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="scheduledEventInfo" type="ent:ScheduledEventInfoEntity">
+		<xs:annotation>
+			<xs:documentation>Instance of a Scheduled Event</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="scheduledEventInfoList" type="ent:ScheduledEventInfoListEntity">
+		<xs:annotation>
+			<xs:documentation>A list of Scheduled Events</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="service" type="ent:ServiceEntity">
+		<xs:annotation>
+			<xs:documentation>A Service Product</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="serviceList" type="ent:ServiceListEntity">
+		<xs:annotation>
+			<xs:documentation>A list of Services </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="serviceHistory" type="ent:ServiceHistoryEntity">
+		<xs:annotation>
+			<xs:documentation>A Service History</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="serviceHistoryList" type="ent:ServiceHistoryListEntity">
+		<xs:annotation>
+			<xs:documentation>A list of Service History </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="subscribedEvent" type="ent:SubscribedEventEntity">
+		<xs:annotation>
+			<xs:documentation>An instance of SubscribedEvent</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="subscribedEventList" type="ent:SubscribedEventListEntity">
+		<xs:annotation>
+			<xs:documentation>A list of SubscribedEvents</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="subscriptionInfo" type="ent:SubscriptionInfoEntity">
+		<xs:annotation>
+			<xs:documentation>A single instance of subscribed programming product</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="subscribedService" type="ent:SubscribedServiceEntity">
+		<xs:annotation>
+			<xs:documentation>A single SubscribedService</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="subscribedServiceList" type="ent:SubscribedServiceListEntity">
+		<xs:annotation>
+			<xs:documentation>A list of SubscribedServices</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="stmsEventReference" type="ent:ProductCodeEntity">
+		<xs:annotation>
+			<xs:documentation>Identifies the code information for a video event product</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

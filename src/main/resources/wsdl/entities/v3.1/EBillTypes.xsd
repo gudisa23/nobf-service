@@ -1,0 +1,562 @@
+<!-- edited with XMLSpy v2005 sp2 U (http://www.altova.com) by Directv Warehouse (Directv Warehouse) -->
+<!-- Change billDueDate, ebillEffectiveBeginDate, ebillEffectiveEndDate, accountCreationDate, 
+      ebillLastPaymentDate from dateTime to date -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ent="http://ei.directv.com/schemas/entities/v3_1" targetNamespace="http://ei.directv.com/schemas/entities/v3_1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="./BasicElementDefinitions.xsd"/>
+	<xs:include schemaLocation="./CommonComplexTypes.xsd"/>
+	<xs:include schemaLocation="./CustomerInformation.xsd"/>
+	<xs:include schemaLocation="./TargetInformation.xsd"/>
+	<xs:element name="lineItemIdentificationDataList">
+		<xs:annotation>
+			<xs:documentation>List of line item identification data</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ent:ListEntity">
+					<xs:sequence>
+						<xs:element ref="ent:lineItemIdentificationData" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="childLineItemList">
+		<xs:annotation>
+			<xs:documentation>List of child line items</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ent:ListEntity">
+					<xs:sequence>
+						<xs:element ref="ent:childLineItemData" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="statementLevelLineItemList">
+		<xs:annotation>
+			<xs:documentation>List of line items at statement level</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ent:ListEntity">
+					<xs:sequence>
+						<xs:element ref="ent:statementLineItemData" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="accountLevelLineItemList">
+		<xs:annotation>
+			<xs:documentation>List of line items at account level</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ent:ListEntity">
+					<xs:sequence>
+						<xs:element ref="ent:statementLineItemData" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="accountConfigurablePropertyList">
+		<xs:annotation>
+			<xs:documentation>List of properties associated with the account</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ent:ListEntity">
+					<xs:sequence>
+						<xs:element ref="ent:configurablePropertyData" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="statementConfigurablePropertyList">
+		<xs:annotation>
+			<xs:documentation>List of properties associated with the statement</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ent:ListEntity">
+					<xs:sequence>
+						<xs:element ref="ent:configurablePropertyData" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="statementEquipmentInformationList">
+		<xs:annotation>
+			<xs:documentation>List of receivers on the account</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ent:ListEntity">
+					<xs:sequence>
+						<xs:element ref="ent:statementEquipmentInfomation" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="lineItemIdentificationData" type="ent:LineItemIdentificationDataEntity">
+		<xs:annotation>
+			<xs:documentation>Individual line item id data</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="ebillAccountInformation" type="ent:EBillAccountInformationEntity">
+		<xs:annotation>
+			<xs:documentation>Basic account information returned from ebukk</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="statementLineItemData" type="ent:StatementLineItemDataEntity">
+		<xs:annotation>
+			<xs:documentation>Individual statement line item data</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="childLineItemData" type="ent:ChildLineItemDataEntity">
+		<xs:annotation>
+			<xs:documentation>Individual child line item with choice of specific type of line item</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="configurablePropertyData" type="ent:ConfigurablePropertyDataEntity">
+		<xs:annotation>
+			<xs:documentation>Individual property associated with a statement or account</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="statement" type="ent:StatementEntity">
+		<xs:annotation>
+			<xs:documentation>Statement entity that contains all common fields associated with a statement</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="suppressInserts" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>indicator of whether to suppress inserts in bill</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="statementTemplateId" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>the template id for the statement</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="statementTemplateVersionNumber" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>statement template version number</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="statementType" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>type of statement</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="accountLeaseIndicator" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>indicates the type of equipment on the account</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="statementCCRefundIndicator" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Indicates if a refund is applied to a credit card</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="statementOptinIndicator" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Indicates whether a Telco sold the account</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="statementLineItemClassificationCode" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>classification code for the line item in the bill</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="statementLineItemId" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>line item id for statement</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="statementLineItemNumber" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>line item number for statement</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="statementParentLineItemNumber" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>parent line item inumber for statement</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="isGiftTransaction" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>indicates whether the line item is a gift</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="onPrimaryAccessCard" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>indicates whether the line item is on the primary access card</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="statementLineItemIdentificationType" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>additional descriptor for the line item</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="statementLineItemIdentificationValue" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>additional descriptor for the line item</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="statementLineItemDescriptionCode" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>additional descriptor for the line item</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="statementLineItemDescriptionValue" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>additional descriptor for the line item</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="statementLineItemTotalType" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>type of total for total line item</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="statementLineItemPaymentType" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>type of payment for line item</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="statementLineItemProductType" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>type of product for line item</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="statementLineItemFeeType" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>type of fee for line item</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="statementLineItemTaxJurisdictionType" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>the tax jurisdiction for the line item</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="statementLineItemPaymentSource" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>the source of the payment for ebill</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="propertyToBePrinted" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>indicates whether this property is to be printed on the bill</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="statementChargePeriod" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>indicates the charge period (full or prorated)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="statementEquipmentInfomation" type="ent:TargetEntity"/>
+	<xs:element name="adjustmentLineItem" type="ent:AdjustmentLineItemEntity"/>
+	<xs:element name="discountLineItem" type="ent:DiscountLineItemEntity"/>
+	<xs:element name="feeLineItem" type="ent:FeeLineItemEntity"/>
+	<xs:element name="paymentLineItem" type="ent:PaymentLineItemEntity"/>
+	<xs:element name="purchasedProductLineItem" type="ent:PurchasedProductLineItemEntity"/>
+	<xs:element name="taxLineItem" type="ent:TaxLineItemEntity"/>
+	<xs:element name="totalLineItem" type="ent:TotalLineItemEntity"/>
+	<xs:complexType name="StatementDateInformationEntity">
+		<xs:annotation>
+			<xs:documentation>The dates associated with the statement</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:billIssueDate"/>
+			<xs:element ref="ent:billDueDate" minOccurs="0"/>
+			<xs:element ref="ent:effectiveBeginDate" minOccurs="0"/>
+			<xs:element ref="ent:effectiveEndDate" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="StatementTemplateInformationEntity">
+		<xs:annotation>
+			<xs:documentation>The statement template information returned from statement prep</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:statementTemplateId" minOccurs="0"/>
+			<xs:element ref="ent:statementTemplateVersionNumber" minOccurs="0"/>
+			<xs:element ref="ent:statementType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="StatementDemographicInformationEntity">
+		<xs:annotation>
+			<xs:documentation>The demographic information about the account that can be assoiciated with the statement</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:creationDate" minOccurs="0"/>
+			<xs:element name="statementBusinessPhoneNumber" type="ent:StatementFullPhoneNumberEntity" minOccurs="0"/>
+			<xs:element ref="ent:customerAssignedRank" minOccurs="0"/>
+			<xs:element ref="ent:customerType" minOccurs="0"/>
+			<xs:element ref="ent:dmaCode" minOccurs="0"/>
+			<xs:element name="statementHomePhoneNumber" type="ent:StatementFullPhoneNumberEntity" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RemittanceCenterInformationEntity">
+		<xs:annotation>
+			<xs:documentation>The information associated with remittance center</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:effectiveBeginDate" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The effective begin date of the association with the remittance center</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="ent:effectiveEndDate" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>the effective end date of the association with remittance center</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="ent:remittanceCenterId" minOccurs="0"/>
+			<xs:element ref="ent:paymentProcessor" minOccurs="0"/>
+			<xs:element ref="ent:remittanceCenterReferenceId" minOccurs="0"/>
+			<xs:element ref="ent:remittanceCenterVersionNumber" minOccurs="0"/>
+			<xs:element name="remittanceCenterContactInformation" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="ent:fullName" minOccurs="0"/>
+						<xs:element name="contactPhoneNumber" type="ent:StatementFullPhoneNumberEntity" minOccurs="0"/>
+						<xs:element name="contactAddress" type="ent:AddressEntity" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="remittanceCenterAddress" type="ent:AddressEntity" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RetailerInformationEntity">
+		<xs:annotation>
+			<xs:documentation>The retailer information associated with the account</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:retailerName" minOccurs="0"/>
+			<xs:element name="retailerAddress" type="ent:AddressEntity" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BasicStatementLineItemEntity">
+		<xs:annotation>
+			<xs:documentation>The basic statement line item entity - all the specific line item entities for statements will extend from this</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:amount" minOccurs="0"/>
+			<xs:element ref="ent:effectiveBeginDate" minOccurs="0"/>
+			<xs:element ref="ent:effectiveEndDate" minOccurs="0"/>
+			<xs:element ref="ent:statementChargePeriod" minOccurs="0"/>
+			<xs:element ref="ent:statementLineItemClassificationCode" minOccurs="0"/>
+			<xs:element ref="ent:statementLineItemId" minOccurs="0"/>
+			<xs:element ref="ent:statementLineItemNumber" minOccurs="0"/>
+			<xs:element ref="ent:statementParentLineItemNumber" minOccurs="0"/>
+			<xs:element ref="ent:isGiftTransaction" minOccurs="0"/>
+			<xs:element ref="ent:onPrimaryAccessCard" minOccurs="0"/>
+			<xs:element ref="ent:lineItemIdentificationDataList" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LineItemIdentificationDataEntity">
+		<xs:annotation>
+			<xs:documentation>line item identification data used to further describe the line item - contains informaion such as service code, prefix, ect.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:statementLineItemIdentificationType" minOccurs="0"/>
+			<xs:element ref="ent:statementLineItemIdentificationValue" minOccurs="0"/>
+			<xs:element ref="ent:statementLineItemDescriptionCode" minOccurs="0"/>
+			<xs:element ref="ent:statementLineItemDescriptionValue" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ConfigurablePropertyDataEntity">
+		<xs:annotation>
+			<xs:documentation>property data used to assign certain properties to an account/statement</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:paramKVPair" minOccurs="0"/>
+			<xs:element ref="ent:propertyToBePrinted" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AdjustmentLineItemEntity">
+		<xs:annotation>
+			<xs:documentation>line item used to represent an adjustment.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:BasicStatementLineItemEntity">
+				<xs:sequence>
+					<xs:element ref="ent:childLineItemList" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DiscountLineItemEntity">
+		<xs:annotation>
+			<xs:documentation>line item used to represent a discount</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:BasicStatementLineItemEntity">
+				<xs:sequence>
+					<xs:element name="discountEffectiveEndDate" type="xs:date" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Effective end date here represents the effective end date of the discount on the account</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="ent:childLineItemList" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="FeeLineItemEntity">
+		<xs:annotation>
+			<xs:documentation>line item used to represent a fee</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:BasicStatementLineItemEntity">
+				<xs:sequence>
+					<xs:element ref="ent:statementLineItemFeeType" minOccurs="0"/>
+					<xs:element ref="ent:accessCardId" minOccurs="0"/>
+					<xs:element ref="ent:childLineItemList" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PaymentLineItemEntity">
+		<xs:annotation>
+			<xs:documentation>line item used to represent a payment</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:BasicStatementLineItemEntity">
+				<xs:sequence>
+					<xs:element ref="ent:lastBillPaymentDate" minOccurs="0"/>
+					<xs:element ref="ent:statementLineItemPaymentType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PurchasedProductLineItemEntity">
+		<xs:annotation>
+			<xs:documentation>line item used to represent a product that was purchased</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:BasicStatementLineItemEntity">
+				<xs:sequence>
+					<xs:element ref="ent:orderQuantity" minOccurs="0"/>
+					<xs:element ref="ent:statementLineItemProductType" minOccurs="0"/>
+					<xs:element ref="ent:accessCardId" minOccurs="0"/>
+					<xs:element ref="ent:childLineItemList" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="TaxLineItemEntity">
+		<xs:annotation>
+			<xs:documentation>line item used to represent a tax</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:BasicStatementLineItemEntity">
+				<xs:sequence>
+					<xs:element ref="ent:taxCategory" minOccurs="0"/>
+					<xs:element ref="ent:statementLineItemTaxJurisdictionType" minOccurs="0"/>
+					<xs:element ref="ent:childLineItemList" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="TotalLineItemEntity">
+		<xs:annotation>
+			<xs:documentation>line item used to represent a total</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:BasicStatementLineItemEntity">
+				<xs:sequence>
+					<xs:element ref="ent:statementLineItemTotalType" minOccurs="0"/>
+					<xs:element ref="ent:statementLineItemPaymentType" minOccurs="0"/>
+					<xs:element ref="ent:statementLineItemProductType" minOccurs="0"/>
+					<xs:element ref="ent:statementLineItemFeeType" minOccurs="0"/>
+					<xs:element ref="ent:statementLineItemTaxJurisdictionType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="StatementLineItemDataEntity">
+		<xs:annotation>
+			<xs:documentation>choice of statement line items</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element ref="ent:adjustmentLineItem" minOccurs="0"/>
+			<xs:element ref="ent:discountLineItem" minOccurs="0"/>
+			<xs:element ref="ent:feeLineItem" minOccurs="0"/>
+			<xs:element ref="ent:paymentLineItem" minOccurs="0"/>
+			<xs:element ref="ent:purchasedProductLineItem" minOccurs="0"/>
+			<xs:element ref="ent:taxLineItem" minOccurs="0"/>
+			<xs:element ref="ent:totalLineItem" minOccurs="0"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="ChildLineItemDataEntity">
+		<xs:annotation>
+			<xs:documentation>choice of statement line items</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element ref="ent:adjustmentLineItem" minOccurs="0"/>
+			<xs:element ref="ent:discountLineItem" minOccurs="0"/>
+			<xs:element ref="ent:feeLineItem" minOccurs="0"/>
+			<xs:element ref="ent:taxLineItem" minOccurs="0"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="StatementAddressInfoEntity">
+		<xs:annotation>
+			<xs:documentation>billing and service address information</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="statementServiceAddress" type="ent:AddressEntity" minOccurs="0"/>
+			<xs:element name="statementBillingAddress" type="ent:AddressEntity" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EBillAccountInformationEntity">
+		<xs:annotation>
+			<xs:documentation>account information</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="statementBasicAccountInformation" type="ent:BasicAccountInfoEntity" minOccurs="0"/>
+			<xs:element name="statementAccountFinancialInformation" type="ent:AccountFinancialInfoEntity" minOccurs="0"/>
+			<xs:element name="statementAccountStatusDetails" type="ent:AccountProgrammingInfoEntity" minOccurs="0"/>
+			<xs:element name="statementAddressInformation" type="ent:StatementAddressInfoEntity" minOccurs="0"/>
+			<xs:element ref="ent:statementEquipmentInformationList" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="StatementEntity">
+		<xs:sequence>
+			<xs:element name="statementDateInformation" type="ent:StatementDateInformationEntity" minOccurs="0"/>
+			<xs:element name="statementTemplateInformation" type="ent:StatementTemplateInformationEntity" minOccurs="0"/>
+			<xs:element ref="ent:ebillAccountInformation" minOccurs="0"/>
+			<xs:element name="demographicInformation" type="ent:StatementDemographicInformationEntity" minOccurs="0"/>
+			<xs:element ref="ent:statementLevelLineItemList" minOccurs="0"/>
+			<xs:element ref="ent:accountLevelLineItemList" minOccurs="0"/>
+			<xs:element name="remittanceCenterInformation" type="ent:RemittanceCenterInformationEntity" minOccurs="0"/>
+			<xs:element name="retailerInformation" type="ent:RetailerInformationEntity" minOccurs="0"/>
+			<xs:element ref="ent:accountConfigurablePropertyList" minOccurs="0"/>
+			<xs:element ref="ent:statementConfigurablePropertyList" minOccurs="0"/>
+			<xs:element ref="ent:fullName" minOccurs="0"/>
+			<xs:element ref="ent:statementNumber" minOccurs="0"/>
+			<xs:element ref="ent:paymentMessage" minOccurs="0"/>
+			<xs:element ref="ent:suppressInserts" minOccurs="0"/>
+			<xs:element ref="ent:underMinimumBillThreshold" minOccurs="0"/>
+			<xs:element ref="ent:cycleGroupNumber" minOccurs="0"/>
+			<xs:element ref="ent:accountLeaseIndicator" minOccurs="0"/>
+			<xs:element ref="ent:statementCCRefundIndicator" minOccurs="0"/>
+			<xs:element ref="ent:statementOptinIndicator" minOccurs="0"/>
+			<xs:element ref="ent:dealerChainNumber" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="StatementFullPhoneNumberEntity">
+		<xs:annotation>
+			<xs:documentation>Valid Phone number including area code (Straight numbers; no dash/space etc)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="10"/>
+			<xs:pattern value="[0-9]{10}"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

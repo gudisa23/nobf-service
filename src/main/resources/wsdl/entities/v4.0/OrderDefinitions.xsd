@@ -1,0 +1,990 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 (http://www.altova.com) by Hugo Valle (DIRECTV) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ent="http://ei.directv.com/schemas/entities/v4_0" targetNamespace="http://ei.directv.com/schemas/entities/v4_0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="./CustomerInformation.xsd"/>
+	<xs:include schemaLocation="./CATSTypes.xsd"/>
+	<xs:simpleType name="DateTimeStringEntity">
+		<xs:annotation>
+			<xs:documentation>Used for Date and Time</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:element name="installStartDateTime" type="ent:DateTimeStringEntity">
+		<xs:annotation>
+			<xs:documentation>Start date/time for an installation. Format is ddmmyyyy hh:mm</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="installEndDateTime" type="ent:DateTimeStringEntity">
+		<xs:annotation>
+			<xs:documentation>End date/time for an installation. Format is ddmmyyyy hh:mm</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="OrderEntity">
+		<xs:annotation>
+			<xs:documentation>This Entity defines an Order structure </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:orderId" minOccurs="0"/>
+					<xs:element ref="ent:orderType" minOccurs="0"/>
+					<xs:element ref="ent:orderDate" minOccurs="0"/>
+					<xs:element name="orderIdentifier" type="ent:OrderIdentifierEntity" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Order Identifier</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="marketingEvent" type="ent:OrderMarketingEventEntity" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Marketing Event that led to this Order being Created - Typically used only for tracking and reporting purposes by the Edge systems. Middleware will ignore this data</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="customer" type="ent:OrderCustomerEntity" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>A full or Partial Customer Profile that is required for processing this order</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="dealerInfo" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Dealer associated with the order </xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="ent:dealerId"/>
+								<xs:element ref="ent:dealerChainNumber" minOccurs="0"/>
+								<xs:element ref="ent:dealerName" minOccurs="0"/>
+								<xs:element ref="ent:corporateId" minOccurs="0"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="orderPrice" type="ent:OrderPriceEntity" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Total Order price information</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="orderPayment" type="ent:OrderPaymentMethodEntity" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>How was the order paid for ?</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="ent:readyForProvisioningFlag" minOccurs="0"/>
+					<xs:element name="statusList" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Status of various activities performed on this line item </xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="activity" type="ent:OrderActivityEntity" maxOccurs="unbounded">
+									<xs:annotation>
+										<xs:documentation>An Activity performed on this line item</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element ref="ent:activateByDate" minOccurs="0"/>
+					<xs:element ref="ent:dtvDealerDPP" minOccurs="0"/>
+					<xs:element name="lineItemList" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Order Line Items</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="lineItem" maxOccurs="unbounded">
+									<xs:complexType>
+										<xs:complexContent>
+											<xs:extension base="ent:OrderLineItemEntity"/>
+										</xs:complexContent>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+				<xs:attribute name="checksum" type="xs:string"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="OrderIdentifierEntity">
+		<xs:sequence>
+			<xs:element ref="ent:omsOrderId" minOccurs="0"/>
+			<xs:element ref="ent:customerId" minOccurs="0"/>
+			<xs:element ref="ent:originatorSystem" minOccurs="0"/>
+			<xs:element ref="ent:originatorCustomerId" minOccurs="0"/>
+			<xs:element ref="ent:originatorOrderId" minOccurs="0"/>
+			<xs:element ref="ent:rmaNumber" minOccurs="0"/>
+			<xs:element ref="ent:configurationId" minOccurs="0"/>
+			<xs:element ref="ent:broadBandOrderId" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OrderMarketingEventEntity">
+		<xs:sequence>
+			<xs:element ref="ent:marketingSourceCode" minOccurs="0"/>
+			<xs:element ref="ent:initiativeId" minOccurs="0"/>
+			<xs:element ref="ent:representative" minOccurs="0"/>
+			<xs:element ref="ent:eventReason" minOccurs="0"/>
+			<xs:element ref="ent:source" minOccurs="0"/>
+			<xs:element ref="ent:touchPointType" minOccurs="0"/>
+			<xs:element ref="ent:touchPointId" minOccurs="0"/>
+			<xs:element ref="ent:dnisId" minOccurs="0"/>
+			<xs:element ref="ent:customData" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OrderCustomerEntity">
+		<xs:sequence>
+			<xs:element name="locator" type="ent:OrderCustomerSearchCriteriaEntity" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Use this block to provide criteria which can be used to lookup the customer in the billing system if the customer is known to exist. If a customer is not found, typically the operation will result in an error</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="profile" type="ent:OrderCustomerProfileEntity" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Use this block to provide a full Customer Profile.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OrderCustomerProfileEntity">
+		<xs:annotation>
+			<xs:documentation>Capture attributes of a Customer's Profile required to fulfill the order. </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="serviceAddress" type="ent:OrderServiceAddressEntity" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Customer's Service address</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="billingAddress" type="ent:OrderAddressEntity" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Customers billing address</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="shippingAddress" type="ent:OrderAddressEntity" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Shipping address</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="customerAddress" type="ent:OrderAddressEntity" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Customer's address if different from the Service Address - If Gift purchase, this would be the address of the Giftor</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="ent:emailAddress" minOccurs="0"/>
+			<xs:element name="identificationList" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>List of Customer ID information</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="ent:identification" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="paymentInformation" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The Payment information that will be stored on the Customer's Profile</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="creditCard" type="ent:OrderCreditCardEntity" minOccurs="0"/>
+						<xs:element name="eft" type="ent:OrderEFTEntity" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="ent:makePaymentsAutomaticallyFlag" minOccurs="0"/>
+			<xs:element ref="ent:accountStatus" minOccurs="0"/>
+			<xs:element ref="ent:activationDate" minOccurs="0"/>
+			<xs:element ref="ent:customerType" minOccurs="0"/>
+			<xs:element ref="ent:accountType" minOccurs="0"/>
+			<xs:element name="marketingPreferences" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Customer's Marketing Preferences</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="ent:receivePromoCallsFlag"/>
+						<xs:element ref="ent:receivePromoEmailFlag"/>
+						<xs:element ref="ent:sellNameToMailingListFlag"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="ent:primaryOwner" minOccurs="0"/>
+			<xs:element ref="ent:servicerName" minOccurs="0"/>
+			<xs:element ref="ent:authorizedCreditScore" minOccurs="0"/>
+			<xs:element ref="ent:proprietarySegment" minOccurs="0"/>
+			<xs:element ref="ent:creditScoreRequestId" minOccurs="0"/>
+			<xs:element ref="ent:customerValue" minOccurs="0"/>
+			<xs:element ref="ent:camcDataCollectionConsent" minOccurs="0"/>
+			<xs:element ref="ent:partnerBillCycleDay" minOccurs="0"/>
+			<xs:element name="additionalCustomerInfo" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="ent:language" minOccurs="0"/>
+						<xs:element ref="ent:welcomeLetterCode" minOccurs="0"/>
+						<xs:element ref="ent:welcomeLetterNumber" minOccurs="0"/>
+						<xs:element ref="ent:dateOfBirth" minOccurs="0"/>
+						<xs:element ref="ent:dataReviewPassedFlag" minOccurs="0"/>
+						<xs:element ref="ent:optInEligibilityFlag" minOccurs="0"/>
+						<xs:element ref="ent:socialSecurityNumber" minOccurs="0"/>
+						<xs:element ref="ent:ownedModelFlag" minOccurs="0"/>
+						<xs:element ref="ent:yearsAtCurrentAddress" minOccurs="0"/>
+						<xs:element name="previousAddressInfo" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Previous Address info should be populated with the customers previous address or a flag indicating if the previous address is out of the country</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:choice>
+									<xs:element name="customerAddress">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element ref="ent:streetNumber"/>
+												<xs:element ref="ent:streetName"/>
+												<xs:element ref="ent:address2" minOccurs="0"/>
+												<xs:element ref="ent:apartmentNumber" minOccurs="0"/>
+												<xs:element ref="ent:city"/>
+												<xs:element ref="ent:state"/>
+												<xs:element ref="ent:zipCode"/>
+												<xs:element ref="ent:countyCode" minOccurs="0"/>
+												<xs:element ref="ent:countyName" minOccurs="0"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+									<xs:element ref="ent:previousAddressOutOfCountryFlag"/>
+								</xs:choice>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OrderCustomerSearchCriteriaEntity">
+		<xs:sequence>
+			<xs:element ref="ent:accountId" minOccurs="0"/>
+			<xs:element ref="ent:receiverId" minOccurs="0"/>
+			<xs:element ref="ent:accessCardId" minOccurs="0"/>
+			<xs:element name="phoneSearch" type="ent:OrderPhoneSearchEntity" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OrderPhoneSearchEntity">
+		<xs:sequence>
+			<xs:element name="phone" type="ent:PhoneEntity"/>
+			<xs:element ref="ent:lastName"/>
+			<xs:element ref="ent:city" minOccurs="0"/>
+			<xs:element ref="ent:state" minOccurs="0"/>
+			<xs:element ref="ent:zipCode"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PhoneEntity">
+		<xs:annotation>
+			<xs:documentation>Stored Phone number information</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:phoneAreaCode" minOccurs="0"/>
+			<xs:element ref="ent:phoneNumber" minOccurs="0"/>
+			<xs:element ref="ent:phoneExtension" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OrderAddressEntity">
+		<xs:annotation>
+			<xs:documentation>Captures attributes of an address</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name" type="ent:OrderNameEntity"/>
+			<xs:element ref="ent:apartmentNumber" minOccurs="0"/>
+			<xs:element ref="ent:address1"/>
+			<xs:element ref="ent:address2" minOccurs="0"/>
+			<xs:element ref="ent:city"/>
+			<xs:element ref="ent:state"/>
+			<xs:element ref="ent:countyCode" minOccurs="0"/>
+			<xs:element ref="ent:countyName" minOccurs="0"/>
+			<xs:element ref="ent:zipCode"/>
+			<xs:element name="phone" type="ent:OrderPhoneEntity" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OrderServiceAddressEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:OrderAddressEntity">
+				<xs:sequence>
+					<xs:element name="secondaryPhone" type="ent:OrderPhoneEntity" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Secondary Phone Number</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="OrderPhoneEntity">
+		<xs:sequence>
+			<xs:element ref="ent:phoneAreaCode"/>
+			<xs:element ref="ent:phoneNumber"/>
+			<xs:element ref="ent:phoneExtension" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OrderNameEntity">
+		<xs:annotation>
+			<xs:documentation>An entity describing a full name (first, middle, last)</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="customer">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="ent:firstName" minOccurs="0"/>
+						<xs:element ref="ent:middleInitial" minOccurs="0"/>
+						<xs:element ref="ent:lastName"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="business">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="ent:businessName"/>
+						<xs:element ref="ent:contactName" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="OrderPriceEntity">
+		<xs:sequence>
+			<xs:element ref="ent:totalAmount"/>
+			<xs:element ref="ent:subTotalAmount"/>
+			<xs:element ref="ent:taxAmount"/>
+			<xs:element ref="ent:shippingAmount"/>
+			<xs:element name="recurringPriceList" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="recurringPrice" type="ent:OrderRecurringPriceEntity" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Recurring Amount that will be charged to the Customer's Account. If the initialRecurringAmount section is populated, this will indicate the "roll-to" price</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OrderRecurringPriceEntity">
+		<xs:sequence>
+			<xs:element ref="ent:sequence" minOccurs="0"/>
+			<xs:element ref="ent:price"/>
+			<xs:element ref="ent:numberOfCharges" minOccurs="0"/>
+			<xs:element ref="ent:frequencyOfCharge" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OrderPaymentMethodEntity">
+		<xs:annotation>
+			<xs:documentation>Method of payment used by the customer to </xs:documentation>
+		</xs:annotation>
+		<xs:choice minOccurs="0">
+			<xs:element name="creditCard" type="ent:OrderCreditCardEntity" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Payment made by Credit Card</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="bankAccount" type="ent:OrderEFTEntity" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Payment made by EFT</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="ent:certificateId" minOccurs="0"/>
+			<xs:element ref="ent:prepaidCardId" minOccurs="0"/>
+		</xs:choice>
+		<xs:attribute name="method" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>creditCard, stmsBill, electronicCheck, westernUnion, inStore, notRequired etc. If creditCard, credit card detail needs to be populated. If electronicCheck, bankAccount information needs to be populated</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="OrderCreditCardEntity">
+		<xs:sequence>
+			<xs:element ref="ent:creditCardNumber"/>
+			<xs:element ref="ent:creditCardType"/>
+			<xs:element ref="ent:creditCardExpirationDate"/>
+			<xs:element ref="ent:cVVCode" minOccurs="0"/>
+			<xs:element name="billingAddress" type="ent:OrderAddressEntity" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OrderEFTEntity">
+		<xs:sequence>
+			<xs:element ref="ent:bankAccountNumber"/>
+			<xs:element ref="ent:bankRoutingNumber"/>
+			<xs:element ref="ent:bankAccountType"/>
+			<xs:element ref="ent:checkNumber" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OrderActivityEntity">
+		<xs:sequence>
+			<xs:element ref="ent:name" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Name of the activity (activation, shipping, cancelation etc)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="ent:status" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Status of the activity</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="targetSystemList" type="ent:OrderTargetSystemListEntity" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Various systems where this line item has been provisioned and their statuses</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OrderTargetSystemEntity">
+		<xs:sequence>
+			<xs:element ref="ent:name" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Name of the target system where provisioning was attempted</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="ent:operation" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Operation performed in the Target System</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="ent:status" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Provisioning Status for this operation / system</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OrderTargetSystemListEntity">
+		<xs:sequence>
+			<xs:element name="targetSystem" type="ent:OrderTargetSystemEntity" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>A single target system affected by this activity</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- line item entity -->
+	<xs:complexType name="OrderLineItemEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:orderType" minOccurs="0"/>
+					<xs:element ref="ent:lineItemType" minOccurs="0"/>
+					<xs:element ref="ent:action" minOccurs="0"/>
+					<xs:element name="lineItemIdentifier" type="ent:OrderLineItemIdentifierEntity" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Line Item Identifier block</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="relationshipList" type="ent:OrderLineItemRelationshipListEntity" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>List of line item relationships</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="statusList" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Status of various activities performed on this line item </xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="activity" type="ent:OrderActivityEntity" maxOccurs="unbounded">
+									<xs:annotation>
+										<xs:documentation>An Activity performed on this line item</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="price" type="ent:OrderPriceEntity" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Line item price</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="ent:shippingMethod" minOccurs="0"/>
+					<xs:element ref="ent:effectiveDate" minOccurs="0"/>
+					<xs:element ref="ent:reshipFlag" minOccurs="0"/>
+					<xs:element name="lineItemDetail" minOccurs="0">
+						<xs:complexType>
+							<xs:choice>
+								<xs:element name="offer" type="ent:OrderOfferEntity">
+									<xs:annotation>
+										<xs:documentation>Attributes of an offer line item</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="offerDetail" type="ent:OrderLineItemOfferDetailEntity">
+									<xs:annotation>
+										<xs:documentation>Offer Detail information</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="agreement" type="ent:OrderAgreementEntity">
+									<xs:annotation>
+										<xs:documentation>Attributes of an agreement line item</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="receiver" type="ent:OrderReceiverEntity">
+									<xs:annotation>
+										<xs:documentation>Attributes of a "receiver" line item</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="programming" type="ent:OrderProgrammingEntity">
+									<xs:annotation>
+										<xs:documentation>Programming product attributes</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="fee" type="ent:OrderFeeEntity">
+									<xs:annotation>
+										<xs:documentation>Commands that trigger various activities in the enterprise e.g., B Codes</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="adjustment" type="ent:OrderAdjustmentLineItemEntity">
+									<xs:annotation>
+										<xs:documentation>Attributes of an Adjustment Line item</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="recording" type="ent:RecordingEntity">
+									<xs:annotation>
+										<xs:documentation>Used for Broadband Video and Remote Booking (Mobile Planner)</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="accessory" type="ent:OrderAccessoryEntity">
+									<xs:annotation>
+										<xs:documentation>Attributes of accessories  ordered</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="broadband" type="ent:OrderBroadBandEntity">
+									<xs:annotation>
+										<xs:documentation>Contains info about Broadband internet provisioning</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="comment" type="ent:OrderCommentEntity">
+									<xs:annotation>
+										<xs:documentation>Attributes of a Comment being added</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="rma" type="ent:OrderRMAEntity">
+									<xs:annotation>
+										<xs:documentation>RMA Information</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="installation" type="ent:OrderLineItemInstallationEntity">
+									<xs:annotation>
+										<xs:documentation>Installation Information</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element ref="ent:virtual"/>
+							</xs:choice>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+				<xs:attribute name="visibleFlag" type="ent:BooleanEntity" use="required">
+					<xs:annotation>
+						<xs:documentation>Is this line item visible to the customer on a User Interface</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="provisionableFlag" type="ent:BooleanEntity" use="required">
+					<xs:annotation>
+						<xs:documentation>Indicates if this line item can be provisioned - For e.g., a line item that describes a remote (accessory) will have this flag set to false. </xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="addedByRuleFlag" type="ent:BooleanEntity">
+					<xs:annotation>
+						<xs:documentation>Was this line item added by a rule or was this part of the original Customer Order</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="OrderLineItemRelationshipListEntity">
+		<xs:annotation>
+			<xs:documentation>Line item relationships. This model will allow different line items to be related to each other using different relationship types</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="relationSet" type="ent:OrderLineItemRelationshipEntity" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>A single set of relationships. Line items within each set is considered an "and". Different relationships are considered an or</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OrderLineItemRelationshipEntity">
+		<xs:sequence>
+			<xs:element name="relatedTo" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Identifies a single line item this line item is related to, and how it is related</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="ent:lineItemId"/>
+						<xs:element ref="ent:relationshipType"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OrderLineItemIdentifierEntity">
+		<xs:sequence>
+			<xs:element ref="ent:productId" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Alternate product Id</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="ent:lineItemId"/>
+			<xs:element ref="ent:omsProductId"/>
+			<xs:element ref="ent:productName" minOccurs="0"/>
+			<xs:element ref="ent:productDescription" minOccurs="0"/>
+			<xs:element ref="ent:originatorLineItemId"/>
+			<xs:element ref="ent:rmaNumber" minOccurs="0"/>
+			<xs:element ref="ent:omsProductTypeId" minOccurs="0"/>
+			<xs:element ref="ent:assetId1" minOccurs="0"/>
+			<xs:element ref="ent:assetId2" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- line item details -->
+	<xs:complexType name="OrderOfferEntity">
+		<xs:sequence>
+			<xs:element ref="ent:offerId"/>
+			<xs:element ref="ent:offerType" minOccurs="0"/>
+			<xs:element ref="ent:offerDescription" minOccurs="0"/>
+			<xs:element ref="ent:offerOptionId" minOccurs="0"/>
+			<xs:element ref="ent:optionDescription" minOccurs="0"/>
+			<xs:element ref="ent:primaryOfferFlag" minOccurs="0"/>
+			<xs:element ref="ent:conflictGroupId" minOccurs="0"/>
+			<xs:element name="maxOrderRestrictionList" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>List of Max Order Restrictions being placed by this offer</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="maxOrders" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Max. number of orders per account that can have this offer, in a given period time</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element ref="ent:conflictGroupId"/>
+									<xs:element ref="ent:periodInDays" minOccurs="0"/>
+									<xs:element ref="ent:numberOfOrders"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="ent:requiresRecurringBillingFlag" minOccurs="0"/>
+			<xs:element name="availablePaymentMethods" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Payment methods available for customers taking this offer</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="paymentMethod" type="xs:string" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="availableShippingMethods" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Available shipping methods if the customer picks this offer</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="ent:shippingMethod" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OrderLineItemOfferDetailEntity">
+		<xs:sequence>
+			<xs:element ref="ent:offerDetailId"/>
+			<xs:element ref="ent:name" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Name</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="ent:description" minOccurs="0"/>
+			<xs:element ref="ent:longDescriptionURL" minOccurs="0"/>
+			<xs:element ref="ent:imageUrl" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OrderAgreementEntity">
+		<xs:sequence>
+			<xs:element ref="ent:type"/>
+			<xs:element ref="ent:rebateId"/>
+			<xs:element ref="ent:provisionByDate" minOccurs="0"/>
+			<xs:element ref="ent:overrideProvisionByDateCheckFlag" minOccurs="0"/>
+			<xs:element ref="ent:accountId" minOccurs="0"/>
+			<xs:element ref="ent:agreementId" minOccurs="0"/>
+			<xs:element ref="ent:agreementType" minOccurs="0"/>
+			<xs:element ref="ent:nonComplianceReason" minOccurs="0"/>
+			<xs:element ref="ent:nonComplianceReasonShortDescription" minOccurs="0"/>
+			<xs:element ref="ent:nonComplianceReasonCode" minOccurs="0"/>
+			<xs:element ref="ent:agreementPriceCode"/>
+			<xs:element ref="ent:offerId"/>
+			<xs:element ref="ent:offerType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OrderReceiverEntity">
+		<xs:annotation>
+			<xs:documentation>Capture attributes of a receiver line item </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:requestProvisioningFlag" minOccurs="0"/>
+			<xs:element ref="ent:accessCardId" minOccurs="0"/>
+			<xs:element ref="ent:receiverId" minOccurs="0"/>
+			<xs:element ref="ent:manufacturer" minOccurs="0"/>
+			<xs:element ref="ent:model" minOccurs="0"/>
+			<xs:element ref="ent:serialNumber" minOccurs="0"/>
+			<xs:element ref="ent:equipmentOwnership" minOccurs="0"/>
+			<xs:element ref="ent:equipmentType" minOccurs="0"/>
+			<xs:element ref="ent:location" minOccurs="0"/>
+			<xs:element ref="ent:accessCardStatus" minOccurs="0"/>
+			<xs:element ref="ent:accessCardType" minOccurs="0"/>
+			<xs:element ref="ent:installerId" minOccurs="0"/>
+			<xs:element ref="ent:chargeMirrorFeeAnnuallyFlag" minOccurs="0"/>
+			<xs:element ref="ent:phoneConnectionFlag" minOccurs="0"/>
+			<xs:element ref="ent:rateCeiling" minOccurs="0"/>
+			<xs:element ref="ent:restrictedFlag" minOccurs="0"/>
+			<xs:element ref="ent:allowIPPVFlag" minOccurs="0"/>
+			<xs:element ref="ent:allowOPPVFlag" minOccurs="0"/>
+			<xs:element ref="ent:mirroredFlag" minOccurs="0"/>
+			<xs:element ref="ent:mirrorFeeFlag" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OrderProgrammingEntity">
+		<xs:sequence>
+			<xs:element ref="ent:productType"/>
+			<xs:element ref="ent:productCode"/>
+			<xs:element ref="ent:priceCode" minOccurs="0"/>
+			<xs:element ref="ent:disconnectReason" minOccurs="0"/>
+			<xs:element ref="ent:accessCardId" minOccurs="0"/>
+			<xs:element ref="ent:productSourceCode" minOccurs="0"/>
+			<xs:element ref="ent:purchaseType" minOccurs="0"/>
+			<xs:element ref="ent:rentalExpirationTimestamp" minOccurs="0"/>
+			<xs:element ref="ent:rentalDurationMinutes" minOccurs="0"/>
+			<xs:element ref="ent:chargeOnlyFlag" minOccurs="0"/>
+			<xs:element ref="ent:provisionDate" minOccurs="0"/>
+			<xs:element ref="ent:accountId" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OrderFeeEntity">
+		<xs:sequence>
+			<xs:element ref="ent:productType"/>
+			<xs:element ref="ent:productCode"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OrderAdjustmentLineItemEntity">
+		<xs:sequence>
+			<xs:element ref="ent:adjustmentType"/>
+			<xs:element ref="ent:reasonCode"/>
+			<xs:element ref="ent:amount"/>
+			<xs:element ref="ent:accountId" minOccurs="0"/>
+			<xs:element name="appliesToProduct" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="ent:productType"/>
+						<xs:element ref="ent:productCode"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RecordingEntity">
+		<xs:annotation>
+			<xs:documentation>Information about the Program</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:accessCardId"/>
+					<xs:element ref="ent:recordingSerialNumber"/>
+					<xs:element ref="ent:recordingType"/>
+					<xs:element ref="ent:recordingID" minOccurs="0"/>
+					<xs:element ref="ent:productPriority"/>
+					<xs:element ref="ent:requestLifeTime"/>
+					<xs:element ref="ent:keepUntilDelete"/>
+					<xs:element ref="ent:useBroadband" minOccurs="0"/>
+					<xs:element ref="ent:useSatellite" minOccurs="0"/>
+					<xs:element ref="ent:useChannelConstraint" minOccurs="0"/>
+					<xs:element ref="ent:useURIConstraint" minOccurs="0"/>
+					<xs:element ref="ent:useTimeConstraint" minOccurs="0"/>
+					<xs:element ref="ent:tvURI" minOccurs="0"/>
+					<xs:element ref="ent:recurring" minOccurs="0"/>
+					<xs:element ref="ent:series" minOccurs="0"/>
+					<xs:element ref="ent:seasonNumber" minOccurs="0"/>
+					<xs:element name="channelInfo" type="ent:ChannelEntity" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Identifies the Channel </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="ent:duration" minOccurs="0"/>
+					<xs:element ref="ent:startTimeUTC" minOccurs="0"/>
+					<xs:element ref="ent:verifyCallBack"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ChannelEntity">
+		<xs:annotation>
+			<xs:documentation>Identifies the Channel Object. Could be major or both.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:majorChannel"/>
+			<xs:element ref="ent:minorChannel" minOccurs="0"/>
+			<xs:element ref="ent:channelFormat"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OrderAccessoryEntity">
+		<xs:annotation>
+			<xs:documentation>Capture attributes of an "accessory" line item</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:requestProvisioningFlag" minOccurs="0"/>
+			<xs:element ref="ent:type">
+				<xs:annotation>
+					<xs:documentation>Type of the accessory (ODU, etc)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="ent:manufacturer" minOccurs="0"/>
+			<xs:element ref="ent:model" minOccurs="0"/>
+			<xs:element ref="ent:quantity"/>
+			<xs:element ref="ent:equipmentOwnership" minOccurs="0"/>
+			<xs:element ref="ent:accessorySerialNumber" minOccurs="0"/>
+			<xs:element ref="ent:macAddress" minOccurs="0"/>
+			<xs:element ref="ent:location" minOccurs="0"/>
+			<xs:element ref="ent:equipmentType" minOccurs="0"/>
+			<xs:element ref="ent:assetId" minOccurs="0"/>
+			<xs:element ref="ent:camcSubscriberId" minOccurs="0"/>
+			<xs:element ref="ent:authorizationMode" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OrderBroadBandEntity">
+		<xs:sequence>
+			<xs:element ref="ent:brandedFlag"/>
+			<xs:element ref="ent:productType" minOccurs="0"/>
+			<xs:element ref="ent:productCode" minOccurs="0"/>
+			<xs:element ref="ent:priceCode" minOccurs="0"/>
+			<xs:element ref="ent:trackingId" minOccurs="0"/>
+			<xs:element ref="ent:brandedProviderName" minOccurs="0"/>
+			<xs:element ref="ent:brandedProductName" minOccurs="0"/>
+			<xs:element ref="ent:broadbandProductCode"/>
+			<xs:element name="clientAuthenticationList" type="ent:OrderClientAuthenticationListEntity" minOccurs="0"/>
+			<xs:element name="productOptionsList" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="productOption" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element ref="ent:optionId"/>
+									<xs:element name="optionValueList" minOccurs="0">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element ref="ent:valueId" maxOccurs="unbounded"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="loginInformation" type="ent:LoginEntity" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OrderClientAuthenticationListEntity">
+		<xs:sequence>
+			<xs:element name="clientAuthentication" type="ent:OrderClientAuthenticationEntity" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OrderClientAuthenticationEntity">
+		<xs:sequence>
+			<xs:element ref="ent:authenticationType"/>
+			<xs:element ref="ent:authenticationValue"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LoginEntity">
+		<xs:sequence>
+			<xs:element ref="ent:username"/>
+			<xs:element name="password" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OrderCommentEntity">
+		<xs:sequence>
+			<xs:element ref="ent:commentCode"/>
+			<xs:element ref="ent:commentType"/>
+			<xs:element ref="ent:commentText"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OrderRMAEntity">
+		<xs:sequence>
+			<xs:element name="returnsInfo" type="ent:OrderRMAInfoEntity">
+				<xs:annotation>
+					<xs:documentation>Returns specific information</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="itemToBeReturned">
+				<xs:annotation>
+					<xs:documentation>Description and attributes of the item to be returned</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:choice>
+						<xs:element name="receiver" type="ent:OrderReceiverEntity" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Receiver being returned</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="accessory" type="ent:OrderAccessoryEntity" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Accessory being returned</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:choice>
+					<xs:attribute name="type" type="xs:string" use="required">
+						<xs:annotation>
+							<xs:documentation>Type of Item being returned </xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OrderRMAInfoEntity">
+		<xs:sequence>
+			<xs:element ref="ent:rmaType" minOccurs="0"/>
+			<xs:element ref="ent:genericMaterial" minOccurs="0"/>
+			<xs:element ref="ent:rmaReasonCode" minOccurs="0"/>
+			<xs:element ref="ent:frequency" minOccurs="0"/>
+			<xs:element ref="ent:returnToASCAllowedFlag" minOccurs="0"/>
+			<xs:element ref="ent:exchangeAllowedFlag" minOccurs="0"/>
+			<xs:element ref="ent:rmaReturnLabelShipMethod" minOccurs="0"/>
+			<xs:element ref="ent:noReturnFlag" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OrderLineItemInstallationEntity">
+		<xs:sequence>
+			<xs:element name="scheduled" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Scheduled installation time</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="ent:installStartDateTime"/>
+						<xs:element ref="ent:installEndDateTime" minOccurs="0"/>
+						<xs:element ref="ent:window" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="actual" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Actual installation time</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="ent:installStartDateTime"/>
+						<xs:element ref="ent:installEndDateTime" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="ent:workOrderInitiativeId" minOccurs="0"/>
+			<xs:element ref="ent:vipLevel" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

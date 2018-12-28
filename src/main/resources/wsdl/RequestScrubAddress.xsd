@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:ent="http://ei.directv.com/schemas/entities/v3_1" xmlns:svc="http://ei.directv.com/schemas/wsdl/propertyServices/v3_1/requestScrubAddress" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://ei.directv.com/schemas/wsdl/propertyServices/v3_1/requestScrubAddress" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://ei.directv.com/schemas/entities/v3_1" schemaLocation="entities/v3.1/Entities.xsd"/>
+	<xs:element name="request" type="svc:RequestScrubAddressRequestEntity">
+		<xs:annotation>
+			<xs:documentation>Request element</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="response" type="svc:RequestScrubAddressResponseEntity">
+		<xs:annotation>
+			<xs:documentation>Response element</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="RequestScrubAddressRequestEntity">
+		<xs:annotation>
+			<xs:documentation>Request Scrub Address Request</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:checkServiceFlag" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>If set to "true", a check is made to determine if the ZIP code is in an unserviceable area</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="ent:overrideCustomerAddressFlag" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Set to "true" if the customer's address cannot be resolved</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="address">
+						<xs:annotation>
+							<xs:documentation>Address to scrub. Typicallywhere the customer will receive service</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="ent:streetNumber"/>
+								<xs:element ref="svc:streetName"/>
+								<xs:element ref="ent:address2" minOccurs="0"/>
+								<xs:element ref="ent:secondaryUnitDesignator" minOccurs="0">
+									<xs:annotation>
+										<xs:documentation>Also known as SUD.  Example values are: APT, STE, BLDG, UNIT, etc.</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element ref="ent:secondaryUnitNumber" minOccurs="0">
+									<xs:annotation>
+										<xs:documentation>Represents a value associated with the secondary unit designator</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element ref="ent:city" minOccurs="0"/>
+								<xs:element ref="ent:state" minOccurs="0"/>
+								<xs:element ref="ent:zipCode"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="RequestScrubAddressResponseEntity">
+		<xs:annotation>
+			<xs:documentation>Request Scrub Address Response</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence minOccurs="0">
+					<xs:element ref="ent:propertyId" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>INTERNAL USE ONLY</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="ent:serviceabilityFlag" minOccurs="0"/>
+					<xs:element name="addressList" minOccurs="0">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="address" maxOccurs="unbounded">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element ref="ent:streetNumber" minOccurs="0"/>
+											<xs:element ref="svc:streetName" minOccurs="0"/>
+											<xs:element ref="ent:address2" minOccurs="0"/>
+											<xs:element ref="ent:secondaryUnitDesignator" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>Also known as SUD.  Example values are: APT, STE, BLDG, UNIT, etc.  </xs:documentation>
+												</xs:annotation>
+											</xs:element>
+											<xs:element ref="ent:secondaryUnitNumber" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>Represents a value associated with the secondary unit designator</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+											<xs:element ref="ent:city" minOccurs="0"/>
+											<xs:element ref="ent:state" minOccurs="0"/>
+											<xs:element ref="ent:zipCode" minOccurs="0"/>
+											<xs:element name="propertyDataList" minOccurs="0">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="propertyData" maxOccurs="unbounded">
+															<xs:annotation>
+																<xs:documentation>Additional data about the address such as county information, property type, building type, property ID (PID), etc</xs:documentation>
+															</xs:annotation>
+															<xs:complexType>
+																<xs:sequence>
+																	<xs:element ref="ent:name">
+																		<xs:annotation>
+																			<xs:documentation>The property data name e.g., Property Type, Building Type, Property ID </xs:documentation>
+																		</xs:annotation>
+																	</xs:element>
+																	<xs:element ref="ent:value">
+																		<xs:annotation>
+																			<xs:documentation>The property data value</xs:documentation>
+																		</xs:annotation>
+																	</xs:element>
+																</xs:sequence>
+															</xs:complexType>
+														</xs:element>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="streetName" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Street name, street type, as well as pre-directional, post-directional if applicable</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

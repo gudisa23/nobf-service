@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+*	DirecTV Enterprise Integration 
+*
+* Interface file that describes the XML body of the messages sent to the Scatter Gather IF 
+*
+* 2009-10-05 - gozer - First version
+* 2009-10-16 - gozer - Change envelopeList to ref the EI envelope element
+* 2009-10-16 - gozer - Make envelopeListBlob to simplfy envelope parsing in JCD
+* 2009-10-19 - gozer - Move envelopeListBlob to ScatterGather XSD in common services
+* 2009-10-19 - gozer - Extend envelope adding any
+*
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ei.directv.com/schemas/envelope/v3_0" targetNamespace="http://ei.directv.com/schemas/envelope/v3_0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="./Envelope.xsd"/>
+	<xs:complexType name="EnvelopeAnyType">
+		<xs:annotation>
+			<xs:documentation>Used to hold multiple envelopes</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="tns:EnvelopeType">
+				<xs:sequence>
+					<xs:any namespace="##any" processContents="lax" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="EnvelopeListType">
+		<xs:annotation>
+			<xs:documentation>Used to hold multiple envelopes</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="envelope" type="tns:EnvelopeAnyType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="envelopeList" type="tns:EnvelopeListType">
+		<xs:annotation>
+			<xs:documentation>List of service envelopes to process.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

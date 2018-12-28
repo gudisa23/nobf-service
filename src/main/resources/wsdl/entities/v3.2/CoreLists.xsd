@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * ENTERPRISE INTEGRATION
+ * Change Control
+ *
+ * $Log::   $
+ * 
+ *    Rev 1.5   May 13 2008 11:59:08   ddearman
+ * removed enum from email type
+ * 
+ *    Rev 1.4   Feb 13 2008 09:32:10   ddearman
+ * updated pending transactions info
+ * 
+ *    Rev 1.3   Nov 16 2007 22:46:50   skovilmadam
+ * added enumeration for Late Fee for product types
+ * 
+ *    Rev 1.2   Sep 04 2007 12:51:42   ddearman
+ * added Inflight transaction data
+ * 
+ *    Rev 1.1   Nov 15 2006 14:58:16   jdejesus
+ * changed CustomerStatusTypes values to new and existing
+ * 
+ *    Rev 1.0   Jul 10 2006 10:59:46   skovilmadam
+ * Initial revision.
+ * 
+ *    Rev 1.19   Mar 13 2006 16:42:54   hlin
+ * Removed enumerations for primaryOwner
+ * 
+ *    Rev 1.18   Mar 07 2006 17:32:48   ddearman
+ * changes for version 3.1 of getProfile
+ * 
+ *    Rev 1.17   Jan 24 2006 13:18:24   ddearman
+ * removed enumerations from proprietory segment
+ * 
+ *    Rev 1.16   Jan 20 2006 10:27:58   ddearman
+ * updated enums for accesscardIndicator
+ * 
+ *    Rev 1.15   Dec 14 2005 11:59:44   ddearman
+ * changed hardwareleaseindicator to equipmentOwnership for lease project
+ * 
+ *    Rev 1.14   Dec 01 2005 16:35:36   skondaka
+ * No change.
+ * 
+ *    Rev 1.13   Nov 21 2005 08:47:06   ddearman
+ * updates per new getProfile business spec
+ * 
+ *    Rev 1.12   Nov 16 2005 09:26:18   ddearman
+ * updates for new get profile spec
+ * 
+ *    Rev 1.11   May 27 2005 11:19:00   ddearman
+ * added home media center info
+ * 
+ *    Rev 1.10   Apr 29 2005 09:08:30   ddearman
+ * added:ProprietorySegmentTypesEntity,ProprietorySegmentUpdateTypesEntity Modified: StatementDeliveryOptionTypesEntity
+ * 
+ *    Rev 1.9   Jan 25 2005 11:25:40   ddearman
+ * corrected spelling of enumeration "mountain" in timezoneTypes entity. Removed final restriction from validPhoneTypes entity. Removed min/max restrictions from InstallationWindowTypes entity.
+ * 
+ *    Rev 1.6   Jan 18 2005 15:08:14   mgozaloff
+ * Add unprocessed to MessageStatusTypesEntity
+ * 
+ *    Rev 1.5   Jan 12 2005 13:12:44   skovilmadam
+ * Changed following canonical entities to xsd data types due to ICAN bug. Using these entities
+ * resulted in the data types being defined as strings
+ * "ent:AmountEntity" to "xs:decimal",
+ * "ent:BankRoutingNumberEntity" to "xs:long",
+ * "ent:BillingAccountIdEntity" to "xs:long",
+ * "ent:BooleanEntity" to "xs:boolean",
+ * "ent:CamcIdEntity" to "xs:long",
+ * "ent:CodeEntity" to "xs:long",
+ * "ent:CustomerIdEntity" to "xs:long",
+ * "ent:DateEntity" to "xs:date",
+ * "ent:DateTimeEntity" to "xs:dateTime",
+ * "ent:DayOfMonthEntity" to "xs:nonNegativeInteger",
+ * "ent:TimeEntity" to "xs:time",
+ * "ent:ValidCreditCardNumberEntity" to "xs:long"
+ * 
+ *    Rev 1.4   Jan 04 2005 05:41:18   mgozaloff
+ * Add ProductTypesEntity
+ * 
+ *    Rev 1.3   Dec 30 2004 16:35:52   skovilmadam
+ * added "contact" to valid address/phone types
+ * 
+ *    Rev 1.1   Dec 30 2004 12:08:48   skovilmadam
+ * Profile changes
+ * 
+ *    Rev 1.0   Dec 07 2004 18:53:18   skovilmadam
+ * Initial revision.
+ -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ent="http://ei.directv.com/schemas/entities/v3_2" targetNamespace="http://ei.directv.com/schemas/entities/v3_2" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:documentation>This Schema lists all known Enumerations that fields in the canonical model can take. Only enumerations that are known to be immutable are defined here. All mutable data should be treated as regular data elements, without enumerations</xs:documentation>
+	</xs:annotation>
+	<xs:simpleType name="AccessCardChangeActionTakenTypesEntity">
+		<xs:annotation>
+			<xs:documentation>The card change action returned by the CMS.  </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AccessCardChangeDistributionMethodTypesEntity">
+		<xs:annotation>
+			<xs:documentation>Method that was used to send replacement card (by the CMS).</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AccessCardChangeTypesEntity">
+		<xs:annotation>
+			<xs:documentation>CMS card change types.  This is the reason the card was changed.  </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="AccessCardChangeStatusTypesEntity">
+		<xs:annotation>
+			<xs:documentation>The status of a card change operation returned by the CMS.  </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AccessCardDisconnectTypesEntity">
+		<xs:annotation>
+			<xs:documentation>The method used to disconnect the card.  </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AccessCardIndicatorTypesEntity">
+		<xs:annotation>
+			<xs:documentation>Used to indicate state of the access card during a replacement. </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AccessCardTypesEntity">
+		<xs:annotation>
+			<xs:documentation>Used to indicate if the access card is a primary or secondary card. The first card installed for a subscriber is the primary card. </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="AccountIndicatorTypesEntity">
+		<xs:annotation>
+			<xs:documentation>Used to indicate the accounts rental status</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AdjustmentTypesEntity">
+		<xs:annotation>
+			<xs:documentation>Used to indicate the Adjustment Type for a transaction. </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CableStatusTypesEntity">
+		<xs:annotation>
+			<xs:documentation>Used to indicate the Cable status's. </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CountryTypesEntity">
+		<xs:annotation>
+			<xs:documentation>A list of Countries supported by the application</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CustomerStatusTypesEntity">
+		<xs:annotation>
+			<xs:documentation>Identifies the Customer Status</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CustomerTypesEntity">
+		<xs:annotation>
+			<xs:documentation>Identifies the types of Subscribers</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EquipmentOwnershipTypesEntity">
+		<xs:annotation>
+			<xs:documentation>Indicates whether the hardware is owned or leased</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="InstallationWindowTypesEntity">
+		<xs:annotation>
+			<xs:documentation>Valid types for Installation Window</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LostDamagedTypesEntity">
+		<xs:annotation>
+			<xs:documentation>Used to indicate if the access card was lost or damaged.  </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MediaCenterDeviceTypesEntity">
+		<xs:annotation>
+			<xs:documentation>Device types contained in a Domain</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MessageStatusTypesEntity">
+		<xs:annotation>
+			<xs:documentation>Indicates the Status of the Message returned</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="MessageDataStateTypesEntity">
+		<xs:annotation>
+			<xs:documentation>Contains the Data State following the update process</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MessageSeverityTypesEntity">
+		<xs:annotation>
+			<xs:documentation>Indicates the severity of the message returned</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PurchaseLimitPeriodTypesEntity">
+		<xs:annotation>
+			<xs:documentation>The period which sets the boundaries governing the purchase_limit amount. </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PrimaryOwnerTypesEntity">
+		<xs:annotation>
+			<xs:documentation>Indicates the primary owner of this service area</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="ProductTypesEntity">
+		<xs:annotation>
+			<xs:documentation>The list of valid products.  The valid values include: F - Fee;B - Basic; E - Event; P- Package; R - Sports package</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ProgrammingStatusEntity">
+		<xs:annotation>
+			<xs:documentation>The status of the programming </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RatingTypesEntity">
+		<xs:annotation>
+			<xs:documentation>Used to indicate the parental rating.  </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:long"/>
+	</xs:simpleType>
+	<xs:simpleType name="ReceiverStatusEntity">
+		<xs:annotation>
+			<xs:documentation>The status of the receiver </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="StatementDeliveryOptionTypesEntity">
+		<xs:annotation>
+			<xs:documentation>Options available for Statement Delivery. Y - Send Statement, N - Do Not Send Statement, E - Electronic Statement, B - Electronic and Paper statements sent</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RecurringCreditStatusEntity">
+		<xs:annotation>
+			<xs:documentation>The status of the recurring Credits </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="StateTypesEntity">
+		<xs:annotation>
+			<xs:documentation>A list of valid US States</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TimezoneTypesEntity">
+		<xs:annotation>
+			<xs:documentation>Valid Timezones (US)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ValidAddressTypesEntity">
+		<xs:annotation>
+			<xs:documentation>Valid values for address type</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ValidContactPointTypesEntity">
+		<xs:annotation>
+			<xs:documentation>Valid values for Contact Point types</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ValidEmailTypesEntity">
+		<xs:annotation>
+			<xs:documentation>Valid Email Types</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="ValidOrderActionTypesEntity">
+		<xs:annotation>
+			<xs:documentation>A valid set of Order action types</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ValidPaymentTypesEntity">
+		<xs:annotation>
+			<xs:documentation>Valid Payment Types</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ValidPhoneTypesEntity">
+		<xs:annotation>
+			<xs:documentation>Valid Phone Types</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ValidTransactionContextTypesEntity">
+		<xs:annotation>
+			<xs:documentation>Valid Transaction Context Types</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

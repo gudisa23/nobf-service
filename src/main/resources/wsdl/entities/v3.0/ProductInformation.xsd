@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://ei.directv.com/schemas/entities/v3_0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ent="http://ei.directv.com/schemas/entities/v3_0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="./CommonComplexTypes.xsd"/>
+	<xs:complexType name="BasicProductEntity">
+		<xs:annotation>
+			<xs:documentation>Common information for all products</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:codeInformation" minOccurs="0"/>
+					<xs:element ref="ent:offerList" minOccurs="0"/>
+					<xs:element ref="ent:productStatusInfo" minOccurs="0"/>
+					<xs:element ref="ent:effectiveBeginDate" minOccurs="0"/>
+					<xs:element ref="ent:effectiveEndDate" minOccurs="0"/>
+					<xs:element ref="ent:productClassification" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="OfferEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:codeInformation" minOccurs="0"/>
+					<xs:element ref="ent:promotionCode" minOccurs="0"/>
+					<xs:element ref="ent:offerDurationType" minOccurs="0"/>
+					<xs:element ref="ent:discountAmount" minOccurs="0"/>
+					<xs:element ref="ent:amount" minOccurs="0"/>
+					<xs:element ref="ent:taxInfo" minOccurs="0"/>
+					<xs:element ref="ent:prorateFlag" minOccurs="0"/>
+					<xs:element ref="ent:numberOfBills" minOccurs="0"/>
+					<xs:element ref="ent:monthsBetnBills" minOccurs="0"/>
+					<xs:element ref="ent:refundableFlag" minOccurs="0"/>
+					<xs:element ref="ent:nextOffer" minOccurs="0"/>
+					<xs:element ref="ent:effectiveEndDate" minOccurs="0"/>
+					<xs:element ref="ent:effectiveBeginDate" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:complexType name="BasicProductListEntity">
+		<xs:annotation>
+			<xs:documentation>List of Basic Product Entities</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:ListEntity">
+				<xs:sequence>
+					<xs:element ref="ent:basicProduct" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="OfferListEntity">
+		<xs:annotation>
+			<xs:documentation>List of Offer information</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:ListEntity">
+				<xs:sequence>
+					<xs:element ref="ent:offer" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ProductCodeEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:CodeDescriptionEntity">
+				<xs:sequence>
+					<xs:element ref="ent:prefix" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ProductCodeListEntity">
+		<xs:annotation>
+			<xs:documentation>List of programming code entities</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:ListEntity">
+				<xs:sequence>
+					<xs:element ref="ent:codeInformation" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ProductStatusEntity">
+		<xs:sequence>
+			<xs:element ref="ent:productStatus" minOccurs="0"/>
+			<xs:element ref="ent:initialActivationDate" minOccurs="0"/>
+			<xs:element ref="ent:lastStatusChangeDate" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="basicProduct" type="ent:BasicProductEntity">
+		<xs:annotation>
+			<xs:documentation>Information about the basic product</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="basicProductList" type="ent:BasicProductListEntity">
+		<xs:annotation>
+			<xs:documentation>A list of Basic Product entities</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="codeInformation" type="ent:ProductCodeEntity">
+		<xs:annotation>
+			<xs:documentation>Information about the Programming Code</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="codeInformationList" type="ent:ProductCodeListEntity">
+		<xs:annotation>
+			<xs:documentation>A list of ProgrammingCodes</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="nextOffer" type="ent:ProductCodeEntity">
+		<xs:annotation>
+			<xs:documentation>The next offer after this one expires</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="offer" type="ent:OfferEntity">
+		<xs:annotation>
+			<xs:documentation>A single Offer entity</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="offerList" type="ent:OfferListEntity">
+		<xs:annotation>
+			<xs:documentation>A list of offers</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="productStatusInfo" type="ent:ProductStatusEntity">
+		<xs:annotation>
+			<xs:documentation>Stores information about the Product's Status</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

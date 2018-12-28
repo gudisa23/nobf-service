@@ -1,0 +1,56 @@
+<xs:schema targetNamespace="http://ei.directv.com/schemas/entities/v3_0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ent="http://ei.directv.com/schemas/entities/v3_0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="./BasicElementDefinitions.xsd"/>
+	<xs:include schemaLocation="./CommonComplexTypes.xsd"/>
+
+
+	<xs:complexType name="ChannelEntity">
+				<xs:sequence>
+					<xs:element ref="ent:majorChannel" minOccurs="0"/>
+					<xs:element ref="ent:minorChannel" minOccurs="0"/>
+					<xs:element ref="ent:channelFormat" />
+				</xs:sequence>
+
+	</xs:complexType>
+
+
+	<xs:complexType name="RecordingEntity">
+		<xs:annotation>
+			<xs:documentation>Information about the Program</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+
+			<xs:sequence>
+				<xs:element ref="ent:referenceNumber" />
+				<xs:element ref="ent:channelInfo" />
+				<xs:element ref="ent:duration"/>
+				<xs:element ref="ent:startTimeUTC"/>
+				<xs:element ref="ent:priority" minOccurs="0"/>
+		
+			</xs:sequence>
+		</xs:extension>
+		</xs:complexContent>
+
+	</xs:complexType>
+
+
+	<xs:element name="majorChannel"  type="xs:string"/>
+
+	<xs:element name="minorChannel"  type="xs:string"/>
+
+	<xs:element name="channelFormat" type="xs:int"/>
+	<xs:element name="duration"      type="xs:int"/>
+	<xs:element name="startTimeUTC"  type="xs:int"/>
+	<xs:element name="referenceNumber"  type="xs:string"/>
+
+	<xs:element name="priority"   type="xs:int"/>
+
+	<xs:element name="channelInfo" type="ent:ChannelEntity"/>
+	<xs:element name="book" type="ent:RecordingEntity"/>
+
+
+
+
+
+</xs:schema>	
+

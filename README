@@ -1,0 +1,28 @@
+New Online Buy Flows Backend Web Service
+Run as springboot application with program argument '--spring.profiles.active=dev' when working locally.
+NOTE - No email integrated setup for non-dev profile at this time.
+
+API Information:
+    http://localhost:8080/NOBF/swagger-ui.html
+
+Security Information:
+    Test email account details (GMAIL)
+    username: quickstriketest
+    pw: Qu!ck$rike
+    name: Quickstrike BCG
+
+Database Information:
+
+
+Reference:
+    Created from com.bcg.service.microservice-starter project
+
+   If we want to use Amazon instead of gmail for sending:
+   spring.mail.host=email-smtp.us-west-2.amazonaws.com
+   spring.mail.username=username
+   spring.mail.password=password
+   spring.mail.properties.mail.transport.protocol=smtp
+   spring.mail.properties.mail.smtp.port=25
+   spring.mail.properties.mail.smtp.auth=true
+   spring.mail.properties.mail.smtp.starttls.enable=true
+   spring.mail.properties.mail.smtp.starttls.required=true

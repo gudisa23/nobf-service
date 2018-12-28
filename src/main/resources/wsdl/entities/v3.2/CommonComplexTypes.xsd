@@ -1,0 +1,1109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 (http://www.altova.com) by Mousa Arbeed (DIRECTV-MISSOULA CALL CENTER) -->
+<!--
+ * ENTERPRISE INTEGRATION
+ * Change Control
+ *
+ * $Log::   $
+ * 
+ *    Rev 1.20   May 20 2008 07:02:34   directv
+ * added 				 onFileCreditCardNumber 
+ * onFileEFTAccountNumber to payment method entity
+ * 
+ *    Rev 1.19   May 19 2008 05:02:10   directv
+ * added keyNameReferenceId and encryptedCreditCardNumber to the credit card entity
+ * 
+ *    Rev 1.18   Apr 24 2008 15:37:54   ddearman
+ * updated email info
+ * 
+ *    Rev 1.17   Apr 16 2008 06:37:58   directv
+ * included debitCardDueDate as optional in the CreditCardEntity
+ * 
+ *    Rev 1.16   Mar 31 2008 07:37:58   directv
+ * added cVVCode, cVVPresenceIndicator, creditCardAlreadyAuthorizedFlag to the CreditCardEntity
+ * 
+ *    Rev 1.15   Feb 21 2008 07:08:52   ddearman
+ * added duplicateAllowedFlag to pendingTransactionEntity
+ * 
+ *    Rev 1.14   Feb 13 2008 09:32:10   ddearman
+ * updated pending transactions info
+ * 
+ *    Rev 1.13   Oct 18 2007 14:11:26   ddearman
+ * moved wiring code to property level
+ * 
+ *    Rev 1.10   Oct 03 2007 09:18:00   ddearman
+ * correct typo for code in result structure
+ * 
+ *    Rev 1.8   Sep 19 2007 10:43:24   ddearman
+ * added retryCount to inflight transacations entity
+ * 
+ *    Rev 1.6   Aug 21 2007 14:27:38   directv
+ * added emailLastChangeDate to EmailEntity and fields to PendingTransactionEntity
+ * 
+ *    Rev 1.5   Jun 28 2007 12:23:38   directv
+ * Added LoginEntity
+ * 
+ *    Rev 1.4   Sep 20 2006 21:01:06   skovilmadam
+ * OOM 1.0 changes
+ * 
+ *    Rev 1.3   Aug 29 2006 19:21:20   sgovindarajan
+ * Validate Customer Eligibility changes. Created unique address with one county
+ * 
+ *    Rev 1.2   Aug 04 2006 13:10:22   sgovindarajan
+ * Resend fields modified
+ * 
+ *    Rev 1.0   Jul 10 2006 10:59:46   skovilmadam
+ * Initial revision.
+ * 
+ *    Rev 1.19   May 03 2006 10:41:36   jroberts
+ * Added (for DTS project): building, buildingList, unit, unitList, rightOfEntry, property
+ * 
+ *    Rev 1.18   Mar 27 2006 10:40:22   ddearman
+ * added territory Owner and Regional Programming info
+ * 
+ *    Rev 1.17   Feb 07 2006 12:54:24   malberty
+ * added dateRangeTypes entity for use with GetBillingLedger
+ * 
+ *    Rev 1.16   Dec 01 2005 16:35:36   skondaka
+ * No change.
+ * 
+ *    Rev 1.15   Nov 16 2005 09:26:18   ddearman
+ * updates for new get profile spec
+ * 
+ *    Rev 1.13   Aug 12 2005 16:21:32   skovilmadam
+ * changed reference for Pending transaction list to pending trasnsaction lsit entity
+ * 
+ *    Rev 1.12   Jun 13 2005 09:46:12   ddearman
+ * added a 'count' attribute to messageListEntity
+ * 
+ *    Rev 1.11   Jun 10 2005 11:28:40   ddearman
+ * updated messageListEntity to not extend list
+ * 
+ *    Rev 1.10   May 05 2005 10:14:24   ddearman
+ * modified listEntity to use messageDetailEntity instead of messageList
+ * 
+ *    Rev 1.7   Jan 27 2005 06:43:30   ddearman
+ * change contactpointid type to 'long' instead of 'string'
+ * 
+ *    Rev 1.6   Jan 14 2005 14:17:48   mgozaloff
+ * Added TotalAmountEntity
+ * 
+ *    Rev 1.5   Jan 12 2005 13:12:34   skovilmadam
+ * Changed following canonical entities to xsd data types due to ICAN bug. Using these entities
+ * resulted in the data types being defined as strings
+ * "ent:AmountEntity" to "xs:decimal",
+ * "ent:BankRoutingNumberEntity" to "xs:long",
+ * "ent:BillingAccountIdEntity" to "xs:long",
+ * "ent:BooleanEntity" to "xs:boolean",
+ * "ent:CamcIdEntity" to "xs:long",
+ * "ent:CodeEntity" to "xs:long",
+ * "ent:CustomerIdEntity" to "xs:long",
+ * "ent:DateEntity" to "xs:date",
+ * "ent:DateTimeEntity" to "xs:dateTime",
+ * "ent:DayOfMonthEntity" to "xs:nonNegativeInteger",
+ * "ent:TimeEntity" to "xs:time",
+ * "ent:ValidCreditCardNumberEntity" to "xs:long"
+ * 
+ *    Rev 1.4   Dec 30 2004 16:28:34   skovilmadam
+ * added name to address entity (required for shipping address)
+ * 
+ *    Rev 1.3   Dec 30 2004 12:08:42   skovilmadam
+ * Profile changes
+ * 
+ *    Rev 1.2   Dec 23 2004 17:18:12   skovilmadam
+ * added fields required by get profile business service
+ * 
+ *    Rev 1.1   Dec 21 2004 13:13:30   skovilmadam
+ * Removed   from basic entity; moved alternate account id to inside the choice in payment method
+ * 
+ *    Rev 1.0   Dec 09 2004 11:41:36   skovilmadam
+ * Initial revision.
+ * 
+ *    Rev 1.1   Dec 08 2004 14:08:14   ddearman
+ * added billToAlternateAccountId to paymentMethodEntity
+ * 
+ *    Rev 1.0   Dec 07 2004 18:53:18   skovilmadam
+ * Initial revision.
+ -->
+<xs:schema xmlns:ent="http://ei.directv.com/schemas/entities/v3_2" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://ei.directv.com/schemas/entities/v3_2" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="./BasicElementDefinitions.xsd"/>
+	<xs:annotation>
+		<xs:documentation>This Schema contains Complex types that may be used across various other Schemas that import this one. Each Complex type also has an element defined, that can be used by other schemas. I</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="AddressEntity">
+		<xs:annotation>
+			<xs:documentation>Container for an Address</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:fullName" minOccurs="0"/>
+			<xs:element ref="ent:apartmentNumber" minOccurs="0"/>
+			<xs:element ref="ent:streetNumber" minOccurs="0"/>
+			<xs:element ref="ent:streetName" minOccurs="0"/>
+			<xs:element ref="ent:address2" minOccurs="0"/>
+			<xs:element ref="ent:address3" minOccurs="0"/>
+			<xs:element ref="ent:address4" minOccurs="0"/>
+			<xs:element ref="ent:city" minOccurs="0"/>
+			<xs:element ref="ent:possibleCountyList" minOccurs="0"/>
+			<xs:element ref="ent:state" minOccurs="0"/>
+			<xs:element ref="ent:zipCode" minOccurs="0"/>
+			<xs:element ref="ent:addressPhysicalLocationInfo" minOccurs="0"/>
+			<xs:element ref="ent:country" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="type" type="ent:ValidAddressTypesEntity">
+			<xs:annotation>
+				<xs:documentation>Address type: (primary or billing)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="contactPointId" type="xs:long" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="UniqueAddressEntity">
+		<xs:annotation>
+			<xs:documentation>Container for an Address</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:fullName" minOccurs="0"/>
+			<xs:element ref="ent:apartmentNumber" minOccurs="0"/>
+			<xs:element ref="ent:streetNumber" minOccurs="0"/>
+			<xs:element ref="ent:streetName" minOccurs="0"/>
+			<xs:element ref="ent:address2" minOccurs="0"/>
+			<xs:element ref="ent:address3" minOccurs="0"/>
+			<xs:element ref="ent:address4" minOccurs="0"/>
+			<xs:element ref="ent:city" minOccurs="0"/>
+			<xs:element ref="ent:county" minOccurs="0"/>
+			<xs:element ref="ent:state" minOccurs="0"/>
+			<xs:element ref="ent:zipCode" minOccurs="0"/>
+			<xs:element ref="ent:addressPhysicalLocationInfo" minOccurs="0"/>
+			<xs:element ref="ent:country" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AddressPhysicalLocationInfoEntity">
+		<xs:annotation>
+			<xs:documentation>Container for additional information about the address.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:timezone" minOccurs="0"/>
+			<xs:element ref="ent:daylightSavingsFlag" minOccurs="0"/>
+			<xs:element ref="ent:broadcastAreaFlag" minOccurs="0"/>
+			<xs:element ref="ent:cableAvailableFlag" minOccurs="0"/>
+			<xs:element ref="ent:cableStatusFlag" minOccurs="0"/>
+			<xs:element ref="ent:carrierRoute" minOccurs="0"/>
+			<xs:element ref="ent:vertexGeoCode" minOccurs="0"/>
+			<xs:element ref="ent:fipsCountyCode" minOccurs="0"/>
+			<xs:element ref="ent:fipsStateCode" minOccurs="0"/>
+			<xs:element ref="ent:msaCode" minOccurs="0"/>
+			<xs:element ref="ent:censusTract" minOccurs="0"/>
+			<xs:element ref="ent:censusBlockGp" minOccurs="0"/>
+			<xs:element ref="ent:latitude" minOccurs="0"/>
+			<xs:element ref="ent:latitudeDirection" minOccurs="0"/>
+			<xs:element ref="ent:longitude" minOccurs="0"/>
+			<xs:element ref="ent:longitudeDirection" minOccurs="0"/>
+			<!-- More fields out here  like latitude, longitude-->
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BankAccountEntity">
+		<xs:annotation>
+			<xs:documentation>An entity describing a bank account </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:bankAccountNumber" minOccurs="0"/>
+			<xs:element ref="ent:bankRoutingNumber" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BasicEntity">
+		<xs:annotation>
+			<xs:documentation>The root entity for any Complex Type in the EI Canonical Model</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:customData" minOccurs="0"/>
+			<xs:element ref="ent:messageList" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BuildingEntity">
+		<xs:annotation>
+			<xs:documentation>Contains information for Building</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:buildingLabel" minOccurs="0"/>
+			<xs:element ref="ent:streetName" minOccurs="0"/>
+			<xs:element ref="ent:streetNumber" minOccurs="0"/>
+			<xs:element ref="ent:buildingSize" minOccurs="0"/>
+			<xs:element ref="ent:numberOfFloors" minOccurs="0"/>
+			<xs:element ref="ent:capacity" minOccurs="0"/>
+			<xs:element ref="ent:unitList" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BuildingListEntity">
+		<xs:annotation>
+			<xs:documentation>List of information for buildings</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:ListEntity">
+				<xs:sequence>
+					<xs:element ref="ent:building" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CodeDescriptionEntity">
+		<xs:sequence>
+			<xs:element ref="ent:code" minOccurs="0"/>
+			<xs:element ref="ent:longDescription" minOccurs="0"/>
+			<xs:element ref="ent:shortDescription" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ContactInformationEntity" abstract="false">
+		<xs:annotation>
+			<xs:documentation>Container for a single type of Contact information. This can take either an address, phone or an email address. The type of contact information that is populated should be indicated in the type attribute. Only one of the three should be populated, although not enforced by the XSD. If multiple types are populated, only the type pointed to by the "type" attribute is used and the rest are ignored</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:effectiveBeginDate" minOccurs="0"/>
+			<xs:element ref="ent:effectiveEndDate" minOccurs="0"/>
+			<xs:choice minOccurs="0">
+				<xs:element ref="ent:address" minOccurs="0"/>
+				<xs:element ref="ent:phone" minOccurs="0"/>
+				<xs:element ref="ent:email" minOccurs="0"/>
+			</xs:choice>
+		</xs:sequence>
+		<xs:attribute name="type" type="ent:ValidContactPointTypesEntity" use="required">
+			<xs:annotation>
+				<xs:documentation>Indicates the type of Contact information being represented by this object. This can be an address, phone or email</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="defaultFlag" type="xs:boolean">
+			<xs:annotation>
+				<xs:documentation>Indicates if this is the default contact information of the particular type. For instance, all addresses could have one default address; all phones, one default phone etc.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="county" type="ent:CountyEntity" nillable="true"/>
+	<xs:complexType name="CountyEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:countyCode" minOccurs="0"/>
+					<xs:element ref="ent:countyName" minOccurs="0"/>
+					<xs:element ref="ent:territoryOwner" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CreditCardEntity">
+		<xs:annotation>
+			<xs:documentation>An entity describing a Credit Card</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:creditCardNumber" minOccurs="0"/>
+			<xs:element ref="ent:creditCardType" minOccurs="0"/>
+			<xs:element ref="ent:creditCardExpirationDate" minOccurs="0"/>
+			<xs:element ref="ent:creditCardName" minOccurs="0"/>
+			<xs:element ref="ent:billingAddress" minOccurs="0"/>
+			<xs:element ref="ent:cVVCode" minOccurs="0"/>
+			<xs:element ref="ent:cVVPresenceIndicator" minOccurs="0"/>
+			<xs:element ref="ent:creditCardAlreadyAuthorizedFlag" minOccurs="0"/>
+			<xs:element ref="ent:debitCardDueDate" minOccurs="0"/>
+			<xs:element ref="ent:keyNameReferenceId" minOccurs="0"/>
+			<xs:element ref="ent:encryptedCreditCardNumber" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CustomParametersEntity">
+		<xs:annotation>
+			<xs:documentation>Stores a set of key-value pairs for Custom Data</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:paramKVPair" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EFTEntity">
+		<xs:annotation>
+			<xs:documentation>This Class stores all information pertaining to EFT payments</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:bankAccount" minOccurs="0"/>
+			<xs:element ref="ent:verifyEFTFlag" minOccurs="0"/>
+			<xs:element ref="ent:eftDueDate" minOccurs="0"/>
+			<xs:element ref="ent:eftTransDays" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EmailEntity">
+		<xs:annotation>
+			<xs:documentation>Container for an Email</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:emailAddress" minOccurs="0"/>
+			<xs:element ref="ent:validEmailAddressFlag" minOccurs="0"/>
+			<xs:element ref="ent:suppressAllEmailFlag" minOccurs="0"/>
+			<xs:element ref="ent:refusedEmailFlag" minOccurs="0"/>
+			<xs:element ref="ent:suppressPromoEmailFlag" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="type" type="ent:ValidEmailTypesEntity"/>
+		<xs:attribute name="contactPointId" type="xs:long" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="IdentificationEntity">
+		<xs:annotation>
+			<xs:documentation>Stores the Id of a customer</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:identificationType" minOccurs="0"/>
+			<xs:element ref="ent:identificationData" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ListMessageEntity">
+		<xs:annotation>
+			<xs:documentation>Used as base for all recurring elements that require a status for the total List</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:messageList" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="count" type="xs:long"/>
+	</xs:complexType>
+	<xs:complexType name="ListEntity">
+		<xs:annotation>
+			<xs:documentation>Used as base for all recurring elements</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="count" type="xs:long"/>
+	</xs:complexType>
+	<xs:complexType name="MessageDetailEntity">
+		<xs:annotation>
+			<xs:documentation>Stores the Message Detail </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:messageCode" minOccurs="0"/>
+			<xs:element ref="ent:messageText" minOccurs="0"/>
+			<xs:element ref="ent:messageSeverity" minOccurs="0"/>
+			<xs:element ref="ent:messageCategory" minOccurs="0"/>
+			<xs:element ref="ent:additionalInformation" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MessageListEntity">
+		<xs:sequence>
+			<xs:element ref="ent:message" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="count" type="xs:long"/>
+	</xs:complexType>
+	<xs:complexType name="MessageEntity">
+		<xs:annotation>
+			<xs:documentation>Stors the Message information</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:messageStatus" minOccurs="0"/>
+			<xs:element ref="ent:provider" minOccurs="0"/>
+			<xs:element ref="ent:messageDetail" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NameEntity">
+		<xs:annotation>
+			<xs:documentation>An entity describing a full name (first, middle, last)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:firstName" minOccurs="0"/>
+			<xs:element ref="ent:middleInitial" minOccurs="0"/>
+			<xs:element ref="ent:lastName" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NameValuePairEntity">
+		<xs:annotation>
+			<xs:documentation>An entity storing a generic name-value pair</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="value" minOccurs="0" maxOccurs="unbounded">
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PaymentMethodEntity">
+		<xs:annotation>
+			<xs:documentation>A single payment method. Can be Credit Card or EFT</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:effectiveBeginDate" minOccurs="0"/>
+					<xs:element ref="ent:effectiveEndDate" minOccurs="0"/>
+					<xs:element ref="ent:creditCard" minOccurs="0"/>
+					<xs:element ref="ent:eft" minOccurs="0"/>
+					<xs:element ref="ent:billToAlternateAccountId" minOccurs="0"/>
+					<xs:element ref="ent:onFileCreditCardNumber" minOccurs="0"/>
+					<xs:element ref="ent:onFileEFTAccountNumber" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="type" type="ent:ValidPaymentTypesEntity" use="required"/>
+				<xs:attribute name="primaryFlag" type="xs:boolean">
+					<xs:annotation>
+						<xs:documentation>Indicates if this is set as the primary payment method in the account</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="makePaymentsAutomaticallyFlag" type="xs:boolean" use="optional">
+					<xs:annotation>
+						<xs:documentation>Indicates if the payment method registered with the account should be used for making payments automatically</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PaymentMethodListEntity">
+		<xs:annotation>
+			<xs:documentation>A list of Payment Methods</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:ListEntity">
+				<xs:sequence>
+					<xs:element ref="ent:paymentMethod" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PendingTransactionEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:accountId" minOccurs="0"/>
+					<xs:element ref="ent:orderId" minOccurs="0"/>
+					<xs:element ref="ent:accessCardId" minOccurs="0"/>
+					<xs:element ref="ent:transactionReference" minOccurs="0"/>
+					<xs:element ref="ent:sourceSystemTransactionId" minOccurs="0"/>
+					<xs:element ref="ent:transactionState" minOccurs="0"/>
+					<xs:element ref="ent:originator" minOccurs="0"/>
+					<xs:element ref="ent:businessProcessName" minOccurs="0"/>
+					<xs:element name="service" minOccurs="0">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="ent:name" minOccurs="0"/>
+								<xs:element ref="ent:version" minOccurs="0"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="duplicateAllowedFlag" type="xs:boolean" minOccurs="0"/>
+					<xs:element ref="ent:requestDateTime" minOccurs="0"/>
+					<xs:element ref="ent:lastUpdateDateTime" minOccurs="0"/>
+					<xs:element ref="ent:customerImpact" minOccurs="0"/>
+					<xs:element ref="ent:result" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="result">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ent:status" minOccurs="0"/>
+				<xs:element ref="ent:provider" minOccurs="0"/>
+				<xs:element name="detail" type="ent:ResultDetailType" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="ResultDetailType">
+		<xs:annotation>
+			<xs:documentation>Result Details</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:code" minOccurs="0"/>
+			<xs:element ref="ent:text" minOccurs="0"/>
+			<xs:element ref="ent:severity" minOccurs="0"/>
+			<xs:element ref="ent:category" minOccurs="0"/>
+			<xs:element ref="ent:subcategory" minOccurs="0"/>
+			<xs:element ref="ent:dataState" minOccurs="0"/>
+			<xs:element ref="ent:retryAllowed" minOccurs="0"/>
+			<xs:element ref="ent:additionalInformation" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PendingTransactionListEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:ListEntity">
+				<xs:sequence>
+					<xs:element ref="ent:pendingTransaction" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AdditionalParametersType">
+		<xs:annotation>
+			<xs:documentation>Additional Parameters</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="param" type="ent:NameValuePairType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Identifies a single parameter. Many such parameters may exist</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NameValuePairType">
+		<xs:annotation>
+			<xs:documentation>Parameter Key Value Pair Type.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:documentation>Each parameter should have a name.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="value" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>The value associated with the parameter is optional, and there can be any number of values associated with a single parameter. If value is not present, the name becomes a tagging parameter</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="additionalParameters" type="ent:AdditionalParametersType">
+		<xs:annotation>
+			<xs:documentation>Service specific additional header elements may be provided here</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="BasicPhoneEntity">
+		<xs:annotation>
+			<xs:documentation>Stored Basic Phone number information</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:phoneAreaCode" minOccurs="0"/>
+			<xs:element ref="ent:phoneNumber" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PhoneEntity">
+		<xs:annotation>
+			<xs:documentation>Stored Phone number information</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:phoneAreaCode" minOccurs="0"/>
+			<xs:element ref="ent:phoneNumber" minOccurs="0"/>
+			<xs:element ref="ent:phoneExtension" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="type" type="ent:ValidPhoneTypesEntity"/>
+		<xs:attribute name="contactPointId" type="xs:long" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="PossibleCountyListEntity">
+		<xs:annotation>
+			<xs:documentation>A list of possible counties to which an address might belong</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:ListEntity">
+				<xs:sequence>
+					<xs:element name="county" type="ent:CountyEntity" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PropertyEntity">
+		<xs:annotation>
+			<xs:documentation>Contains information for a Property</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:propertyName" minOccurs="0"/>
+			<xs:element ref="ent:propertyModel" minOccurs="0"/>
+			<xs:element ref="ent:address" minOccurs="0"/>
+			<xs:element ref="ent:numberOfFloors" minOccurs="0"/>
+			<xs:element ref="ent:rightOfEntry" minOccurs="0"/>
+			<xs:element ref="ent:systemInstallDate" minOccurs="0"/>
+			<xs:element ref="ent:customerInstallDate" minOccurs="0"/>
+			<xs:element ref="ent:firstName" minOccurs="0"/>
+			<xs:element ref="ent:lastName" minOccurs="0"/>
+			<xs:element name="primaryPhone" type="ent:PhoneEntity" minOccurs="0"/>
+			<xs:element name="alternatePhone" type="ent:PhoneEntity" minOccurs="0"/>
+			<xs:element ref="ent:mfhWiringCode" minOccurs="0"/>
+			<xs:element ref="ent:restrictedPropertyInformation" minOccurs="0"/>
+			<xs:element ref="ent:exclusivePropertyInformation" minOccurs="0"/>
+			<xs:element ref="ent:buildingList" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RightOfEntryEntity">
+		<xs:annotation>
+			<xs:documentation>Contains dates pertinent to right of entry</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:effectiveBeginDate" minOccurs="0"/>
+			<xs:element ref="ent:effectiveEndDate" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RegionalProgrammingInformationEntity">
+		<xs:annotation>
+			<xs:documentation>Contains information for Reginal Programming changes</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="RSNDescription" type="xs:string" minOccurs="0"/>
+			<xs:element name="RSNAction" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RegionalProgrammingInformationListEntity">
+		<xs:annotation>
+			<xs:documentation>List of information for Reginal Programming changes</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:ListEntity">
+				<xs:sequence>
+					<xs:element ref="ent:regionalProgrammingInformation" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="TaxInfoEntity">
+		<xs:annotation>
+			<xs:documentation>Tax Amounts information</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:cityTax" minOccurs="0"/>
+			<xs:element ref="ent:cityTaxCode" minOccurs="0"/>
+			<xs:element ref="ent:proratedTax" minOccurs="0"/>
+			<xs:element ref="ent:countyTax" minOccurs="0"/>
+			<xs:element ref="ent:countyTaxCode" minOccurs="0"/>
+			<xs:element ref="ent:totalTax" minOccurs="0"/>
+			<xs:element ref="ent:districtTax" minOccurs="0"/>
+			<xs:element ref="ent:serviceTax" minOccurs="0"/>
+			<xs:element ref="ent:stateTax" minOccurs="0"/>
+			<xs:element ref="ent:stateTaxCode" minOccurs="0"/>
+			<xs:element ref="ent:miscTax" minOccurs="0"/>
+			<xs:element ref="ent:miscTaxCode" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TotalAmountEntity">
+		<xs:annotation>
+			<xs:documentation>The element value holds the total amount.  Optional attributes may break out the base price and tax amount.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:decimal">
+				<xs:attribute name="basePrice" use="optional">
+					<xs:simpleType>
+						<xs:restriction base="xs:decimal"/>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attribute name="taxAmount" use="optional">
+					<xs:simpleType>
+						<xs:restriction base="xs:decimal"/>
+					</xs:simpleType>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="UnitEntity">
+		<xs:annotation>
+			<xs:documentation>Contains information for Units</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:unitPrefix" minOccurs="0"/>
+			<xs:element ref="ent:streetName" minOccurs="0"/>
+			<xs:element ref="ent:streetNumber" minOccurs="0"/>
+			<xs:element ref="ent:unitNumber" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UnitListEntity">
+		<xs:annotation>
+			<xs:documentation>List of information for Units of a building</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:ListEntity">
+				<xs:sequence>
+					<xs:element ref="ent:unit" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="additionalInformation" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Additional Information, if any</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="address" type="ent:AddressEntity">
+		<xs:annotation>
+			<xs:documentation>Holds an address. The type should be indicated in the type attribute of  the address</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="addressPhysicalLocationInfo" type="ent:AddressPhysicalLocationInfoEntity">
+		<xs:annotation>
+			<xs:documentation>Detailed Physical Location information about an address</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="bankAccount" type="ent:BankAccountEntity">
+		<xs:annotation>
+			<xs:documentation>A single Bank Account</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="billingAddress" type="ent:UniqueAddressEntity">
+		<xs:annotation>
+			<xs:documentation>Contact Information tied to this Account's Billing Address. </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="buildingList" type="ent:BuildingListEntity"/>
+	<xs:element name="building" type="ent:BuildingEntity"/>
+	<xs:element name="contactInformation" type="ent:ContactInformationEntity">
+		<xs:annotation>
+			<xs:documentation>A single Contact Information</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="contactInformationList">
+		<xs:annotation>
+			<xs:documentation>A list of Contact Informations</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ent:ListEntity">
+					<xs:sequence>
+						<xs:element ref="ent:contactInformation" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="creditCard" type="ent:CreditCardEntity">
+		<xs:annotation>
+			<xs:documentation>A single Credit Card</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="creditCardName" type="ent:GenericNameEntity">
+		<xs:annotation>
+			<xs:documentation>Name on the card</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="customData" type="ent:CustomParametersEntity">
+		<xs:annotation>
+			<xs:documentation>Custom Data carried along with each entity</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="eligibilityFactors" type="ent:CustomParametersEntity"/>
+	<xs:element name="eft" type="ent:EFTEntity">
+		<xs:annotation>
+			<xs:documentation>the EFT object</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="email" type="ent:EmailEntity">
+		<xs:annotation>
+			<xs:documentation>Email Object</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="identification" type="ent:IdentificationEntity">
+		<xs:annotation>
+			<xs:documentation>An identification Object</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="identificationList">
+		<xs:annotation>
+			<xs:documentation>A list of Identifications for the customer</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ent:ListEntity">
+					<xs:sequence>
+						<xs:element ref="ent:identification" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="message" type="ent:MessageEntity">
+		<xs:annotation>
+			<xs:documentation>A single message</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="messageDetail" type="ent:MessageDetailEntity">
+		<xs:annotation>
+			<xs:documentation>Message detail</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="messageList" type="ent:MessageListEntity">
+		<xs:annotation>
+			<xs:documentation>A list of messages</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="originator" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Channel from which the Transaction was invoked</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="paramKVPair" type="ent:NameValuePairEntity">
+		<xs:annotation>
+			<xs:documentation>A Key-Value pair holding custom data</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="paymentMethod" type="ent:PaymentMethodEntity">
+		<xs:annotation>
+			<xs:documentation>The payment method defined on the account</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="paymentMethodList" type="ent:PaymentMethodListEntity">
+		<xs:annotation>
+			<xs:documentation>The List of payment methods defined on the account</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="pendingTransaction" type="ent:PendingTransactionEntity"/>
+	<xs:element name="pendingTransactionList" type="ent:PendingTransactionListEntity"/>
+	<xs:element name="phone">
+		<xs:annotation>
+			<xs:documentation>Holds a phone number. The type of the phone is indicated by the type attribute of the phone </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ent:PhoneEntity"/>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="possibleCountyList" type="ent:PossibleCountyListEntity">
+		<xs:annotation>
+			<xs:documentation>A list of possible counties where this address might lie</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="property" type="ent:PropertyEntity">
+		<xs:annotation>
+			<xs:documentation>A property entity</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="regionalProgrammingInformationList" type="ent:RegionalProgrammingInformationListEntity"/>
+	<xs:element name="regionalProgrammingInformation" type="ent:RegionalProgrammingInformationEntity"/>
+	<xs:element name="rightOfEntry" type="ent:RightOfEntryEntity">
+		<xs:annotation>
+			<xs:documentation>Right of entry information pertinent to a property</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="serviceAddress" type="ent:UniqueAddressEntity">
+		<xs:annotation>
+			<xs:documentation>Contact information tied to the address where the customer will receive Service</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="servicePhone" type="ent:PhoneEntity">
+		<xs:annotation>
+			<xs:documentation>Contact information tied to the Service Phone Number where the customer will receive service</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="shippingAddress" type="ent:AddressEntity">
+		<xs:annotation>
+			<xs:documentation>Shipping Address</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="taxInfo" type="ent:TaxInfoEntity">
+		<xs:annotation>
+			<xs:documentation>Tax Information</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="transactionName" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Name of the Transaction</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="transactionReference" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Transaction Reference</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="transactionVersion" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Transaction Version</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="timestamp" type="xs:dateTime">
+		<xs:annotation>
+			<xs:documentation>Time the transaction was invoked (including Date)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="unitList" type="ent:UnitListEntity"/>
+	<xs:element name="unit" type="ent:UnitEntity"/>
+	<xs:complexType name="DateRangeTypesEntity">
+		<xs:annotation>
+			<xs:documentation>Date range used for free form search by the edge system</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:transactionFromDate"/>
+			<xs:element ref="ent:transactionToDate"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="resendAction" type="ent:ResendActionEntity">
+		<xs:annotation>
+			<xs:documentation>ServcieTaping Flag</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ResendActionEntity">
+		<xs:annotation>
+			<xs:documentation>Indicates the resend actions used in troubleshooting of the access card</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="actionCode">
+				<xs:annotation>
+					<xs:documentation>ServcieTaping Flag</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="resendAllCards" type="xs:boolean" default="false"/>
+	</xs:complexType>
+	<xs:complexType name="LoginEntity">
+		<xs:sequence>
+			<xs:element ref="ent:username"/>
+			<xs:element name="password" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="text" type="ent:MessageTextEntity">
+		<xs:annotation>
+			<xs:documentation>The message text. This is a consumer friendly message that indicates what happend to the request. </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="subcategory" type="ent:MessageTextEntity">
+		<xs:annotation>
+			<xs:documentation>Sub Category for the result message</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ivReceiversEntity">
+		<xs:sequence>
+			<xs:element name="receiver" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="ent:omsLineItemId" minOccurs="0"/>
+						<xs:element ref="ent:accessCardId"/>
+						<xs:element ref="ent:manufacturer"/>
+						<xs:element ref="ent:model"/>
+						<xs:element ref="ent:serialNumber"/>
+						<xs:element ref="ent:receiverId" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ivReceivers" type="ent:ivReceiversEntity"/>
+	<xs:complexType name="ivEligibilityEntity">
+		<xs:sequence>
+			<xs:element name="hardwareList">
+				<xs:annotation>
+					<xs:documentation>List of hardware ordered or present on this account. Currently this represents the list of ODUs on the account/work order</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="hardware" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element ref="ent:hardwareId">
+										<xs:annotation>
+											<xs:documentation>Decimal value indicating the list of ordered hardware (e.g., ODU)</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element ref="ent:hardwareName" minOccurs="0"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="receiverWaiversList">
+				<xs:annotation>
+					<xs:documentation>List of ACTV cards on the account and their waiver information</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="receiverWaivers" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element ref="ent:accessCardId"/>
+									<xs:element name="waiverCodeList">
+										<xs:annotation>
+											<xs:documentation>List of waiver codes that apply for this receiver</xs:documentation>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element ref="ent:waiverCode" maxOccurs="unbounded"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ivEligibility" type="ent:ivEligibilityEntity"/>
+	<xs:element name="restrictedPropertyInformation" type="ent:RestrictedPropertyEntity"/>
+	<xs:complexType name="RestrictedPropertyEntity">
+		<xs:annotation>
+			<xs:documentation>MDU Restricted Property Info</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:restrictedPropertyFlag" minOccurs="0"/>
+			<xs:element name="systemOperatorInfo" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="ent:operatorId" minOccurs="0"/>
+						<xs:element ref="ent:operatorName" minOccurs="0"/>
+						<xs:element name="operatorPhone" type="ent:BasicPhoneEntity" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="exclusivePropertyInformation" type="ent:ExclusivePropertyEntity"/>
+	<xs:complexType name="ExclusivePropertyEntity">
+		<xs:annotation>
+			<xs:documentation>MDU Exclusive Property Info</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:exclusivePropertyFlag" minOccurs="0"/>
+			<xs:element ref="ent:primaryCompetitor" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ivRetestEligibilityEntity">
+		<xs:sequence>
+			<xs:element name="hardwareList">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="hardware" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element ref="ent:hardwareId"/>
+									<xs:element ref="ent:hardwareName" minOccurs="0"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="receiverWaiversList">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="receiverWaivers" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element ref="ent:accessCardId"/>
+									<xs:element name="waiverCodeList">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element ref="ent:waiverCode" maxOccurs="unbounded"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+									<xs:element ref="ent:orderLineItemID" minOccurs="0"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ivRetestEligibility" type="ent:ivRetestEligibilityEntity"/>
+	<xs:element name="ivAccessCardList">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ivAccessCard" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="ent:accessCardId"/>
+							<xs:element ref="ent:orderLineItemID" minOccurs="0"/>
+							<xs:element ref="ent:message"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="attributeKVPair" type="ent:NameValuePairEntity">
+		<xs:annotation>
+			<xs:documentation>A Key-Value pair holding hardware attributes data</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

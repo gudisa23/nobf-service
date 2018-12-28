@@ -1,0 +1,43 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ei.directv.com/schemas/entities/v3_0" targetNamespace="http://ei.directv.com/schemas/entities/v3_0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<!-- Parameter Key Value Pair Type-->
+	<xs:complexType name="parameterNameValuePairType">
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="value" minOccurs="0" maxOccurs="unbounded">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="2000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CustomParametersType">
+		<xs:sequence>
+			<xs:element name="param" type="tns:parameterNameValuePairType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- Define Custom Elements For Each Service -->
+	<!-- This mechanism is going to be used in between versions -->
+	<!-- to eliminate the need for changes for minor requirements or bug fixes -->
+	<!-- These fields SHOULD be absorbed into the actual request/response types in the NEXT VERSION -->
+	<xs:complexType name="baseCustomType">
+		<xs:annotation>
+			<xs:documentation>Custom Base Type</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="additionalParameters" type="tns:CustomParametersType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--
+	<xs:element name="customData" type="tns:baseCustomType" abstract="true"/>
+-->
+	<!--Request Response Related Customization will be mentioned in the service specific type defintion file-->
+	<!--For e.g. FieldServiceTypes will have request/response for all FSS services and the associated custom type-->
+</xs:schema>

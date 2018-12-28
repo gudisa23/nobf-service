@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *==========================================================================================
+ *  D I R E C T V     E N T E R P R I S E     I N T E G R A T I O N 
+ *==========================================================================================
+ *  Service   : ValidateCustomer
+ *  Generated : 2008/06/10 10:23:46 
+ *  URL       : http://
+:/webservices/ValidateCustomer/ValidateCustomerService
+ *==========================================================================================
+ * Change Control
+ *
+ * $Log::   $
+ *  *    Rev 1.0   Jun 13 2008 11:36:06   directv * Initial revision.-->
+
+<wsdl:definitions 
+		xmlns:tns="http://ei.directv.com/schemas/envelope/v3_0" 
+		xmlns:ent="http://ei.directv.com/schemas/entities/v3_1" 
+		xmlns:svc="http://ei.directv.com/schemas/wsdl/billingServices/v3_1/validateCustomer" 
+		xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+		xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+		xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+		xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+		xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+		xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" 
+		xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+		xmlns="http://schemas.xmlsoap.org/wsdl/" 
+		targetNamespace="http://ei.directv.com/schemas/envelope/v3_0" 
+		name="validateCustomer">
+    <wsdl:types>
+        <xs:schema targetNamespace="http://ei.directv.com/schemas/envelope/v3_0" elementFormDefault="qualified">
+            <!-- 
+                Include Envelope to get the basic EI Envelope structure. SOAP Structure will look very similar (use the same header, etc)
+             -->
+            <xs:include schemaLocation="envelope/v3.0/Envelope.xsd"/>
+            <!-- 
+                Import Service XSD to get the Request & Response elements.
+             -->
+            <xs:import namespace="http://ei.directv.com/schemas/wsdl/billingServices/v3_1/validateCustomer" 
+	    		schemaLocation="ValidateCustomer.xsd"/>
+            <!-- 
+                Define a new type "ei" that references the EIHeaderType type. This will be the Soap Header
+             -->
+            <xs:element name="request" type="svc:ValidateCustomerRequestEntity"/>
+            <xs:element name="response" type="svc:ValidateCustomerResponseEntity"/>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="ValidateCustomerSoapRequestBody">
+    	<!-- 
+        	Define a Request Body for this Service. 
+		This references the svc:request element already defined in the imported schema
+    	-->
+        <part name="requestParameters" element="tns:request"/>
+	<!-- 
+        	Define a Header Part for this SOAP XML. 
+		This references the ei element defined earlier
+    	-->
+	<part name="ei" element="tns:ei"/>
+    </wsdl:message>
+    <wsdl:message name="ValidateCustomerSoapResponseBody">
+    	<!-- 
+        	Define a Response Body for this Service. 
+		This references the svc:response element already defined in the imported schema
+    	-->
+        <part name="responseParameters" element="tns:response"/>
+	<!-- 
+        	Define a Header Part for this SOAP XML. 
+		This references the ei element defined earlier
+    	-->
+	<part name="ei" element="tns:ei"/>
+    </wsdl:message>
+    <wsdl:portType name="ValidateCustomerPortType">
+    	<!--
+        	Define the Port type to be used for this service. 
+		This identifies the operation, and defines the input & output 
+		messages for that operation
+    	-->
+        <wsdl:operation name="ValidateCustomer">
+            <wsdl:input message="tns:ValidateCustomerSoapRequestBody"/>
+            <wsdl:output message="tns:ValidateCustomerSoapResponseBody"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="ValidateCustomerBinding" type="tns:ValidateCustomerPortType">
+    	<!--
+        	Define the Binding used by the operation defined in the portType. 
+    	-->
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="ValidateCustomer">
+            <!--
+	    	Define the SOAP operation with the following params
+		Soap Action : http://ei.directv.com/schemas/envelope/v3_0/ValidateCustomerPortType/ValidateCustomer
+		Style : document
+            -->
+            <soap:operation soapAction="http://ei.directv.com/schemas/envelope/v3_0/ValidateCustomerPortType/ValidateCustomer" 
+	    			style="document"/>
+            <!--
+                We define the input to contain the header and the input message defined earlier
+            -->
+            <wsdl:input>
+                <soap:body parts="requestParameters" use="literal" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+                <soap:header message="tns:ValidateCustomerSoapRequestBody" 
+			part="ei" use="literal" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </wsdl:input>
+            <!--
+                We define the output to contain the header and the output message defined earlier
+            -->
+            <wsdl:output>
+                <soap:body parts="responseParameters" use="literal" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+                <soap:header message="tns:ValidateCustomerSoapResponseBody" 
+			part="ei" use="literal" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="ValidateCustomerService">
+    	<!--
+        	Finally, we define the Service and point it to a physical end point
+    	-->
+        <wsdl:port name="ValidateCustomerServicePort" binding="tns:ValidateCustomerBinding">
+            <soap:address location="http://
+:/webservices/ValidateCustomer_V3_1/ValidateCustomer_V3_1"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
+

@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2005 U (http://www.xmlspy.com) by s (k) -->
+<!--
+ * ENTERPRISE INTEGRATION
+ * Change Control
+ *
+ * $Log::   $
+ * 
+ *    Rev 1.6   May 09 2006 13:58:42   sgovindarajan
+ * Added recording to the product entity
+ * 
+ *    Rev 1.5   Dec 01 2005 16:35:38   skondaka
+ * No change.
+ * 
+ *    Rev 1.4   May 11 2005 05:39:46   ddearman
+ * removed extra 'messageList' element
+ * 
+ *    Rev 1.3   Jan 12 2005 17:21:54   skovilmadam
+ * Added Message list to order line item - used for output only
+ * 
+ *    Rev 1.2   Jan 12 2005 13:13:46   skovilmadam
+ * Changed following canonical entities to xsd data types due to ICAN bug. Using these entities
+ * resulted in the data types being defined as strings
+ * "ent:AmountEntity" to "xs:decimal",
+ * "ent:BankRoutingNumberEntity" to "xs:long",
+ * "ent:BillingAccountIdEntity" to "xs:long",
+ * "ent:BooleanEntity" to "xs:boolean",
+ * "ent:CamcIdEntity" to "xs:long",
+ * "ent:CodeEntity" to "xs:long",
+ * "ent:CustomerIdEntity" to "xs:long",
+ * "ent:DateEntity" to "xs:date",
+ * "ent:DateTimeEntity" to "xs:dateTime",
+ * "ent:DayOfMonthEntity" to "xs:nonNegativeInteger",
+ * "ent:TimeEntity" to "xs:time",
+ * "ent:ValidCreditCardNumberEntity" to "xs:long"
+ * 
+ *    Rev 1.1   Dec 30 2004 14:26:02   skovilmadam
+ * Changed Shipping Method to use Code Description entity
+ * 
+ *    Rev 1.0   Dec 07 2004 18:53:18   skovilmadam
+ * Initial revision.
+ -->
+<xs:schema targetNamespace="http://ei.directv.com/schemas/entities/v3_0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ent="http://ei.directv.com/schemas/entities/v3_0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="./CustomerInformation.xsd"/>
+	<xs:include schemaLocation="./CATSTypes.xsd"/>
+	<xs:complexType name="InstallationInfoEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:installedDate" minOccurs="0"/>
+					<xs:element ref="ent:installationWindow" minOccurs="0"/>
+					<xs:element ref="ent:installationStatus" minOccurs="0"/>
+					<xs:element ref="ent:installationReschedulableFlag" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="OrderEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:orderId" minOccurs="0"/>
+					<xs:element ref="ent:originatorOrderId" minOccurs="0"/>
+					<xs:element ref="ent:originatorSystem" minOccurs="0"/>
+					<xs:element ref="ent:customer" minOccurs="0"/>
+					<xs:element ref="ent:paymentMethod" minOccurs="0"/>
+					<xs:element ref="ent:feeList" minOccurs="0"/>
+					<xs:element ref="ent:orderCost" minOccurs="0"/>
+					<xs:element ref="ent:commentList" minOccurs="0"/>
+					<xs:element ref="ent:orderLineItemList" minOccurs="0"/>
+					<xs:element ref="ent:effectiveDate" minOccurs="0"/>
+					<xs:element ref="ent:queueOnCamcLinkDownFlag" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="OrderListEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:ListEntity">
+				<xs:sequence>
+					<xs:element ref="ent:order" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="OrderedProductOrServiceEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:choice minOccurs="0">
+						<xs:element ref="ent:targetLineItem" minOccurs="0"/>
+						<xs:element ref="ent:programmingProductLineItem" minOccurs="0"/>
+						<xs:element ref="ent:installationServiceLineItem" minOccurs="0"/>
+						<xs:element ref="ent:replacementAccessCardLineItem" minOccurs="0"/>
+
+					</xs:choice>
+				</xs:sequence>
+				<xs:attribute name="type">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="service"/>
+							<xs:enumeration value="event"/>
+							<xs:enumeration value="target"/>
+							<xs:enumeration value="replacementAccessCard"/>
+							<xs:enumeration value="installation"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="OrderLineItemEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:orderRequestedAction" minOccurs="0"/>
+					<xs:element ref="ent:orderLineItemID" minOccurs="0"/>
+					<xs:element ref="ent:originatorOrderLineItemId" minOccurs="0"/>
+					<xs:element ref="ent:orderLineItemSequenceNumber" minOccurs="0"/>
+					<xs:element ref="ent:billingStatus" minOccurs="0"/>
+					<xs:element ref="ent:orderStatus" minOccurs="0"/>
+					<xs:element ref="ent:orderStatusChangeDate" minOccurs="0"/>
+					<xs:element ref="ent:actionTakenDate" minOccurs="0"/>
+					<xs:element ref="ent:actionTaken" minOccurs="0"/>
+					<xs:element ref="ent:orderedProductOrService" minOccurs="0"/>
+					<xs:element ref="ent:orderQuantity" minOccurs="0"/>
+					<xs:element ref="ent:orderCost" minOccurs="0"/>
+					<xs:element ref="ent:shippingInfo" minOccurs="0"/>
+					<xs:element ref="ent:chargeFeeFlag" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="OrderLineItemListEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:ListEntity">
+				<xs:sequence>
+					<xs:element ref="ent:orderLineItem" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="OrderPriceInformation">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:totalOrderCharges" minOccurs="0"/>
+					<xs:element ref="ent:totalShippingCharges" minOccurs="0"/>
+					<xs:element ref="ent:totalOrderDiscounts" minOccurs="0"/>
+					<xs:element ref="ent:totalOrderFees" minOccurs="0"/>
+					<xs:element ref="ent:taxInfo" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="OrderShippingInfo">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:shippingStatus" minOccurs="0"/>
+					<xs:element ref="ent:shipmentCarrier" minOccurs="0"/>
+					<xs:element ref="ent:requireSignature" minOccurs="0"/>
+					<xs:element ref="ent:packageTrackingNumber" minOccurs="0"/>
+					<xs:element ref="ent:mailDate" minOccurs="0"/>
+					<xs:element ref="ent:shippingMethod" minOccurs="0"/>
+					<xs:element ref="ent:shippingAddress" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ProgrammingProductOrderLineItemEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:accessCardId" minOccurs="0"/>
+					<xs:choice>
+						<xs:element ref="ent:event"/>
+						<xs:element ref="ent:subscribedEvent"/>
+						<xs:element ref="ent:service"/>
+						<xs:element ref="ent:subscribedService"/>
+						<xs:element ref="ent:recording" minOccurs="0"/>
+					</xs:choice>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ReplaceAccessCardOrderLineItemEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element name="ignorePreviousOrdersFlag" type="xs:boolean" minOccurs="0"/>
+					<xs:element ref="ent:oldAccessCardId" minOccurs="0"/>
+					<xs:element ref="ent:oldAccessCardReturnDate" minOccurs="0"/>
+					<xs:element ref="ent:newAccessCardId" minOccurs="0"/>
+					<xs:element ref="ent:replacementReason" minOccurs="0"/>
+					<xs:element ref="ent:numberOfCardsInMailing" minOccurs="0"/>
+					<xs:element ref="ent:changeType" minOccurs="0"/>
+					<xs:element ref="ent:changeDateTime" minOccurs="0"/>
+					<xs:element ref="ent:mailGroupCode" minOccurs="0"/>
+					<xs:element ref="ent:lostDamaged" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="actionTaken" type="ent:CodeDescriptionEntity">
+		<xs:annotation>
+			<xs:documentation>Describe the action taken on this order</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="billingStatus" type="ent:CodeDescriptionEntity">
+		<xs:annotation>
+			<xs:documentation>Status of Billing of this Order</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="changeDateTime" type="xs:dateTime">
+		<xs:annotation>
+			<xs:documentation>Change Requested Date/Time</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="changeType" type="ent:AccessCardChangeTypesEntity">
+		<xs:annotation>
+			<xs:documentation>Change Type</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="installationServiceLineItem" type="ent:InstallationInfoEntity">
+		<xs:annotation>
+			<xs:documentation>Order Line item that holds information about Installation Service Requests</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="installationStatus" type="ent:CodeDescriptionEntity">
+		<xs:annotation>
+			<xs:documentation>Status of the Installation request</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="newAccessCardId" type="ent:AccessCardIdEntity">
+		<xs:annotation>
+			<xs:documentation>New Access Card Id</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="oldAccessCardId" type="ent:AccessCardIdEntity">
+		<xs:annotation>
+			<xs:documentation>Old Access Card Id</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="oldAccessCardReturnDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Date Old Access card was Returned</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="order" type="ent:OrderEntity">
+		<xs:annotation>
+			<xs:documentation>An Order Element</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="orderedProductOrService" type="ent:OrderedProductOrServiceEntity">
+		<xs:annotation>
+			<xs:documentation>A generic placeholder to hold a single Ordered Product or Service</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="orderCost" type="ent:OrderPriceInformation">
+		<xs:annotation>
+			<xs:documentation>Contains the Cost information of the order</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="orderLineItem" type="ent:OrderLineItemEntity">
+		<xs:annotation>
+			<xs:documentation>A single Order Line Item</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="orderLineItemList" type="ent:OrderLineItemListEntity">
+		<xs:annotation>
+			<xs:documentation>A collection of Order Line Items</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="orderList" type="ent:OrderListEntity">
+		<xs:annotation>
+			<xs:documentation>A list of orders</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="orderStatus" type="ent:CodeDescriptionEntity">
+		<xs:annotation>
+			<xs:documentation>Status of the order</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="programmingProductLineItem" type="ent:ProgrammingProductOrderLineItemEntity">
+		<xs:annotation>
+			<xs:documentation>Instance that holds a Programming Product Line Item</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="replacementAccessCardLineItem" type="ent:ReplaceAccessCardOrderLineItemEntity">
+		<xs:annotation>
+			<xs:documentation>Instance that holds information about a Replacement Access card order line item</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="shippingMethod" type="ent:CodeDescriptionEntity">
+		<xs:annotation>
+			<xs:documentation>Shipping Method Used</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="shippingStatus" type="ent:CodeDescriptionEntity">
+		<xs:annotation>
+			<xs:documentation>Status of Shipping for the line item</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="targetLineItem" type="ent:TargetEntity">
+		<xs:annotation>
+			<xs:documentation>Instance that holds a Target order line item</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="shippingInfo" type="ent:OrderShippingInfo">
+		<xs:annotation>
+			<xs:documentation>Contains Shipping Information</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

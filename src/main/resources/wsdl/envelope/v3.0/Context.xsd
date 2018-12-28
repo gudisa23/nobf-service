@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ei.directv.com/schemas/envelope/v3_0" targetNamespace="http://ei.directv.com/schemas/envelope/v3_0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="./Envelope.xsd"/>
+	<xs:element name="PTPContext">
+		<xs:complexType>
+			<xs:annotation>
+				<xs:documentation>Context header information used for the pending transaction processor</xs:documentation>
+			</xs:annotation>
+			<xs:sequence>
+				<xs:element name="PTPRequestStatus" type="xs:string" minOccurs="0"/>
+				<xs:element name="PTPRequestStatusType" type="xs:string" minOccurs="0"/>
+				<xs:element name="STMSDown" type="xs:string" minOccurs="0"/>
+				<xs:element name="PTPTargetServiceURL" type="xs:string" minOccurs="0"/>
+				<xs:element name="PTPTargerServiceOperation" type="xs:string" minOccurs="0"/>
+				<xs:element name="isProxy" type="xs:string" minOccurs="0"/>
+				<xs:element name="PTPWaitTime" type="xs:string" minOccurs="0"/>
+				<xs:element name="PTPId" type="xs:string" minOccurs="0"/>
+				<xs:element name="PTPDetailId" type="xs:string" minOccurs="0"/>
+				<xs:element name="PTPUpdateType" type="xs:string" minOccurs="0"/>
+				<xs:element name="PTPSelectType" type="xs:string" minOccurs="0"/>
+				<xs:element name="AccountIdPN" type="xs:string" minOccurs="0"/>
+				<xs:element name="TransactionRefIdPN" type="xs:string" minOccurs="0"/>
+				<xs:element name="PTPIdPN" type="xs:string" minOccurs="0"/>
+				<xs:element name="PTPDetailIdPN" type="xs:string" minOccurs="0"/>
+				<xs:element name="SiteId" type="xs:string" minOccurs="0"/>
+				<xs:element name="PTPCallType" type="xs:string" minOccurs="0"/>
+				<xs:element name="WorkflowInstanceId" type="xs:string" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="ContextType">
+		<xs:annotation>
+			<xs:documentation>Context header information stored in the SOAP Header (Internal Use)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:any namespace="##any" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="context" type="tns:ContextType">
+		<xs:annotation>
+			<xs:documentation>Context for use in SOAP Header (For Internal Use)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="eiContext">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="tns:ei"/>
+				<xs:element name="context" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="tns:PTPContext"/>
+							<xs:any namespace="##any" processContents="lax" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

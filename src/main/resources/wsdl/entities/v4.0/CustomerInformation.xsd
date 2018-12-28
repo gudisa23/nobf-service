@@ -1,0 +1,1725 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 (http://www.altova.com) by Hugo Valle (DIRECTV) -->
+<!--
+ * ENTERPRISE INTEGRATION
+ * Change Control
+ *
+ * $Log::   $
+ * 
+ *    Rev 1.34   Jul 29 2008 11:35:46   directv
+ * added cryptoCategoryList structure
+ * 
+ *    Rev 1.33   Jul 28 2008 09:05:06   directv
+ * Added cryptoInfo structure under customerInformationFilters
+ * 
+ *    Rev 1.32   Jun 11 2008 13:22:12   directv
+ * added creditBand to ProspectEntity
+ * 
+ *    Rev 1.31   May 19 2008 09:23:24   ddearman
+ * updated recurring credit structure
+ * 
+ *    Rev 1.26   Apr 23 2008 08:57:42   directv
+ * added provideCustomerValueFlag and provideCustomerAgreementDetailFlag to profileRequestAttribGroup
+ * 
+ *    Rev 1.25   Feb 13 2008 09:32:10   ddearman
+ * updated pending transactions info
+ * 
+ *    Rev 1.24   Dec 21 2007 12:22:22   directv
+ * added acountStatus to DealerChainInformationEntity
+ * 
+ *    Rev 1.22   Oct 02 2007 07:28:08   ddearman
+ * corrected inflight tranactions flag
+ * 
+ *    Rev 1.20   Sep 04 2007 12:51:48   ddearman
+ * added Inflight transaction data
+ * 
+ *    Rev 1.19   Aug 21 2007 14:36:30   directv
+ * Added telcoNonPayStatus, pendingTransactionList, getProfileRequestFilters and GetProfileRequestFilterEntity
+ * 
+ *    Rev 1.18   Mar 19 2007 17:50:14   jdejesus
+ * added optinEligibilityFlag to BasicAccountProfileEntity
+ * 
+ *    Rev 1.17   Feb 15 2007 10:59:20   ddearman
+ * added ownedModelFlag
+ * 
+ *    Rev 1.16   Dec 18 2006 20:35:24   jdejesus
+ * added dtvRefNumber
+ * 
+ *    Rev 1.15   Dec 06 2006 15:24:26   directv
+ * changed agreementType to be optional
+ * 
+ *    Rev 1.14   Dec 05 2006 18:33:36   jdejesus
+ * added validateCustomer specific objects
+ * 
+ *    Rev 1.13   Dec 05 2006 14:44:48   directv
+ * SJB - 
+ * 1)Added involuntaryRiskCode to BasicCustomerEntity
+ * 2)Added agreementInformationList element and AggrementInformationListEntity
+ * 
+ *    Rev 1.12   Nov 20 2006 20:39:06   jdejesus
+ * made partnerSoldFlag and discountThresholdCode optional
+ * 
+ *    Rev 1.11   Oct 16 2006 16:40:42   jdejesus
+ * made opt-in order fields optional
+ * 
+ *    Rev 1.9   Sep 01 2006 13:45:52   sgovindarajan
+ * Opt In Business Requirements Changes
+ * 
+ *    Rev 1.7   Aug 30 2006 17:50:56   sgovindarajan
+ * ebill and customer status code added.
+ * 
+ *    Rev 1.5   Aug 28 2006 16:45:50   sgovindarajan
+ * Changed servicer flag to eligibility rules
+ * 
+ *    Rev 1.4   Aug 28 2006 11:47:38   sgovindarajan
+ * changes for verizon opt in
+ * 
+ *    Rev 1.3   Aug 24 2006 15:01:24   sgovindarajan
+ * Changed pRoprietary segment spelling and made possible counties optional in elgiigbility profile
+ * 
+ *    Rev 1.2   Aug 23 2006 17:07:48   sgovindarajan
+ * Validate Eligiblity Rules Xsd
+ * 
+ *    Rev 1.1   Aug 15 2006 19:43:16   sgovindarajan
+ * d
+ * 
+ *    Rev 1.0   Jul 10 2006 10:59:46   skovilmadam
+ * Initial revision.
+ * 
+ *    Rev 1.28   May 09 2006 09:55:26   ddearman
+ * added transactionContextList
+ * 
+ *    Rev 1.26   Mar 27 2006 10:40:38   ddearman
+ * added corporate id to dealer info
+ * 
+ *    Rev 1.25   Mar 07 2006 17:32:50   ddearman
+ * changes for version 3.1 of getProfile
+ *  
+ *    Rev 1.24   Mar 02 2006 15:07:16   jdejesus
+ * added alternateAccountFlag
+ * 
+ *    Rev 1.23   Feb 15 2006 08:26:16   malberty
+ * Updated to include new transaction reason code element that contains transaction type and a list of trans reason codes
+ * 
+ *    Rev 1.22   Feb 07 2006 12:54:58   malberty
+ * Added transaction type list and transaction reason code list
+ * 
+ *    Rev 1.21   Jan 20 2006 10:28:52   ddearman
+ * added product details flag to profile request filters 
+ * 
+ *    Rev 1.20   Dec 01 2005 16:35:38   skondaka
+ * No change.
+ * 
+ *    Rev 1.19   Nov 21 2005 08:47:16   ddearman
+ * updates per new getProfile business spec
+ * 
+ *    Rev 1.18   Nov 16 2005 09:26:18   ddearman
+ * updates for new get profile spec
+ * 
+ *    Rev 1.16   May 05 2005 10:14:38   ddearman
+ * removed cut/paste error
+ * 
+ *    Rev 1.13   Feb 11 2005 10:39:38   ddearman
+ * added payment processor to transactionEntity
+ * 
+ *    Rev 1.12   Jan 26 2005 14:21:44   ddearman
+ * added amount/totalTax/totalAmount to feeEntity
+ * 
+ *    Rev 1.11   Jan 14 2005 14:23:30   mgozaloff
+ * Added messageList, totalAmount and lineItemNumber to FeeEntity
+ * 
+ *    Rev 1.10   Jan 12 2005 13:13:06   skovilmadam
+ * Changed following canonical entities to xsd data types due to ICAN bug. Using these entities
+ * resulted in the data types being defined as strings
+ * "ent:AmountEntity" to "xs:decimal",
+ * "ent:BankRoutingNumberEntity" to "xs:long",
+ * "ent:BillingAccountIdEntity" to "xs:long",
+ * "ent:BooleanEntity" to "xs:boolean",
+ * "ent:CamcIdEntity" to "xs:long",
+ * "ent:CodeEntity" to "xs:long",
+ * "ent:CustomerIdEntity" to "xs:long",
+ * "ent:DateEntity" to "xs:date",
+ * "ent:DateTimeEntity" to "xs:dateTime",
+ * "ent:DayOfMonthEntity" to "xs:nonNegativeInteger",
+ * "ent:TimeEntity" to "xs:time",
+ * "ent:ValidCreditCardNumberEntity" to "xs:long"
+ * 
+ *    Rev 1.9   Jan 11 2005 12:21:38   skovilmadam
+ * Changed profile flags to include "Flag" in their names, according to the standards established
+ * 
+ *    Rev 1.8   Jan 10 2005 15:17:46   skovilmadam
+ * added recurring credit expiration date
+ * 
+ *    Rev 1.7   Jan 08 2005 01:19:52   skovilmadam
+ * Changes according to spec version 3.0
+ * 
+ *    Rev 1.6   Dec 31 2004 12:18:40   skovilmadam
+ * Changes to accommodate new requirements for Get Profile
+ * 
+ *    Rev 1.4   Dec 23 2004 17:22:44   skovilmadam
+ * added account hierarchy information as required by the get profile service
+ * 
+ *    Rev 1.3   Dec 23 2004 17:18:12   skovilmadam
+ * added fields required by get profile business service
+ * 
+ *    Rev 1.2   Dec 09 2004 11:50:28   ddearman
+ * added salesAgentName to AccountSubscriptionInfoEntity, batchSequenceNumber to TransactionEntity
+ * 
+ *    Rev 1.0   Dec 07 2004 18:53:18   skovilmadam
+ * Initial revision.
+ -->
+<xs:schema xmlns:ent="http://ei.directv.com/schemas/entities/v4_0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://ei.directv.com/schemas/entities/v4_0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="./TargetInformation.xsd"/>
+	<xs:attributeGroup name="profileRequestAttribGroup">
+		<xs:annotation>
+			<xs:documentation>Group of attributes that identify the filters to be applied for profile requests</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="customerAccountInfoFlag" type="xs:boolean" use="optional">
+			<xs:annotation>
+				<xs:documentation>Return customer account information </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="receiverInfoFlag" type="xs:boolean" use="optional">
+			<xs:annotation>
+				<xs:documentation>Return receiver information</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="recurringCreditsFlag" type="xs:boolean" use="optional">
+			<xs:annotation>
+				<xs:documentation>Return Recurring credit information, which will show any active or inactive recurring credits.  </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="provideInflightTransactionInfoFlag" type="xs:boolean" use="optional">
+			<xs:annotation>
+				<xs:documentation>Return Inflight transaction info.  </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="provideCustomerValueFlag" type="xs:boolean" use="optional">
+			<xs:annotation>
+				<xs:documentation>Return customer value.  </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="provideCustomerAgreementDetailFlag" type="xs:boolean" use="optional">
+			<xs:annotation>
+				<xs:documentation>Return customer agreement detail </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="provideCustomerCreditTotalsFlag" type="xs:boolean" use="optional">
+			<xs:annotation>
+				<xs:documentation>Return customer credit totalsl </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:simpleType name="ProgrammingStatusFilterEntity">
+		<xs:annotation>
+			<xs:documentation>The status of the programming for filtering </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="pending"/>
+			<xs:enumeration value="active"/>
+			<xs:enumeration value="disconnected"/>
+			<xs:enumeration value="all"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RecurringCreditStatusFilterEntity">
+		<xs:annotation>
+			<xs:documentation>The status of the recurring credits for filtering </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="active"/>
+			<xs:enumeration value="inactive"/>
+			<xs:enumeration value="all"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--xs:simpleType name="RecurringAdjustmentStatusFilterEntity">
+		<xs:annotation>
+			<xs:documentation>The status of the recurring Adjustments for filtering </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="active"/>
+			<xs:enumeration value="inactive"/>
+			<xs:enumeration value="all"/>
+		</xs:restriction>
+	</xs:simpleType-->
+	<!--xs:simpleType name="ReceiverStatusFilterEntity">
+		<xs:annotation>
+			<xs:documentation>The status of the receiver for filtering </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="pending"/>
+			<xs:enumeration value="active"/>
+			<xs:enumeration value="disconnected"/>
+			<xs:enumeration value="all"/>
+		</xs:restriction>
+	</xs:simpleType-->
+	<xs:complexType name="AccountEntity">
+		<xs:annotation>
+			<xs:documentation>A container to store the common elements of a Subscriber and Dealer accounts</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:BasicAccountInfoEntity">
+				<xs:sequence>
+					<xs:element ref="ent:accountHierarchy" minOccurs="0"/>
+					<xs:element ref="ent:accountStatusDetails" minOccurs="0"/>
+					<xs:element ref="ent:commentList" minOccurs="0"/>
+					<xs:element ref="ent:targetList" minOccurs="0"/>
+					<xs:element ref="ent:servicerFlag" minOccurs="0"/>
+					<xs:element ref="ent:alternateAccountFlag" minOccurs="0"/>
+					<xs:element ref="ent:alternateServicerFlag" minOccurs="0"/>
+					<xs:element ref="ent:billToBillingAddressFlag" minOccurs="0"/>
+					<xs:element ref="ent:billingAddress" minOccurs="0"/>
+					<xs:element ref="ent:accountFinancialInfo" minOccurs="0"/>
+					<xs:element ref="ent:financialActivities" minOccurs="0"/>
+					<xs:element ref="ent:dealerId" minOccurs="0"/>
+					<xs:element ref="ent:installerId" minOccurs="0"/>
+					<xs:element ref="ent:accountSubscriptionInfo" minOccurs="0"/>
+					<xs:element ref="ent:serviceCallInfoList" minOccurs="0"/>
+					<xs:element ref="ent:reinstatementResults" minOccurs="0"/>
+					<xs:element ref="ent:pendingTransactionList" minOccurs="0"/>
+					<xs:element ref="ent:dealerAccountType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AccountListEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:ListEntity">
+				<xs:sequence>
+					<xs:element ref="ent:account" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AccountFinancialInfoEntity">
+		<xs:annotation>
+			<xs:documentation>Stores minimal financial information</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:accountBalance" minOccurs="0"/>
+					<xs:element ref="ent:dealerFlag" minOccurs="0"/>
+					<xs:element ref="ent:lastBillAmount" minOccurs="0"/>
+					<xs:element ref="ent:lastBillDate" minOccurs="0"/>
+					<xs:element ref="ent:lastBillDueDate" minOccurs="0"/>
+					<xs:element ref="ent:lastBillPaymentDate" minOccurs="0"/>
+					<xs:element ref="ent:pastDueAmount" minOccurs="0"/>
+					<xs:element ref="ent:pastDueFlag" minOccurs="0"/>
+					<xs:element ref="ent:lastPaymentAmount" minOccurs="0"/>
+					<xs:element ref="ent:paymentConfirmationNumber" minOccurs="0"/>
+					<xs:element ref="ent:writeOffAmount" minOccurs="0"/>
+					<xs:element ref="ent:writeOffDate" minOccurs="0"/>
+					<xs:element ref="ent:accountPastDueThreshold" minOccurs="0"/>
+					<xs:element ref="ent:endOfMonthBalance" minOccurs="0"/>
+					<xs:element ref="ent:billingCycleDay" minOccurs="0"/>
+					<xs:element ref="ent:serviceCycleDay" minOccurs="0"/>
+					<xs:element ref="ent:oppvLimit" minOccurs="0"/>
+					<xs:element ref="ent:nonPaymentCode" minOccurs="0"/>
+					<xs:element ref="ent:statementDeliveryOption" minOccurs="0"/>
+					<xs:element ref="ent:paymentMethod" minOccurs="0"/>
+					<xs:element ref="ent:paymentMethodList" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AccountHierarchyInfoEntity">
+		<xs:annotation>
+			<xs:documentation>Information about the Account's Hierarchy </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:messageList" minOccurs="0"/>
+			<xs:element name="parentAccountInfo" type="ent:HierarchyDefnEntity" minOccurs="0"/>
+			<xs:element name="childAccountList" minOccurs="0">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="ent:ListEntity">
+							<xs:sequence>
+								<xs:element name="childAccountInfo" type="ent:HierarchyDefnEntity" minOccurs="0" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AccountProgrammingInfoEntity">
+		<xs:annotation>
+			<xs:documentation>Stores information relating to service availability on an account</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:cutoffLevel" minOccurs="0"/>
+					<xs:element ref="ent:cutoffDate" minOccurs="0"/>
+					<xs:element ref="ent:extendCutoffDays" minOccurs="0"/>
+					<xs:element ref="ent:beginSuspensionDate" minOccurs="0"/>
+					<xs:element ref="ent:endSuspensionDate" minOccurs="0"/>
+					<xs:element ref="ent:disconnectDate" minOccurs="0"/>
+					<xs:element ref="ent:disconnectType" minOccurs="0"/>
+					<xs:element ref="ent:disconnectReason" minOccurs="0"/>
+					<xs:element ref="ent:reinstateServicesAutomaticallyFlag" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AccountSubscriptionInfoEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:hasCableTVFlag" minOccurs="0"/>
+					<xs:element ref="ent:activationDate" minOccurs="0"/>
+					<xs:element ref="ent:createdByDealerFlag" minOccurs="0"/>
+					<xs:element ref="ent:servicedByDealerFlag" minOccurs="0"/>
+					<xs:element ref="ent:salesAgentId" minOccurs="0"/>
+					<xs:element ref="ent:salesAgentName" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="BaseCustomerEntity">
+		<xs:annotation>
+			<xs:documentation>Basic Customer information, common to both Subscribers and Dealers</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:customerType" minOccurs="0"/>
+					<xs:element ref="ent:customerStatus" minOccurs="0"/>
+					<xs:element ref="ent:customerId" minOccurs="0"/>
+					<xs:element ref="ent:customerSinceDate" minOccurs="0"/>
+					<xs:element ref="ent:language" minOccurs="0"/>
+					<xs:element ref="ent:languageCode" minOccurs="0"/>
+					<xs:element ref="ent:creditSegment" minOccurs="0"/>
+					<xs:element ref="ent:creditSegmentCalculatedOnDate" minOccurs="0"/>
+					<xs:element ref="ent:proprietorySegment" minOccurs="0"/>
+					<xs:element ref="ent:involuntaryRiskCode" minOccurs="0"/>
+					<xs:element ref="ent:ownedModelFlag" minOccurs="0"/>
+					<xs:element ref="ent:telcoNonpayStatus" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="BasicAccountInfoEntity">
+		<xs:annotation>
+			<xs:documentation>Stores minimal account information common to both subscriber and dealer</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:accountId" minOccurs="0"/>
+					<xs:element ref="ent:accountIndicator" minOccurs="0"/>
+					<xs:element ref="ent:accountType" minOccurs="0"/>
+					<xs:element ref="ent:accountStatus" minOccurs="0"/>
+					<xs:element ref="ent:password" minOccurs="0"/>
+					<xs:element ref="ent:creationDate" minOccurs="0"/>
+					<xs:element ref="ent:commissionStartDate" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CommentEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:commentAddedOnDateTime" minOccurs="0"/>
+					<xs:element ref="ent:commentCode" minOccurs="0"/>
+					<xs:element ref="ent:commentType" minOccurs="0"/>
+					<xs:element ref="ent:commentText" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CommentListEntity">
+		<xs:annotation>
+			<xs:documentation>A Container to store a list of comments</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:ListEntity">
+				<xs:sequence>
+					<xs:element ref="ent:comment" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CommitmentInformationEntity">
+		<xs:sequence>
+			<xs:element ref="ent:commitmentExpirationDate" minOccurs="0"/>
+			<xs:element ref="ent:commitmentValue" minOccurs="0"/>
+			<xs:element ref="ent:commitmentDescription" minOccurs="0"/>
+			<xs:element ref="ent:commitmentDuration" minOccurs="0"/>
+			<xs:element ref="ent:commitmentStatus" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="agreementInformationList">
+		<xs:annotation>
+			<xs:documentation>A list of customer agreement information</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="agreement" type="ent:AgreementInformationEntity" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="AgreementInformationEntity">
+		<xs:sequence>
+			<xs:element ref="ent:agreementId" minOccurs="0"/>
+			<xs:element ref="ent:agreementStartDate" minOccurs="0"/>
+			<xs:element ref="ent:agreementEndDate" minOccurs="0"/>
+			<xs:element ref="ent:orderDate" minOccurs="0"/>
+			<xs:element ref="ent:agreementDescription" minOccurs="0"/>
+			<xs:element ref="ent:agreementIsIncrementalFlag" minOccurs="0"/>
+			<xs:element ref="ent:agreementStatus" minOccurs="0"/>
+			<xs:element ref="ent:nonComplianceReason" minOccurs="0"/>
+			<xs:element ref="ent:agreementPriceCode" minOccurs="0"/>
+			<xs:element ref="ent:numberOfEnrollments" minOccurs="0"/>
+			<xs:element name="offerId" type="xs:string" minOccurs="0"/>
+			<xs:element ref="ent:offerType" minOccurs="0"/>
+			<xs:element name="commitmentInformation" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Commitment Information</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="ent:commitmentValue" minOccurs="0"/>
+						<xs:element ref="ent:commitmentDuration" minOccurs="0"/>
+						<xs:element ref="ent:commitmentStatus" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="ent:customData" minOccurs="0"/>
+			<xs:element name="agreementType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Agreement  information</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:choice>
+						<xs:element ref="ent:hardwareAgreement" minOccurs="0"/>
+						<xs:element ref="ent:programmingAgreement" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Programming agreement information</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:choice>
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="ent:agreementStatusEffectiveDate" minOccurs="0"/>
+			<xs:element ref="ent:eventDetailsList" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="eventDetailsList">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="eventDetails" type="ent:EventDetailsEntity" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="EventDetailsEntity">
+		<xs:sequence>
+			<xs:element ref="ent:agreementEventName" minOccurs="0"/>
+			<xs:element ref="ent:agreementEventStatus" minOccurs="0"/>
+			<xs:element ref="ent:agreementEventDateTime" minOccurs="0"/>
+			<xs:element ref="ent:redemptionMethod" minOccurs="0"/>
+			<xs:element ref="ent:entryMethod" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="hardwareAgreement" type="ent:HardwareAgreementEntity">
+		<xs:annotation>
+			<xs:documentation>Hardware agreement information</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="HardwareAgreementEntity">
+		<xs:sequence>
+			<xs:element ref="ent:dominateCommitmentFlag" minOccurs="0"/>
+			<xs:element ref="ent:manufacturer" minOccurs="0"/>
+			<xs:element ref="ent:model" minOccurs="0"/>
+			<xs:element ref="ent:serialNumber" minOccurs="0"/>
+			<xs:element ref="ent:receiverId" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ProgrammingAgreementEntity">
+		<xs:sequence>
+			<xs:element ref="ent:productType" minOccurs="0"/>
+			<xs:element ref="ent:productCode" minOccurs="0"/>
+			<xs:element ref="ent:recurringCreditAmount" minOccurs="0"/>
+			<xs:element ref="ent:recurringCreditCount" minOccurs="0"/>
+			<xs:element ref="ent:recurringCreditsIssued" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="programmingAgreement" type="ent:ProgrammingAgreementEntity">
+		<xs:annotation>
+			<xs:documentation>Programming agreement information</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="CustomerEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BaseCustomerEntity">
+				<xs:sequence>
+					<xs:choice minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>The appropriate block in this choice will be filled out depending upon the type of the customer. For dealers, dealerInfo will be populated, while Subscribers will have the other elements populated</xs:documentation>
+						</xs:annotation>
+						<xs:element ref="ent:dealerInfo" minOccurs="0"/>
+						<xs:element ref="ent:subscriberInfo" minOccurs="0"/>
+					</xs:choice>
+					<xs:element ref="ent:accountList" minOccurs="0"/>
+					<xs:element ref="ent:customerAttributeList" minOccurs="0"/>
+					<xs:element ref="ent:customerCharacteristicList" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CustomerListEntity">
+		<xs:annotation>
+			<xs:documentation>A list of customers</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:ListMessageEntity">
+				<xs:sequence>
+					<xs:element ref="ent:customer" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="HierarchyDefnEntity">
+		<xs:annotation>
+			<xs:documentation>Defines an account hierarchy</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:accountId" minOccurs="0"/>
+			<xs:element ref="ent:accountStatus" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ProfileDataRequestedEntity">
+		<xs:attributeGroup ref="ent:profileRequestAttribGroup"/>
+	</xs:complexType>
+	<xs:complexType name="DealerChainInformationEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:primaryOwner" minOccurs="0"/>
+					<xs:element ref="ent:secondaryOwner" minOccurs="0"/>
+					<xs:element ref="ent:dealerChainNumber" minOccurs="0"/>
+					<xs:element ref="ent:accountId" minOccurs="0"/>
+					<xs:element ref="ent:dealerAccountId" minOccurs="0"/>
+					<xs:element ref="ent:relationStartDate" minOccurs="0"/>
+					<xs:element ref="ent:relationEndDate" minOccurs="0"/>
+					<xs:element ref="ent:coreFlag" minOccurs="0"/>
+					<xs:element ref="ent:coreService" minOccurs="0"/>
+					<xs:element ref="ent:coreServiceStartDate" minOccurs="0"/>
+					<xs:element ref="ent:coreServiceEndDate" minOccurs="0"/>
+					<xs:element ref="ent:coreDisconnectReason" minOccurs="0"/>
+					<xs:element ref="ent:accountStatus" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DealerChainInformationListEntity">
+		<xs:annotation>
+			<xs:documentation>Holds a list of Dealer Chaining information</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:ListEntity">
+				<xs:sequence>
+					<xs:element ref="ent:dealerChain" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DealerInfoEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:dealerName" minOccurs="0"/>
+					<xs:element ref="ent:dealerChainName" minOccurs="0"/>
+					<xs:element ref="ent:dealerChainNumber" minOccurs="0"/>
+					<xs:element ref="ent:federalTaxIdentification" minOccurs="0"/>
+					<xs:element ref="ent:stateTaxIdentification" minOccurs="0"/>
+					<xs:element ref="ent:dealerServiceCodes" minOccurs="0"/>
+					<xs:element ref="ent:rebateAmount" minOccurs="0"/>
+					<xs:element ref="ent:commissionRate" minOccurs="0"/>
+					<xs:element ref="ent:corporateId" minOccurs="0"/>
+					<xs:element ref="ent:storeNumber" minOccurs="0"/>
+					<xs:element ref="ent:contactName" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DealerServiceCodesEntity">
+		<xs:annotation>
+			<xs:documentation>Stores a list of dealer service codes</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:dealerEquipmentSalesFlag" minOccurs="0"/>
+			<xs:element ref="ent:dealerInstallationFlag" minOccurs="0"/>
+			<xs:element ref="ent:dealerProgrammingFlag" minOccurs="0"/>
+			<xs:element ref="ent:dealerRepairsFlag" minOccurs="0"/>
+			<xs:element ref="ent:dealerOtherFlag" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FeeEntity">
+		<xs:annotation>
+			<xs:documentation>Fee information</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element name="lineItemNumber" type="xs:int" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>The fee line item sequence number used when adding multiple fees.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="ent:feeCode" minOccurs="0"/>
+					<xs:element ref="ent:feePrefix" minOccurs="0"/>
+					<xs:element ref="ent:description" minOccurs="0"/>
+					<xs:element ref="ent:amount" minOccurs="0"/>
+					<xs:element ref="ent:totalTax" minOccurs="0"/>
+					<xs:element name="totalAmount" type="xs:decimal" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="FeeListEntity">
+		<xs:annotation>
+			<xs:documentation>Holds a list of fees</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:ListEntity">
+				<xs:sequence>
+					<xs:element ref="ent:fee" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="FinancialActivityEntity">
+		<xs:annotation>
+			<xs:documentation>A container for all financial activities such as transactions, credits etc </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:recurringCreditList" minOccurs="0"/>
+					<xs:element ref="ent:refundList" minOccurs="0"/>
+					<xs:element ref="ent:transactionList" minOccurs="0"/>
+					<xs:element ref="ent:feeList" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="MarketingPreferencesEntity">
+		<xs:sequence>
+			<xs:element ref="ent:receivePromoCallsFlag" minOccurs="0"/>
+			<xs:element ref="ent:receivePromoPostalMailFlag" minOccurs="0"/>
+			<xs:element ref="ent:receivePromoEmailFlag" minOccurs="0"/>
+			<xs:element ref="ent:receivePromoEmailFromPartnersFlag" minOccurs="0"/>
+			<xs:element ref="ent:sellNameToMailingListFlag" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NonResidentialSusbscriberInfoEntity">
+		<xs:sequence>
+			<xs:element ref="ent:fullName" minOccurs="0"/>
+			<xs:element ref="ent:contactName" minOccurs="0"/>
+			<xs:element ref="ent:fireCodeOccupancy" minOccurs="0"/>
+			<xs:element ref="ent:estimatedViewingOccupancy" minOccurs="0"/>
+			<xs:element ref="ent:numberOfUnits" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--xs:complexType name="ProfileRequestFilterEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element name="profileDataRequested" type="ent:ProfileDataRequestedEntity" minOccurs="0"/>
+					<xs:element name="customerInformationFilters" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Filters applied while returning customer information</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="provideCompleteServiceAddress" type="xs:boolean" minOccurs="0"/>
+								<xs:element name="provideCustomerDetail" type="xs:boolean" minOccurs="0"/>
+								<xs:element name="provideCustomerAgreementDetail" type="xs:boolean" minOccurs="0"/>
+								<xs:element name="provideBillingAndFinancialInfo" type="xs:boolean" minOccurs="0"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="receiverFilters" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>All filters applied while returning receivers</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:choice>
+									<xs:element name="receiverStatusFilterList" type="ent:ReceiverStatusFilterListEntity" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Filters to be applied on the receiver statuses</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element ref="ent:accessCardId" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Return receiver information for this access card</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:choice>
+								<xs:element name="previousAccessCardInfoFlag" type="xs:boolean" minOccurs="0">
+									<xs:annotation>
+										<xs:documentation>Return Previous access card information for receivers</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="provideAccessCardDetailsFlag" type="xs:boolean" minOccurs="0">
+									<xs:annotation>
+										<xs:documentation>Return access card details</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="nextSetOfReceiverFilters" minOccurs="0">
+									<xs:annotation>
+										<xs:documentation>Filters to specify the next set of receivers</xs:documentation>
+									</xs:annotation>
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="getNextReceiversFlag" type="xs:boolean" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>Return access card information for next set of receivers</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+											<xs:element name="lastAccessCardId" type="ent:AccessCardIdEntity" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>Last access card id. To be used with getNextTargets for paging</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="programmingInformationFilters" minOccurs="0">
+									<xs:annotation>
+										<xs:documentation>Filters applied while returning programming information</xs:documentation>
+									</xs:annotation>
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="programmingInformationFlag" type="xs:boolean" minOccurs="0"/>
+											<xs:element name="programmingStatusFilterList" type="ent:ProgrammingStatusFilterListEntity" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>Filters to be applied for the programming statuses</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+											<xs:element name="includeProductDetailsFlag" type="xs:boolean" minOccurs="0"/>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+							<xs:attribute name="receiverFilterType" type="ent:ValidReceiverFilterTypesEntity">
+								<xs:annotation>
+									<xs:documentation>Request type: (accessCardId or receiverStatusFilterList)</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="recurringCreditFilters" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Filters applied while returning Recurring credits</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="provideDetailedCreditInfoFlag" type="xs:boolean" minOccurs="0">
+									<xs:annotation>
+										<xs:documentation>Return detail information for recurring credits</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element ref="ent:recurringCreditStatusFilter" minOccurs="0"/>
+								<xs:element ref="ent:recurringCreditReasonCode" minOccurs="0"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType-->
+	<!-- =============== the following definitions are used for Get Profile 3.3 and greater ==================== -->
+	<!--xs:element name="getProfileRequestFilters" type="ent:GetProfileRequestFilterEntity">
+		<xs:annotation>
+			<xs:documentation>Filters to be applied for all profile requests</xs:documentation>
+		</xs:annotation>
+	</xs:element-->
+	<!--xs:complexType name="GetProfileRequestFilterEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element name="profileDataRequested" type="ent:ProfileDataRequestedEntity" minOccurs="0"/>
+					<xs:element name="customerInformationFilters" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Filters applied while returning customer information</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="provideCompleteServiceAddress" type="xs:boolean" minOccurs="0"/>
+								<xs:element name="provideCustomerDetail" type="xs:boolean" minOccurs="0"/>
+								<xs:element name="provideCustomerAgreementDetail" type="xs:boolean" minOccurs="0"/>
+								<xs:element name="provideBillingAndFinancialInfo" type="xs:boolean" minOccurs="0"/>
+								<xs:element name="provideEmailAddressInfo" type="xs:boolean" minOccurs="0"/>
+								<xs:element name="provideAccountCharacteristics" type="xs:boolean" minOccurs="0"/>
+								<xs:element name="cryptoInfo" minOccurs="0">
+									<xs:annotation>
+										<xs:documentation>Provides ability to return customer cryptographic information</xs:documentation>
+									</xs:annotation>
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="provideCryptoInfoFlag" type="xs:boolean" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>Returns customer cryptograhic data</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+											<xs:element name="cryptoLookupType" type="xs:string" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>Indicates cryptographic lookup; "E" for encrypted, "B" for both encrypted and decrypted</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+											<xs:element name="cryptoCategoryList" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>Indicates list of crytographic categories</xs:documentation>
+												</xs:annotation>
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="cryptoCategory" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+															<xs:annotation>
+																<xs:documentation>Cryptographic categories are "CCN" for credit card number, "BAN" for bank account number, "SSN" for social security number</xs:documentation>
+															</xs:annotation>
+														</xs:element>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="receiverFilters" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>All filters applied while returning receivers</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:choice>
+									<xs:element name="receiverStatusFilterList" type="ent:ReceiverStatusFilterListEntity" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Filters to be applied on the receiver statuses</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element ref="ent:accessCardId" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Return receiver information for this access card</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:choice>
+								<xs:element name="previousAccessCardInfoFlag" type="xs:boolean" minOccurs="0">
+									<xs:annotation>
+										<xs:documentation>Return Previous access card information for receivers</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="provideAccessCardDetailsFlag" type="xs:boolean" minOccurs="0">
+									<xs:annotation>
+										<xs:documentation>Return access card details</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="nextSetOfReceiverFilters" minOccurs="0">
+									<xs:annotation>
+										<xs:documentation>Filters to specify the next set of receivers</xs:documentation>
+									</xs:annotation>
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="getNextReceiversFlag" type="xs:boolean" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>Return access card information for next set of receivers</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+											<xs:element name="lastAccessCardId" type="ent:AccessCardIdEntity" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>Last access card id. To be used with getNextTargets for paging</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="programmingInformationFilters" minOccurs="0">
+									<xs:annotation>
+										<xs:documentation>Filters applied while returning programming information</xs:documentation>
+									</xs:annotation>
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="programmingInformationFlag" type="xs:boolean" minOccurs="0"/>
+											<xs:element name="programmingStatusFilterList" type="ent:ProgrammingStatusFilterListEntity" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>Filters to be applied for the programming statuses</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+											<xs:element name="includeProductDetailsFlag" type="xs:boolean" minOccurs="0"/>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="broadbandDataFlag" type="xs:boolean" minOccurs="0"/>
+							</xs:sequence>
+							<xs:attribute name="receiverFilterType" type="ent:ValidReceiverFilterTypesEntity">
+								<xs:annotation>
+									<xs:documentation>Request type: (accessCardId or receiverStatusFilterList)</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="recurringCreditFilters" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Filters applied while returning Recurring credits</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="provideDetailedCreditInfoFlag" type="xs:boolean" minOccurs="0">
+									<xs:annotation>
+										<xs:documentation>Return detail information for recurring credits</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element ref="ent:recurringCreditStatusFilter" minOccurs="0"/>
+								<xs:element ref="ent:recurringCreditReasonCode" minOccurs="0"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType-->
+	<!--xs:complexType name="ProgrammingStatusFilterListEntity">
+		<xs:annotation>
+			<xs:documentation>List of programming status's</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:ListEntity">
+				<xs:sequence>
+					<xs:element name="programmingStatusFilter" type="ent:ProgrammingStatusFilterEntity" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType-->
+	<xs:complexType name="RecurringCreditEntity">
+		<xs:annotation>
+			<xs:documentation>A single Recurring Credit on an account</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:recurringCreditCount" minOccurs="0"/>
+					<xs:element ref="ent:recurringCreditStatus" minOccurs="0"/>
+					<xs:element ref="ent:recurringCreditAmount" minOccurs="0"/>
+					<xs:element ref="ent:recurringCreditType" minOccurs="0"/>
+					<xs:element ref="ent:recurringCreditDate" minOccurs="0"/>
+					<xs:element ref="ent:recurringCreditReasonCode" minOccurs="0"/>
+					<xs:element ref="ent:recurringCreditReasonCodeDescription" minOccurs="0"/>
+					<xs:element ref="ent:recurringCreditCreateDate" minOccurs="0"/>
+					<xs:element ref="ent:recurringCreditCreatedBy" minOccurs="0"/>
+					<xs:element ref="ent:recurringCreditLastIssuedBy" minOccurs="0"/>
+					<xs:element ref="ent:recurringCreditLastIssueDate" minOccurs="0"/>
+					<xs:element ref="ent:recurringCreditExpirationDate" minOccurs="0"/>
+					<xs:element ref="ent:adjustmentDueDate" minOccurs="0"/>
+					<xs:element ref="ent:maximumCreditsToBeIssued" minOccurs="0"/>
+					<xs:element ref="ent:differentiatedOfferFlag" minOccurs="0"/>
+					<xs:element ref="ent:serviceCycleFlag" minOccurs="0"/>
+					<xs:element ref="ent:productType" minOccurs="0"/>
+					<xs:element ref="ent:productCode" minOccurs="0"/>
+					<xs:element ref="ent:lastPriceCode" minOccurs="0"/>
+					<xs:element ref="ent:lastPriceBeginDate" minOccurs="0"/>
+					<xs:element ref="ent:lastPeriodFromDate" minOccurs="0"/>
+					<xs:element ref="ent:lastPeriodToDate" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="RecurringCreditListEntity">
+		<xs:annotation>
+			<xs:documentation>Holds a list of recurring credits</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:ListMessageEntity">
+				<xs:sequence>
+					<xs:element ref="ent:recurringCredit" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="RefundEntity">
+		<xs:annotation>
+			<xs:documentation>A single refund on the account</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:refundAmount" minOccurs="0"/>
+					<xs:element ref="ent:refundDescription" minOccurs="0"/>
+					<xs:element ref="ent:refundRequestDate" minOccurs="0"/>
+					<xs:element ref="ent:refundStatus" minOccurs="0"/>
+					<xs:element ref="ent:paymentMethod" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="RefundListEntity">
+		<xs:annotation>
+			<xs:documentation>Holds a list of refunds</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:ListEntity">
+				<xs:sequence>
+					<xs:element ref="ent:refund" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ReinstatementResultsEntity">
+		<xs:annotation>
+			<xs:documentation>Results of last Reinstatement request</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:requestStatus" minOccurs="0"/>
+			<xs:element ref="ent:requestDate" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ResidentialSubscriberInfoEntity">
+		<xs:sequence>
+			<xs:element ref="ent:subscriberName" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ServiceCallInfoEntity">
+		<xs:annotation>
+			<xs:documentation>Information about Service Calls</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:serviceDescription" minOccurs="0"/>
+			<xs:element ref="ent:scheduledDateTime" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ServiceCallInfoListEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:ListEntity">
+				<xs:sequence>
+					<xs:element ref="ent:serviceCallInfo" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="SubscriberInfoEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:marketingPreferences" minOccurs="0"/>
+					<xs:element ref="ent:broadcastAreaFlag" minOccurs="0"/>
+					<xs:element ref="ent:identificationList" minOccurs="0"/>
+					<xs:element ref="ent:dealerChainList" minOccurs="0"/>
+					<xs:choice minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Depending upon the subscriber type (residential/non-residential) the appropriate elements should be populated</xs:documentation>
+						</xs:annotation>
+						<xs:element ref="ent:nonResidentialSubscriberInfo" minOccurs="0"/>
+						<xs:element ref="ent:residentialSubscriberInfo" minOccurs="0"/>
+					</xs:choice>
+					<xs:element ref="ent:commitmentInformation" minOccurs="0"/>
+					<xs:element ref="ent:customerValue" minOccurs="0"/>
+					<xs:element ref="ent:customerValueSegment" minOccurs="0"/>
+					<xs:element ref="ent:agreementInformationList" minOccurs="0"/>
+					<xs:element ref="ent:customerCreditTotals" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!--xs:complexType name="ReceiverStatusFilterListEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:ListEntity">
+				<xs:sequence>
+					<xs:element name="receiverStatusFilter" type="ent:ReceiverStatusFilterEntity" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType-->
+	<xs:complexType name="TransactionEntity">
+		<xs:annotation>
+			<xs:documentation>Holds a single financial Transaction information</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:transactionReasonCode" minOccurs="0"/>
+					<xs:element ref="ent:longDescription" minOccurs="0"/>
+					<xs:element ref="ent:shortDescription" minOccurs="0"/>
+					<xs:element ref="ent:transactionDateTime" minOccurs="0"/>
+					<xs:element ref="ent:reportedOnBillingStatement" minOccurs="0"/>
+					<xs:element ref="ent:transactionContext" minOccurs="0"/>
+					<xs:element ref="ent:transactionType" minOccurs="0"/>
+					<xs:element ref="ent:transactionFromDate" minOccurs="0"/>
+					<xs:element ref="ent:transactionToDate" minOccurs="0"/>
+					<xs:element ref="ent:accountBalance" minOccurs="0"/>
+					<xs:element ref="ent:amount" minOccurs="0"/>
+					<xs:element ref="ent:totalTax" minOccurs="0"/>
+					<xs:element ref="ent:postToAlternateAccountFlag" minOccurs="0"/>
+					<xs:element ref="ent:accountingPeriod" minOccurs="0"/>
+					<xs:element ref="ent:accountingYear" minOccurs="0"/>
+					<xs:element ref="ent:paymentPriority" minOccurs="0"/>
+					<xs:element ref="ent:paymentMethod" minOccurs="0"/>
+					<xs:element ref="ent:paymentType" minOccurs="0"/>
+					<xs:element ref="ent:transactionSequenceNumber" minOccurs="0"/>
+					<xs:element ref="ent:batchSequenceNumber" minOccurs="0"/>
+					<xs:element ref="ent:paymentProcessor" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="TransactionContextEntity">
+		<xs:annotation>
+			<xs:documentation>Each transaction may be associated with either a service/event or a fee</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:accessCardId" minOccurs="0"/>
+			<xs:choice minOccurs="0">
+				<xs:element ref="ent:programmingProduct" minOccurs="0"/>
+				<xs:element ref="ent:fee" minOccurs="0"/>
+			</xs:choice>
+		</xs:sequence>
+		<xs:attribute name="type" type="ent:ValidTransactionContextTypesEntity" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="TransactionContextListEntity">
+		<xs:annotation>
+			<xs:documentation>Holds a list of transaction context</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:ListEntity">
+				<xs:sequence>
+					<xs:element ref="ent:transactionContext" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="TransactionListEntity">
+		<xs:annotation>
+			<xs:documentation>Holds a list of transactions</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:ListEntity">
+				<xs:sequence>
+					<xs:element ref="ent:transaction" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="ValidReceiverFilterTypesEntity">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="accessCardId"/>
+			<xs:enumeration value="receiverStatusFilterList"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="accountFinancialInfo" type="ent:AccountFinancialInfoEntity">
+		<xs:annotation>
+			<xs:documentation>Stores basic financial information of the account</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="account" type="ent:AccountEntity">
+		<xs:annotation>
+			<xs:documentation>Stores account information that is common between both Subscribers and Dealers</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="customerAttributeList" type="ent:CustomParametersEntity">
+		<xs:annotation>
+			<xs:documentation>Customer attribute name/value pairs</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="customerAttributeResultList" type="ent:CustomerAttributeResultListEntity"/>
+	<xs:complexType name="CustomerAttributeResultListEntity">
+		<xs:sequence>
+			<xs:element name="customerAttributeResult" type="ent:CustomerAttributeResultEntity" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CustomerAttributeResultEntity">
+		<xs:sequence>
+			<xs:element ref="ent:attributeCode" minOccurs="0"/>
+			<xs:element ref="ent:message" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="customerCharacteristicList">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="characteristic" type="ent:CharacteristicEntity" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="CharacteristicEntity">
+		<xs:annotation>
+			<xs:documentation>Stores set of characteristics</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name" type="xs:string"/>
+			<xs:element name="value" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="customerCreditTotals" type="ent:CustomerCreditTotalsEntity"/>
+	<xs:complexType name="CustomerCreditTotalsEntity">
+		<xs:sequence>
+			<xs:element ref="ent:overallCreditTotal" minOccurs="0"/>
+			<xs:element ref="ent:recurringCreditTotal" minOccurs="0"/>
+			<xs:element ref="ent:oneTimeCreditTotal" minOccurs="0"/>
+			<xs:element ref="ent:foregoneProgrammingTotal" minOccurs="0"/>
+			<xs:element ref="ent:foregoneHardwareTotal" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="accountHierarchy" type="ent:AccountHierarchyInfoEntity">
+		<xs:annotation>
+			<xs:documentation>Stores information about the accounts Hierarchy</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="accountList" type="ent:AccountListEntity">
+		<xs:annotation>
+			<xs:documentation>A list of Accounts</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="accountStatusDetails" type="ent:AccountProgrammingInfoEntity">
+		<xs:annotation>
+			<xs:documentation>Stores basic account information that relates to service availability (such as disconnection, cut off information etc)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="baseCustomerInfo" type="ent:BaseCustomerEntity">
+		<xs:annotation>
+			<xs:documentation>Stores basic customer information </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="comment" type="ent:CommentEntity">
+		<xs:annotation>
+			<xs:documentation>A single comment on the account</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="commentList" type="ent:CommentListEntity">
+		<xs:annotation>
+			<xs:documentation>A list of comments on the account</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="commitmentInformation" type="ent:CommitmentInformationEntity">
+		<xs:annotation>
+			<xs:documentation>Commentment Information</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="coreService" type="ent:ServiceEntity">
+		<xs:annotation>
+			<xs:documentation>Place holder for the Core Service information</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="customer" type="ent:CustomerEntity">
+		<xs:annotation>
+			<xs:documentation>Customer entity that works for all types of customers. Covers most of the common data, and contains specific fields for different customer types</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="customerList" type="ent:CustomerListEntity">
+		<xs:annotation>
+			<xs:documentation>A list of customers</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="profileDataRequested" type="ent:ProfileDataRequestedEntity"/>
+	<xs:element name="dealerInfo" type="ent:DealerInfoEntity">
+		<xs:annotation>
+			<xs:documentation>A complete dealer entity</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="dealerChain" type="ent:DealerChainInformationEntity">
+		<xs:annotation>
+			<xs:documentation>Place holder for a dealer chain</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="dealerChainList" type="ent:DealerChainInformationListEntity">
+		<xs:annotation>
+			<xs:documentation>A list of Dealer Chain information</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="dealerServiceCodes" type="ent:DealerServiceCodesEntity">
+		<xs:annotation>
+			<xs:documentation>A list of Dealer Service Codes</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="fee" type="ent:FeeEntity">
+		<xs:annotation>
+			<xs:documentation>A Fee Object</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="feeList" type="ent:FeeListEntity">
+		<xs:annotation>
+			<xs:documentation>A list of fees</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="financialActivities" type="ent:FinancialActivityEntity">
+		<xs:annotation>
+			<xs:documentation>All Transactions/Credits/Refunds on an account</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<!--xs:element name="profileRequestFilters" type="ent:ProfileRequestFilterEntity">
+		<xs:annotation>
+			<xs:documentation>Filters to be applied for all profile requests</xs:documentation>
+		</xs:annotation>
+	</xs:element-->
+	<xs:element name="marketingPreferences" type="ent:MarketingPreferencesEntity">
+		<xs:annotation>
+			<xs:documentation>A list of marketing preferences for a customer</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="nonResidentialSubscriberInfo" type="ent:NonResidentialSusbscriberInfoEntity">
+		<xs:annotation>
+			<xs:documentation>An instance of a non-residential subscriber</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<!--xs:element name="programmingStatusFilterList" type="ent:ProgrammingStatusFilterListEntity">
+		<xs:annotation>
+			<xs:documentation>A list of programming status filters</xs:documentation>
+		</xs:annotation>
+	</xs:element-->
+	<xs:element name="recurringCredit" type="ent:RecurringCreditEntity">
+		<xs:annotation>
+			<xs:documentation>A single recurring credit issued on this account</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="recurringCreditList" type="ent:RecurringCreditListEntity">
+		<xs:annotation>
+			<xs:documentation>A list of recurring credits issued on this account</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="recurringCreditStatusFilter" type="ent:RecurringCreditStatusFilterEntity">
+		<xs:annotation>
+			<xs:documentation>A single recurring credit status filter for profile requests</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="refund" type="ent:RefundEntity">
+		<xs:annotation>
+			<xs:documentation>A single refund requested on this account</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="refundList" type="ent:RefundListEntity">
+		<xs:annotation>
+			<xs:documentation>List of Refunds requested and approved on this account</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="reinstatementResults" type="ent:ReinstatementResultsEntity">
+		<xs:annotation>
+			<xs:documentation>Reinstatement results</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="requestDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Date time of the request</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="requestStatus" type="ent:CodeDescriptionEntity">
+		<xs:annotation>
+			<xs:documentation>Status of the request</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="residentialSubscriberInfo" type="ent:ResidentialSubscriberInfoEntity">
+		<xs:annotation>
+			<xs:documentation>An instance of a residential subscriber</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="serviceCallInfo" type="ent:ServiceCallInfoEntity">
+		<xs:annotation>
+			<xs:documentation>Information about a Service Call</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="serviceCallInfoList" type="ent:ServiceCallInfoListEntity">
+		<xs:annotation>
+			<xs:documentation>A list of Service Calls</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="subscriberInfo" type="ent:SubscriberInfoEntity">
+		<xs:annotation>
+			<xs:documentation>A complete Subscriber entity</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="accountSubscriptionInfo" type="ent:AccountSubscriptionInfoEntity">
+		<xs:annotation>
+			<xs:documentation>Information about a Subscriber's Account. This information is *NOT* relevant if the Customer is of a "dealer" type</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="subscriberName" type="ent:NameEntity">
+		<xs:annotation>
+			<xs:documentation>The Subscriber's Name</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="transaction" type="ent:TransactionEntity">
+		<xs:annotation>
+			<xs:documentation>A single Financial transaction</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="transactionContext" type="ent:TransactionContextEntity">
+		<xs:annotation>
+			<xs:documentation>Context of the transaction; Each transaction may be associated with either a service/event or a fee</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="transactionContextList" type="ent:TransactionContextListEntity">
+		<xs:annotation>
+			<xs:documentation>list of context of the transaction; Each transaction may be associated with either a service/event or a fee</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="transactionList" type="ent:TransactionListEntity">
+		<xs:annotation>
+			<xs:documentation>A list of transactions on the account</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="TransactionTypeListEntity">
+		<xs:annotation>
+			<xs:documentation>Transaction type list used to limit searches</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:ListEntity">
+				<xs:sequence>
+					<xs:element name="transactionAndReasonCodes" type="ent:TransactionAndReasonCodesTypesEntity" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="TransactionAndReasonCodesTypesEntity">
+		<xs:sequence>
+			<xs:element ref="ent:transactionType" minOccurs="0"/>
+			<xs:element name="transactionReasonCodeFilterList" type="ent:TransactionReasonCodeListEntity" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TransactionReasonCodeListEntity">
+		<xs:annotation>
+			<xs:documentation>Transaction reason code list used to limit searches</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:ListEntity">
+				<xs:sequence>
+					<xs:element ref="ent:transactionReasonCode" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="BasicAccountProfileEntity">
+		<xs:sequence>
+			<xs:element ref="ent:accountId"/>
+			<xs:element ref="ent:subscriberName"/>
+			<xs:element ref="ent:serviceAddress"/>
+			<xs:element ref="ent:accountStatusGroupCode"/>
+			<xs:element ref="ent:billingCycleDay" minOccurs="0"/>
+			<xs:element ref="ent:partnerSoldFlag" minOccurs="0"/>
+			<xs:element ref="ent:discountThresholdCode" minOccurs="0"/>
+			<xs:element ref="ent:optInOrderId" minOccurs="0"/>
+			<xs:element ref="ent:optInOrderDate" minOccurs="0"/>
+			<xs:element ref="ent:optInEligibilityFlag" minOccurs="0"/>
+			<xs:element ref="ent:tenureEligibilityFlag" minOccurs="0"/>
+			<xs:element ref="ent:serviceEligibilityFlag" minOccurs="0"/>
+			<xs:element ref="ent:balanceThresholdEligibilityFlag" minOccurs="0"/>
+			<xs:element ref="ent:discountThresholdEligibilityFlag" minOccurs="0"/>
+			<xs:element ref="ent:partnerRelationship" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ValidateCustomerAccountProfileEntity">
+		<xs:sequence>
+			<xs:element ref="ent:accountOwner" minOccurs="0"/>
+			<xs:element ref="ent:dtvRefNumber" minOccurs="0"/>
+			<xs:element ref="ent:accountStatusCode" minOccurs="0"/>
+			<xs:element ref="ent:accountBalanceCode" minOccurs="0"/>
+			<xs:element ref="ent:accountTypeCode" minOccurs="0"/>
+			<xs:element ref="ent:accountWriteOffBalanceCode" minOccurs="0"/>
+			<xs:element ref="ent:accountDisconnectTimeframeCode" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="prospect" type="ent:ProspectEntity"/>
+	<xs:complexType name="ProspectEntity">
+		<xs:sequence>
+			<xs:element ref="ent:possibleCountyList" minOccurs="0"/>
+			<xs:element ref="ent:proprietarySegment" minOccurs="0"/>
+			<xs:element ref="ent:creditScoreResultText" minOccurs="0"/>
+			<xs:element ref="ent:creditScoreRequestId" minOccurs="0"/>
+			<xs:element ref="ent:factActMessage" minOccurs="0"/>
+			<xs:element ref="ent:creditBand" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PartnerEligibilityEntity">
+		<xs:sequence>
+			<xs:element ref="ent:servicerFlag"/>
+			<xs:element ref="ent:partnerSoldFlag"/>
+			<xs:element ref="ent:alreadyOptedIn"/>
+			<xs:element ref="ent:discountThresholdCode"/>
+			<xs:element ref="ent:accountTypeEligible"/>
+			<xs:element ref="ent:accountStatusEligible"/>
+			<xs:element ref="ent:accountStatusCode"/>
+			<xs:element ref="ent:accountTypeCode"/>
+			<xs:element ref="ent:accountBalanceCode"/>
+			<xs:element ref="ent:accountWriteOffBalanceCode"/>
+			<xs:element ref="ent:accountDisconnectTimeframeCode"/>
+			<xs:element ref="ent:accountOwner"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--  sjb
+Result information that can be returned as a result of an event profile request and used as input
+to the event eligibility check
+	-->
+	<xs:complexType name="EventProfileResultEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element name="account" minOccurs="0">
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="ent:BasicEntity">
+									<xs:sequence>
+										<xs:element ref="ent:accountId" minOccurs="0"/>
+										<xs:element ref="ent:accountType" minOccurs="0"/>
+										<xs:element ref="ent:accountStatus" minOccurs="0"/>
+										<xs:element ref="ent:accountBalance" minOccurs="0"/>
+										<xs:element ref="ent:pastDueAmount" minOccurs="0"/>
+									</xs:sequence>
+								</xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="eventOrderProfile" minOccurs="0">
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="ent:BasicEntity">
+									<xs:sequence>
+										<xs:element ref="ent:eventPrefix" minOccurs="0"/>
+										<xs:element ref="ent:eventCode" minOccurs="0"/>
+										<xs:element ref="ent:viewDateTime" minOccurs="0"/>
+										<xs:element ref="ent:rentalDurationMinutes" minOccurs="0"/>
+										<xs:element name="accessCardList" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="accessCard" type="ent:eventAccessCardProfileEntity" maxOccurs="unbounded"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="accessCardReferenceList" minOccurs="0">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="accessCard" type="ent:eventAccessCardProfileEntity" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="eventReferenceDataList" minOccurs="0">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="eventReferenceData" maxOccurs="unbounded">
+									<xs:complexType>
+										<xs:complexContent>
+											<xs:extension base="ent:BasicEntity">
+												<xs:sequence>
+													<xs:element ref="ent:eventPrefix" minOccurs="0"/>
+													<xs:element ref="ent:eventCode" minOccurs="0"/>
+													<xs:element ref="ent:mirrorCapableFlag" minOccurs="0"/>
+													<xs:element ref="ent:ratingCode" minOccurs="0"/>
+													<xs:element ref="ent:ratingLevel" minOccurs="0"/>
+													<xs:element ref="ent:eventBeginDateTime" minOccurs="0"/>
+													<xs:element ref="ent:eventEndDateTime" minOccurs="0"/>
+													<xs:element ref="ent:camcServiceId" minOccurs="0"/>
+													<xs:element ref="ent:trafficProgramId" minOccurs="0"/>
+													<xs:element ref="ent:tapingAuthorizationCode" minOccurs="0"/>
+													<xs:element ref="ent:blackoutRegionFlag" minOccurs="0"/>
+												</xs:sequence>
+											</xs:extension>
+										</xs:complexContent>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="eventProfileCriteria" type="ent:EventProfileResultEntity"/>
+	<!-- 
+    Used as input to the event to request event profile 
+	-->
+	<xs:element name="accessCardProfileList">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="accessCardProfile" type="ent:AccessCardProfileEntity" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="AccessCardProfileEntity">
+		<xs:sequence>
+			<xs:element ref="ent:accessCardId"/>
+			<xs:element name="accessCardDefaultValues" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="ent:accessCardType"/>
+						<xs:element ref="ent:mirroredFlag"/>
+						<xs:element ref="ent:receiverId" minOccurs="0"/>
+						<xs:element ref="ent:allowOPPVFlag"/>
+						<xs:element ref="ent:rateCeiling"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- 
+		Used to return result statuses if card was eligible or not for a specific event
+	-->
+	<xs:element name="eventEligibileResultList">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="eventResult" type="ent:EventResultEntity" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="EventResultEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:accessCardId"/>
+					<xs:element ref="ent:eventPrefix"/>
+					<xs:element ref="ent:eventCode"/>
+					<xs:element ref="ent:viewDateTime"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="eventAuthorizationDeauthorizationResultList">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="eventResult" type="ent:EventResultEntity" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="eventAccessCardProfileEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:accessCardId" minOccurs="0"/>
+					<xs:element ref="ent:accessCardStatus" minOccurs="0"/>
+					<xs:element ref="ent:accessCardType" minOccurs="0"/>
+					<xs:element ref="ent:mirroredFlag" minOccurs="0"/>
+					<xs:element ref="ent:receiverId" minOccurs="0"/>
+					<xs:element ref="ent:camcSubscriberId" minOccurs="0"/>
+					<xs:element ref="ent:allowOPPVFlag" minOccurs="0"/>
+					<xs:element ref="ent:rateCeiling" minOccurs="0"/>
+					<xs:element name="unairedEventList" minOccurs="0">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="unAiredEvent" maxOccurs="unbounded">
+									<xs:complexType>
+										<xs:complexContent>
+											<xs:extension base="ent:BasicEntity">
+												<xs:sequence>
+													<xs:element ref="ent:accessCardId" minOccurs="0"/>
+													<xs:element ref="ent:eventPrefix" minOccurs="0"/>
+													<xs:element ref="ent:eventCode" minOccurs="0"/>
+													<xs:element ref="ent:viewDateTime" minOccurs="0"/>
+													<xs:element ref="ent:expirationDateTime" minOccurs="0"/>
+													<xs:element name="purchaseType" type="xs:string" minOccurs="0"/>
+													<xs:element ref="ent:productStatus" minOccurs="0"/>
+													<xs:element ref="ent:mirroredFlag" minOccurs="0"/>
+												</xs:sequence>
+											</xs:extension>
+										</xs:complexContent>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

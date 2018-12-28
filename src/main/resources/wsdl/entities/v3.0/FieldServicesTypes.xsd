@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 (http://www.altova.com) by DIRECTV MISSOULA CALL CENTER (DIRECTV MISSOULA CALL CENTER) -->
+<!-- edited with XMLSPY v2004 rel. 4 U (http://www.xmlspy.com) by Kai Lin (.) -->
+<xs:schema xmlns:tns="http://ei.directv.com/schemas/entities/v3_0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://ei.directv.com/schemas/entities/v3_0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="./ServiceRequestTypes.xsd"/>
+	<xs:include schemaLocation="./CustomTypes.xsd"/>
+	<xs:complexType name="RollbackCancelWorkOrderRequestType">
+		<xs:annotation>
+			<xs:documentation>Defines the Service Request that is cancelled or rollbacked</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SRId" type="tns:ServiceRequestIdType"/>
+			<xs:element name="orderId" type="tns:WorkOrderIdType"/>
+			<xs:element name="sourceSystemOrderId" type="tns:WorkOrderIdType"/>
+			<xs:element name="orderStatus" type="tns:WorkOrderStatusType"/>
+			<xs:element name="reason">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="tns:ReasonType">
+							<xs:attribute name="source" use="optional">
+								<xs:simpleType>
+									<xs:restriction base="xs:string"/>
+								</xs:simpleType>
+							</xs:attribute>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="customData" type="tns:baseCustomType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GetAvailableTimeslotsRequestType">
+		<xs:annotation>
+			<xs:documentation>Defines the request for reading the timeslots for installation</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SRId" type="tns:ServiceRequestIdType"/>
+			<xs:element name="orderId" type="tns:WorkOrderIdType"/>
+			<xs:element name="reason" minOccurs="0">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="tns:ReasonType">
+							<xs:attribute name="source" type="xs:string" use="optional"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="activityId">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="15"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="requestId" type="xs:string" minOccurs="0"/>
+			<xs:element name="serviceRegionId" type="xs:string" minOccurs="0"/>
+			<xs:element name="combineDuration" type="tns:YesNoType"/>
+			<xs:element name="scheduleStartDateTime" type="xs:string" nillable="false"/>
+			<xs:element name="scheduleEndDateTime" type="xs:string" nillable="false"/>
+			<xs:element name="customData" type="tns:baseCustomType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GetServiceRequestWorkOrderRequestType">
+		<xs:annotation>
+			<xs:documentation>Search Criteria</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SRId" type="tns:ServiceRequestIdType" minOccurs="0"/>
+			<xs:element name="orderId" type="tns:WorkOrderIdType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>System of Record Order Id</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<!-- Changed to type xs:long to get around ICAN bug	-->
+			<!--xs:element name="accountId" type="tns:BillingAccountIdType" minOccurs="0"/-->
+			<xs:element name="accountId" type="xs:long" minOccurs="0"/>
+			<xs:element name="phone" type="tns:PhoneType" minOccurs="0"/>
+			<xs:element name="sourceSystemOrderId" type="tns:WorkOrderIdType" minOccurs="0"/>
+			<xs:element name="orderStatus" type="tns:WorkOrderStatusType">
+				<xs:annotation>
+					<xs:documentation>System of Record Order Status</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="customData" type="tns:baseCustomType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BookWorkOrderRequestType">
+		<xs:annotation>
+			<xs:documentation>Book Request</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SRId" type="tns:ServiceRequestIdType"/>
+			<xs:element name="orderId" type="tns:WorkOrderIdType"/>
+			<xs:element name="activationApproved" type="tns:YesNoType"/>
+			<xs:element name="reason" minOccurs="0">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="tns:ReasonType">
+							<xs:attribute name="source" use="optional">
+								<xs:simpleType>
+									<xs:restriction base="xs:string"/>
+								</xs:simpleType>
+							</xs:attribute>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="commentsOnly" type="tns:YesNoType" minOccurs="0"/>
+			<xs:element name="activity" type="tns:ServiceRequestActivityType"/>
+			<xs:element name="customData" type="tns:baseCustomType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CreateServiceRequestWorkOrderRequestType">
+		<xs:annotation>
+			<xs:documentation>create service Request</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="serviceRequest" type="tns:ServiceRequestType"/>
+			<xs:element name="account" type="tns:ServiceRequestAccountType"/>
+			<xs:element name="drivingDirections" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="comments" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="2000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="reqId" type="xs:string" minOccurs="0"/>
+			<xs:element name="svcRegnId" type="xs:string" minOccurs="0"/>
+			<xs:element name="workOrder" type="tns:WorkOrderType"/>
+			<xs:element name="scheduledStartDateTime" type="xs:string" minOccurs="0"/>
+			<xs:element name="scheduledEndDateTime" type="xs:string" minOccurs="0"/>
+			<xs:element name="activityId" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="15"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="overrideSchedule" type="tns:YesNoType" minOccurs="0"/>
+			<xs:element name="customData" type="tns:baseCustomType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ModifyServiceRequestWorkOrderRequestType">
+		<xs:annotation>
+			<xs:documentation>Modify service Request</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SRId" type="tns:ServiceRequestIdType"/>
+			<xs:element name="orderId" type="tns:WorkOrderIdType"/>
+			<xs:element name="sourceSystemOrderId">
+				<xs:simpleType>
+					<xs:restriction base="tns:WorkOrderIdType">
+						<xs:maxLength value="15"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="installTypeList" type="tns:InstallTypeList" minOccurs="0"/>
+			<!-- <xs:element name="listOfInstallType" type="tns:InstallTypeList" minOccurs="0"/> -->
+			<xs:element name="initiativeId">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="30"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="initiativeDescription">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="100"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="requestId" type="xs:string" minOccurs="0"/>
+			<xs:element name="serviceRegionId" type="xs:string" minOccurs="0"/>
+			<xs:element name="orderLineItem" type="tns:WorkOrderLineItemType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="overrideGluePeriod" type="tns:YesNoType" minOccurs="0"/>
+			<xs:element name="overrideSchedule" type="tns:YesNoType" minOccurs="0"/>
+			<xs:element name="activationApproved" type="tns:YesNoType" minOccurs="0"/>
+			<xs:element name="reason" type="tns:ReasonType"/>
+			<xs:element name="serviceAddress" type="tns:AddressType" minOccurs="0"/>
+			<xs:element name="drivingDirections" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="comments" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="2000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="protectionPlan" type="xs:string" minOccurs="0"/>
+			<xs:element name="accountId" type="xs:long" minOccurs="0"/>
+			<xs:element name="customData" type="tns:baseCustomType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UpdateOMSOrderRequestType">
+		<xs:annotation>
+			<xs:documentation>Update service Request</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SRId" type="tns:ServiceRequestIdType"/>
+			<xs:element name="orderId" type="tns:WorkOrderIdType"/>
+			<xs:element name="sourceSystemOrderId" type="tns:WorkOrderIdType"/>
+			<xs:element name="installTypeList" type="tns:InstallTypeList" minOccurs="0"/>
+			<!-- <xs:element name="listOfInstallType" type="tns:InstallTypeList" minOccurs="0"/> -->
+			<xs:element name="reason">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="tns:ReasonType">
+							<xs:attribute name="source" use="required">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="30"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:attribute>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="orderStatus" type="tns:WorkOrderStatusType">
+				<xs:annotation>
+					<xs:documentation>System of Record Order Status</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<!-- Changed to type xs:long to get around ICAN bug	-->
+			<!--xs:element name="accountId" type="tns:BillingAccountIdType" minOccurs="0"/-->
+			<xs:element name="accountId" type="xs:long" minOccurs="0"/>
+			<xs:element name="orderLineItem" type="tns:WorkOrderLineItemType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="activity" type="tns:ServiceRequestActivityBaseType"/>
+			<xs:element name="scheduledStartDateTime" type="xs:string"/>
+			<xs:element name="scheduledEndDateTime" type="xs:string"/>
+			<xs:element name="acutalInstallDateTime" type="xs:string" minOccurs="0"/>
+			<xs:element name="customData" type="tns:baseCustomType" minOccurs="0"/>
+			<xs:element name="customerPhone" type="tns:PhoneType" minOccurs="0"/>
+			<xs:element name="alternatePhone" type="tns:PhoneType" minOccurs="0"/>
+			<xs:element name="woSubType" type="tns:WorkOrderSubTypeType" minOccurs="0"/>
+			<xs:element name="serviceRegionId" type="xs:string" minOccurs="0"/>
+			<xs:element name="initiativeId" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="30"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="activationApproved" type="tns:YesNoType" minOccurs="0"/>
+			<xs:element name="accountType" type="tns:SRAccountTypeType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ActivityResponseType">
+		<xs:annotation>
+			<xs:documentation>Generic service request response at the work order level</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SRId" type="tns:ServiceRequestIdType"/>
+			<xs:element name="workOrder" type="tns:WorkOrderBaseType"/>
+			<xs:element name="activity" type="tns:ServiceRequestActivityBaseType"/>
+			<xs:element name="customData" type="tns:baseCustomType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SRRequestResponseListType">
+		<xs:annotation>
+			<xs:documentation>List of SRRequestResponseType</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="srResponse" type="tns:SRRequestResponseType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SRRequestResponseType">
+		<xs:annotation>
+			<xs:documentation>Generic service request response service request level</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="serviceRequest" type="tns:ServiceRequestType" minOccurs="0"/>
+			<xs:element name="activity" type="tns:ServiceRequestActivityType" minOccurs="0"/>
+			<xs:element name="order" type="tns:WorkOrderType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="account" type="tns:ServiceRequestAccountType"/>
+			<xs:element name="customData" type="tns:baseCustomType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ASNXRefRequestResponseType">
+		<xs:annotation>
+			<xs:documentation>Xref Manufacturer Model</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SAPModel" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="model" type="xs:string" use="optional"/>
+							<xs:attribute name="oem" type="xs:string" use="optional"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SAPManufacturer">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="manufacturer" type="xs:string" use="optional"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="customData" type="tns:baseCustomType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GetManufacturersAndModelsResponseType">
+		<xs:annotation>
+			<xs:documentation>Manufacturers and Models</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="manufacturers">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="manufacturer" type="tns:ManufacturersModelsType" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

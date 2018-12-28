@@ -1,0 +1,26 @@
+version: 0.0
+os: linux
+files:
+  - source: nobf-service.jar
+    destination: /appfiles/nobf-service
+  - source: nobf-service.conf
+    destination: /appfiles/nobf-service
+hooks:
+  BeforeInstall:
+    - location: scripts/aws/stopApp.sh
+      timeout: 300
+      runas: root
+    - location: scripts/aws/clean.sh
+      timeout: 300
+      runas: root
+  AfterInstall:
+    - location: scripts/aws/variablePrep.sh
+      timeout: 300
+      runas: root
+    - location: scripts/aws/renameSpring.sh
+      timeout: 300
+      runas: root
+  ApplicationStart:
+    - location: scripts/aws/startApp.sh
+      timeout: 300
+      runas: root

@@ -1,0 +1,562 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 (http://www.altova.com) by Hugo Valle (DIRECTV) -->
+<!--
+ * ENTERPRISE INTEGRATION
+ * Change Control
+ *
+ * $Log::   $
+ * 
+ *    Rev 1.4   Jul 30 2007 11:18:08   sgovindarajan
+ * CAMC Provisioning Project
+ * 
+ *    Rev 1.3   Jan 11 2007 12:27:06   ddearman
+ * added accessCardIdWithStatusList
+ * 
+ *    Rev 1.2   Aug 15 2006 19:46:42   sgovindarajan
+ * Increase the array size
+ * 
+ *    Rev 1.1   Aug 15 2006 19:38:00   sgovindarajan
+ * region bit index instead of region bit
+ * 
+ *    Rev 1.0   Jul 10 2006 10:59:48   skovilmadam
+ * Initial revision.
+ * 
+ *    Rev 1.8   Dec 14 2005 11:59:46   ddearman
+ * changed hardwareleaseindicator to equipmentOwnership for lease project
+ * 
+ *    Rev 1.6   Nov 16 2005 09:26:18   ddearman
+ * updates for new get profile spec
+ * 
+ *    Rev 1.5   Jun 10 2005 11:26:26   ddearman
+ * updated Home Media center info
+ * 
+ *    Rev 1.3   Apr 29 2005 09:20:36   ddearman
+ * added: additionalTargetsExistFlag,totalNumberOfTargets to TargetListEntity
+ * 
+ *    Rev 1.2   Jan 12 2005 13:14:58   skovilmadam
+ * Changed following canonical entities to xsd data types due to ICAN bug. Using these entities
+ * resulted in the data types being defined as strings
+ * "ent:AmountEntity" to "xs:decimal",
+ * "ent:BankRoutingNumberEntity" to "xs:long",
+ * "ent:BillingAccountIdEntity" to "xs:long",
+ * "ent:BooleanEntity" to "xs:boolean",
+ * "ent:CamcIdEntity" to "xs:long",
+ * "ent:CodeEntity" to "xs:long",
+ * "ent:CustomerIdEntity" to "xs:long",
+ * "ent:DateEntity" to "xs:date",
+ * "ent:DateTimeEntity" to "xs:dateTime",
+ * "ent:DayOfMonthEntity" to "xs:nonNegativeInteger",
+ * "ent:TimeEntity" to "xs:time",
+ * "ent:ValidCreditCardNumberEntity" to "xs:long"
+ * 
+ *    Rev 1.1   Dec 31 2004 12:18:58   skovilmadam
+ * Changes to accommodate new requirements for Get Profile
+ * 
+ *    Rev 1.0   Dec 07 2004 18:53:18   skovilmadam
+ * Initial revision.
+ -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ent="http://ei.directv.com/schemas/entities/v4_0" targetNamespace="http://ei.directv.com/schemas/entities/v4_0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="./ProgrammingProductInformation.xsd"/>
+	<xs:complexType name="AccessCardEntity">
+		<xs:annotation>
+			<xs:documentation>Information specfic to access cards including financial limits, callback information and status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:HardwareProductEntity">
+				<xs:sequence>
+					<xs:element ref="ent:accessCardId" minOccurs="0"/>
+					<xs:element ref="ent:accessCardIndicator" minOccurs="0"/>
+					<xs:element ref="ent:accessCardStatus" minOccurs="0"/>
+					<xs:element ref="ent:accessCardType" minOccurs="0"/>
+					<xs:element ref="ent:callback" minOccurs="0"/>
+					<xs:element ref="ent:camcInfo" minOccurs="0"/>
+					<xs:element ref="ent:mailAddressFlag" minOccurs="0"/>
+					<xs:element ref="ent:periodID" minOccurs="0"/>
+					<xs:element ref="ent:priorCardInfo" minOccurs="0"/>
+					<xs:element name="restrictions" type="ent:AccessCardRestrictionEntity" minOccurs="0"/>
+					<!-- This limits who can change service on the card - restricts it to the primary CSS.  Should it be tied to the card or the CAMC? -->
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="NonIRDAssetEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:assetId" minOccurs="0"/>
+					<xs:element ref="ent:location" minOccurs="0"/>
+					<xs:element ref="ent:assetEquipmentType" minOccurs="0"/>
+					<xs:element ref="ent:equipmentOwnership" minOccurs="0"/>
+					<xs:element ref="ent:productName" minOccurs="0"/>
+					<xs:element name="capabilityList" minOccurs="0">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="capability" maxOccurs="unbounded">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element ref="ent:name"/>
+											<xs:element ref="ent:value"/>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element ref="ent:serialNumberGeneric" minOccurs="0"/>
+					<xs:element ref="ent:macAddress" minOccurs="0"/>
+					<xs:element name="phoneNumber" minOccurs="0">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="ent:phoneAreaCode" minOccurs="0"/>
+								<xs:element ref="ent:phoneNumber" minOccurs="0"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element ref="ent:friendlyName" minOccurs="0"/>
+					<xs:element ref="ent:operatingSystem" minOccurs="0"/>
+					<xs:element ref="ent:osSoftwareVersion" minOccurs="0"/>
+					<xs:element ref="ent:omsOrderId" minOccurs="0"/>
+					<xs:element ref="ent:orderLineItemID" minOccurs="0"/>
+					<xs:element ref="ent:assetManufacturer" minOccurs="0"/>
+					<xs:element ref="ent:assetModel" minOccurs="0"/>
+					<xs:element ref="ent:assetType" minOccurs="0"/>
+					<xs:element ref="ent:memberId" minOccurs="0"/>
+					<xs:element ref="ent:assetComment" minOccurs="0"/>
+					<xs:element ref="ent:dataSource" minOccurs="0"/>
+					<xs:element ref="ent:effectiveEndDateTime" minOccurs="0"/>
+					<xs:element ref="ent:installVerifyFlag" minOccurs="0"/>
+					<xs:element ref="ent:assetStatus" minOccurs="0"/>
+					<xs:element ref="ent:statusDateTime" minOccurs="0"/>
+					<xs:element ref="ent:warrantyStartDate" minOccurs="0"/>
+					<xs:element ref="ent:installedDate" minOccurs="0"/>
+					<xs:element ref="ent:activationDate" minOccurs="0"/>
+					<xs:element name="relationshipList" minOccurs="0">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="relatedTo" maxOccurs="unbounded">
+									<xs:complexType>
+										<xs:complexContent>
+											<xs:extension base="ent:BasicEntity">
+												<xs:sequence>
+													<xs:element ref="ent:assetId" minOccurs="0"/>
+													<xs:element ref="ent:relationshipType" minOccurs="0"/>
+													<xs:element ref="ent:transferFromId" minOccurs="0"/>
+													<xs:element ref="ent:transferDateTime" minOccurs="0"/>
+													<xs:element ref="ent:assetStatus" minOccurs="0"/>
+													<xs:element ref="ent:statusDateTime" minOccurs="0"/>
+												</xs:sequence>
+											</xs:extension>
+										</xs:complexContent>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AccessCardListEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:ListEntity">
+				<xs:sequence>
+					<xs:element ref="ent:accessCard" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="NonIRDAssetListEntity">
+		<xs:sequence>
+			<xs:element ref="ent:nonIRDAsset" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AccessCardIdWithStatusListEntity">
+		<xs:sequence>
+			<xs:element ref="ent:accessCardIdWithStatus" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AccessCardIdAndCAMCServiceListEntity">
+		<xs:sequence>
+			<xs:element ref="ent:accessCardIdCAMCService" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AccessCardIdAndCAMCServiceEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:AccessCardIdWithStatusEntity">
+				<xs:sequence>
+					<xs:element ref="ent:camcInfo"/>
+					<xs:element ref="ent:serviceList" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AccessCardIdWithStatusEntity">
+		<xs:annotation>
+			<xs:documentation>access card id with Status information</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:accessCardId" minOccurs="0"/>
+			<xs:element ref="ent:message" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AccessCardRestrictionEntity">
+		<xs:annotation>
+			<xs:documentation>Information about access card restirictions enforced by the CAMC on access cards </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:purchLimit" minOccurs="0"/>
+			<xs:element ref="ent:purchaseLimitPeriod" minOccurs="0"/>
+			<xs:element ref="ent:rateCeiling" minOccurs="0"/>
+			<xs:element ref="ent:allowOPPVFlag" minOccurs="0"/>
+			<xs:element ref="ent:allowIPPVFlag" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AccessCardSelectionCriteriaEntity">
+		<xs:annotation>
+			<xs:documentation>Used to specify the selection information used to locates access cards in the system.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:accessCardType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CallbackEntity">
+		<xs:annotation>
+			<xs:documentation>Information about CAMC callback for access cards </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:phoneConnectionFlag" minOccurs="0"/>
+			<xs:element ref="ent:callBackType" minOccurs="0"/>
+			<xs:element ref="ent:callbackDay" minOccurs="0"/>
+			<xs:element ref="ent:callBackTime" minOccurs="0"/>
+			<xs:element ref="ent:callbackThreshold" minOccurs="0"/>
+			<xs:element ref="ent:lastCallbackType" minOccurs="0"/>
+			<xs:element ref="ent:lastCallbackDate" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CamcInfoEntity">
+		<xs:annotation>
+			<xs:documentation>Container that holds information about an access card that is specific to the CAMC provisioner.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:camcId" minOccurs="0"/>
+			<xs:element ref="ent:newCardMsgDate" minOccurs="0"/>
+			<xs:element ref="ent:zipCode" minOccurs="0"/>
+			<xs:element ref="ent:parentCSS" minOccurs="0"/>
+			<xs:element ref="ent:receiverId" minOccurs="0"/>
+			<xs:element ref="ent:regionBits" minOccurs="0" maxOccurs="unbounded"/>
+			<!-- is RID needed here or do we use the receiver side of TargetEntity? -->
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="HardwareProductEntity">
+		<xs:annotation>
+			<xs:documentation>An empty type used only to change the base type name from BasicProduct to BasicHardwareProduct.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:BasicProductEntity">
+				<xs:sequence>
+					<xs:element ref="ent:hardwareType" minOccurs="0"/>
+					<xs:element ref="ent:hardwareIdRequiredFlag" minOccurs="0"/>
+					<xs:element ref="ent:manufacturerModel" minOccurs="0"/>
+					<xs:element ref="ent:dealerId" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="HardwareProductListEntity">
+		<xs:annotation>
+			<xs:documentation>Information about specfic types of hardware (receivers, modems, etc.)</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:ListEntity">
+				<xs:sequence>
+					<xs:element ref="ent:hardwareProduct" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ManufacturerModelEntity">
+		<xs:annotation>
+			<xs:documentation>Stores properties of a single Manufacturer/Model</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:manufacturer" minOccurs="0"/>
+			<xs:element ref="ent:model" minOccurs="0"/>
+			<xs:element ref="ent:receiverIdRequiredFlag" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ManufacturerModelListEntity">
+		<xs:annotation>
+			<xs:documentation>Contains a list of Manufacturer/Model information</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:ListEntity">
+				<xs:sequence>
+					<xs:element ref="ent:manufacturerModel" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="MediaCenterDeviceEntity">
+		<xs:annotation>
+			<xs:documentation>Information on Devices (Servers and Clients) contained in a Domain</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:mediaCenterDeviceType" minOccurs="0"/>
+					<xs:element ref="ent:receiverId" minOccurs="0"/>
+					<xs:element ref="ent:accessCardId" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="MediaCenterDeviceListEntity">
+		<xs:annotation>
+			<xs:documentation>List of devices (Servers and Clients)</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:ListEntity">
+				<xs:sequence>
+					<xs:element ref="ent:mediaCenterDevice" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="MediaCenterEntity">
+		<xs:annotation>
+			<xs:documentation>Information on Servers and Clients contained in a Domain</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:domainId" minOccurs="0"/>
+			<xs:element ref="ent:mediaCenterDeviceList" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MirroringEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:mirroredFlag" minOccurs="0"/>
+					<xs:element ref="ent:mirrorFeeFlag" minOccurs="0"/>
+					<xs:element ref="ent:copyFromTargetId" minOccurs="0"/>
+					<xs:element ref="ent:mirroringProductCode" minOccurs="0"/>
+					<xs:element ref="ent:mirroringProductPriceCode" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PriorAccessCardInfoEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:priorAccessCardId" minOccurs="0"/>
+					<xs:element ref="ent:replacementDate" minOccurs="0"/>
+					<xs:element ref="ent:priorCardInfo" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ReceiverEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:HardwareProductEntity">
+				<xs:sequence>
+					<xs:element ref="ent:installedDate" minOccurs="0"/>
+					<xs:element ref="ent:installerId" minOccurs="0"/>
+					<xs:element ref="ent:location" minOccurs="0"/>
+					<xs:element ref="ent:receiverId" minOccurs="0"/>
+					<xs:element ref="ent:satelliteList" minOccurs="0"/>
+					<xs:element ref="ent:serialNumber" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="SatelliteEntity">
+		<xs:annotation>
+			<xs:documentation>Satellite details that are a part of an installed receiver.  This entity is used by ReceiverEntity.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ent:satelliteAvailable" minOccurs="0"/>
+			<xs:element ref="ent:satelliteId" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SatelliteListEntity">
+		<xs:annotation>
+			<xs:documentation>List of satellite entities.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:ListEntity">
+				<xs:sequence>
+					<xs:element ref="ent:satellite" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="TargetEntity">
+		<xs:annotation>
+			<xs:documentation>A target is a collection of receiver, access card, status and attributes of the card.  Targets are specific instances that are installed at a customer.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:targetId" minOccurs="0"/>
+					<xs:element ref="ent:accessCard" minOccurs="0"/>
+					<xs:element ref="ent:equipmentOwnership" minOccurs="0"/>
+					<xs:element ref="ent:receiver" minOccurs="0"/>
+					<xs:element ref="ent:serviceAddress" minOccurs="0"/>
+					<xs:element ref="ent:mirroring" minOccurs="0"/>
+					<xs:element ref="ent:subscribedServiceList" minOccurs="0"/>
+					<xs:element ref="ent:subscribedEventList" minOccurs="0"/>
+					<xs:element ref="ent:nonIRDAssetList" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="TargetListEntity">
+		<xs:annotation>
+			<xs:documentation>A list of target entities</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ent:ListMessageEntity">
+				<xs:sequence>
+					<xs:element ref="ent:additionalTargetsExistFlag" minOccurs="0"/>
+					<xs:element ref="ent:totalNumberOfTargets" minOccurs="0"/>
+					<xs:element ref="ent:target" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="accessCard" type="ent:AccessCardEntity">
+		<xs:annotation>
+			<xs:documentation>A single Access Card</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="nonIRDAsset" type="ent:NonIRDAssetEntity">
+		<xs:annotation>
+			<xs:documentation>A single non-IRD Asset</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="nonIRDAssetList" type="ent:NonIRDAssetListEntity">
+		<xs:annotation>
+			<xs:documentation>A list of non-IRD Asset entities</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="accessCardList" type="ent:AccessCardListEntity">
+		<xs:annotation>
+			<xs:documentation>A list of access card entities</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="accessCardIdWithStatus" type="ent:AccessCardIdWithStatusEntity">
+		<xs:annotation>
+			<xs:documentation>access card id with status </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="accessCardIdWithStatusList" type="ent:AccessCardIdWithStatusListEntity">
+		<xs:annotation>
+			<xs:documentation>A list of access cards with status </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="priorCardInfo" type="ent:PriorAccessCardInfoEntity">
+		<xs:annotation>
+			<xs:documentation>Information about the Access Card prior to the swap</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="accessCardRestriction" type="ent:AccessCardRestrictionEntity">
+		<xs:annotation>
+			<xs:documentation>Information about access card restrictions enforced by the CAMC on access cards </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="callback" type="ent:CallbackEntity">
+		<xs:annotation>
+			<xs:documentation>Information about CAMC callback for access cards </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="camcInfo" type="ent:CamcInfoEntity">
+		<xs:annotation>
+			<xs:documentation>Information about an access card that is specific to the CAMC provisioner.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="hardwareProduct" type="ent:HardwareProductEntity">
+		<xs:annotation>
+			<xs:documentation>Information about the hardware </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="hardwareProductList" type="ent:HardwareProductListEntity">
+		<xs:annotation>
+			<xs:documentation>A list of Hardware Products</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="manufacturerModel" type="ent:ManufacturerModelEntity">
+		<xs:annotation>
+			<xs:documentation>An instance of Manufacturer-Model information</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="manufacturerModelList" type="ent:ManufacturerModelListEntity">
+		<xs:annotation>
+			<xs:documentation>A list of Manufacturer-Model information</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="mediaCenterDeviceList" type="ent:MediaCenterDeviceListEntity">
+		<xs:annotation>
+			<xs:documentation>List of devices (Servers and Clients)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="mediaCenterDevice" type="ent:MediaCenterDeviceEntity">
+		<xs:annotation>
+			<xs:documentation>Devices (Servers and Clients) that can be contained in a Domain</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="mediaCenter" type="ent:MediaCenterEntity">
+		<xs:annotation>
+			<xs:documentation>Information on Servers and Clients contained in an associated Domain</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="mirroring" type="ent:MirroringEntity">
+		<xs:annotation>
+			<xs:documentation>Information about access card mirroring.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="mirroringProductCode" type="ent:ProductCodeEntity">
+		<xs:annotation>
+			<xs:documentation>Identifies the Mirroring Product applied on this Target. </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="mirroringProductPriceCode" type="ent:ProductCodeEntity">
+		<xs:annotation>
+			<xs:documentation>Identifies the Mirroring Product price applied on this target</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="receiver" type="ent:ReceiverEntity">
+		<xs:annotation>
+			<xs:documentation>An instance of Receiver</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="satellite" type="ent:SatelliteEntity">
+		<xs:annotation>
+			<xs:documentation>An instance of Satellite</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="satelliteList" type="ent:SatelliteListEntity">
+		<xs:annotation>
+			<xs:documentation>Contains multiple Satellites</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="target" type="ent:TargetEntity">
+		<xs:annotation>
+			<xs:documentation>A single target</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="targetList" type="ent:TargetListEntity">
+		<xs:annotation>
+			<xs:documentation>A list of targets</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="accessCardIdCAMCServiceList" type="ent:AccessCardIdAndCAMCServiceListEntity">
+		<xs:annotation>
+			<xs:documentation>A list of access cards with status </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="accessCardIdCAMCService" type="ent:AccessCardIdAndCAMCServiceEntity">
+		<xs:annotation>
+			<xs:documentation>A list of access cards with status </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

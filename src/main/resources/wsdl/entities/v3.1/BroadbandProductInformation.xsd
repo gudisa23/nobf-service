@@ -1,0 +1,1313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp2 (http://www.altova.com) by DIRECTV (DIRECTV) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ent="http://ei.directv.com/schemas/entities/v3_1" targetNamespace="http://ei.directv.com/schemas/entities/v3_1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="./CommonComplexTypes.xsd"/>
+	<xs:complexType name="BroadbandProductEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:broadbandProductId" minOccurs="0"/>
+					<xs:element ref="ent:productReference" minOccurs="0"/>
+					<xs:element ref="ent:providerId" minOccurs="0"/>
+					<xs:element ref="ent:planDescription" minOccurs="0"/>
+					<xs:element ref="ent:promotion" minOccurs="0"/>
+					<xs:element ref="ent:xmlPromo" minOccurs="0"/>
+					<xs:element ref="ent:monthlyFee" minOccurs="0"/>
+					<xs:element ref="ent:setupFee" minOccurs="0"/>
+					<xs:element ref="ent:introPrice" minOccurs="0"/>
+					<xs:element ref="ent:promotionMonths" minOccurs="0"/>
+					<xs:element ref="ent:uploadSpeed" minOccurs="0"/>
+					<xs:element ref="ent:downloadSpeed" minOccurs="0"/>
+					<xs:element ref="ent:providerMarketingMsg1" minOccurs="0"/>
+					<xs:element ref="ent:providerMarketingMsg2" minOccurs="0"/>
+					<xs:element ref="ent:providerMarketingMsg3" minOccurs="0"/>
+					<xs:element ref="ent:supportPhone" minOccurs="0"/>
+					<xs:element ref="ent:confirmationText1" minOccurs="0"/>
+					<xs:element ref="ent:confirmationText2" minOccurs="0"/>
+					<xs:element ref="ent:productOptionsList" minOccurs="0"/>
+					<xs:element ref="ent:clientAuthenticationList" minOccurs="0"/>
+					<xs:element ref="ent:productDetails" minOccurs="0"/>
+					<xs:element ref="ent:brandedFlag" minOccurs="0"/>
+					<xs:element ref="ent:broadbandProductCode" minOccurs="0"/>
+					<xs:element ref="ent:productEligibilityFlag" minOccurs="0"/>
+					<xs:element ref="ent:categoryPriority" minOccurs="0"/>
+					<xs:element ref="ent:categoryName" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ProductOptionsListEntity">
+		<xs:sequence>
+			<xs:element ref="ent:productOptions" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OptionValuesListEntity">
+		<xs:sequence>
+			<xs:element ref="ent:optionValues" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ClientAuthenticationListEntity">
+		<xs:sequence>
+			<xs:element ref="ent:clientAuthenticationInfo" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ProductOptionsEntity">
+		<xs:sequence>
+			<xs:element ref="ent:id" minOccurs="0"/>
+			<xs:element ref="ent:name" minOccurs="0"/>
+			<xs:element ref="ent:minSelection" minOccurs="0"/>
+			<xs:element ref="ent:maxSelection" minOccurs="0"/>
+			<xs:element ref="ent:optionValuesList" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OptionValuesEntity">
+		<xs:sequence>
+			<xs:element ref="ent:id" minOccurs="0"/>
+			<xs:element ref="ent:name" minOccurs="0"/>
+			<xs:element ref="ent:optionsPrice" minOccurs="0"/>
+			<xs:element ref="ent:longDescription" minOccurs="0"/>
+			<xs:element ref="ent:monthlyRecurring" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ClientAuthenticationEntity">
+		<xs:sequence>
+			<xs:element ref="ent:authenticationRequired" minOccurs="0"/>
+			<xs:element ref="ent:authenticationType" minOccurs="0"/>
+			<xs:element ref="ent:authenticationDescription" minOccurs="0"/>
+			<xs:element ref="ent:authenticationInstructions" minOccurs="0"/>
+			<xs:element ref="ent:authenticationValue" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ProductDetailsEntity">
+		<xs:sequence>
+			<xs:element ref="ent:detailsId" minOccurs="0"/>
+			<xs:element ref="ent:currentPromotions" minOccurs="0"/>
+			<xs:element ref="ent:monthlyFee" minOccurs="0"/>
+			<xs:element ref="ent:accessMethod" minOccurs="0"/>
+			<xs:element ref="ent:maximumDownStreamConnectionSpeed" minOccurs="0"/>
+			<xs:element ref="ent:maximumUpStreamConnectionSpeed" minOccurs="0"/>
+			<xs:element ref="ent:hardwareFeeDetails" minOccurs="0"/>
+			<xs:element ref="ent:installationFee" minOccurs="0"/>
+			<xs:element ref="ent:activationFee" minOccurs="0"/>
+			<xs:element ref="ent:otherFees" minOccurs="0"/>
+			<xs:element ref="ent:termCommitment" minOccurs="0"/>
+			<xs:element ref="ent:earlyTerminationFee" minOccurs="0"/>
+			<xs:element ref="ent:hoursIncludedPerMonth" minOccurs="0"/>
+			<xs:element ref="ent:numberOfFreeEmailAccounts" minOccurs="0"/>
+			<xs:element ref="ent:personalWebSpace" minOccurs="0"/>
+			<xs:element ref="ent:additionalDialUpAccountIncluded" minOccurs="0"/>
+			<xs:element ref="ent:roamingAccessDetails" minOccurs="0"/>
+			<xs:element ref="ent:staticIpAddresses" minOccurs="0"/>
+			<xs:element ref="ent:technicalSupport" minOccurs="0"/>
+			<xs:element ref="ent:featureAndRestrictionDetails" minOccurs="0"/>
+			<xs:element ref="ent:costOfAccessForAditionalComputer" minOccurs="0"/>
+			<xs:element ref="ent:computerRequirements" minOccurs="0"/>
+			<xs:element ref="ent:referralProgram" minOccurs="0"/>
+			<xs:element ref="ent:guarantee" minOccurs="0"/>
+			<xs:element ref="ent:billingOption" minOccurs="0"/>
+			<xs:element ref="ent:estimatedTimeBetweenOrderAndInstallation" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BroadbandProviderEntity">
+		<xs:sequence>
+			<xs:element ref="ent:providerPriority" minOccurs="0"/>
+			<xs:element ref="ent:providerId" minOccurs="0"/>
+			<xs:element ref="ent:providerName" minOccurs="0"/>
+			<xs:element ref="ent:providerDescription" minOccurs="0"/>
+			<xs:element ref="ent:providerImagePath" minOccurs="0"/>
+			<xs:element ref="ent:providerPhoneNumber" minOccurs="0"/>
+			<xs:element ref="ent:legalTermsURL" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BroadbandOrderIdentiferEntity">
+		<xs:sequence>
+			<xs:element ref="ent:omsOrderId" minOccurs="0"/>
+			<xs:element ref="ent:providerOrderNumber" minOccurs="0"/>
+			<xs:element ref="ent:providerConfirmationNumber" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="productOptionsList" type="ent:ProductOptionsListEntity">
+		<xs:annotation>
+			<xs:documentation>A list of Product Options</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="productOptions" type="ent:ProductOptionsEntity">
+		<xs:annotation>
+			<xs:documentation>The product options</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="optionValuesList" type="ent:OptionValuesListEntity">
+		<xs:annotation>
+			<xs:documentation>A list of Option values</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="optionValues" type="ent:OptionValuesEntity">
+		<xs:annotation>
+			<xs:documentation>The options value</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="clientAuthenticationList" type="ent:ClientAuthenticationListEntity">
+		<xs:annotation>
+			<xs:documentation>A list of Client Authentication Information</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="clientAuthenticationInfo" type="ent:ClientAuthenticationEntity">
+		<xs:annotation>
+			<xs:documentation>The client authentication information</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="productDetails" type="ent:ProductDetailsEntity">
+		<xs:annotation>
+			<xs:documentation>The products detailed information</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="installationLoginInformation" type="ent:LoginEntity"/>
+	<xs:element name="broadbandOrderIdentifier" type="ent:BroadbandOrderIdentiferEntity"/>
+	<xs:complexType name="BroadbandExtendedEntityListEntity">
+		<xs:sequence>
+			<xs:element ref="ent:broadbandExtendedElement" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BroadbandExtendedElementEntity">
+		<xs:sequence>
+			<xs:element ref="ent:type" minOccurs="0"/>
+			<xs:element ref="ent:name" minOccurs="0"/>
+			<xs:element ref="ent:value" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="broadbandExtendedElementList" type="ent:BroadbandExtendedEntityListEntity"/>
+	<xs:element name="broadbandExtendedElement" type="ent:BroadbandExtendedElementEntity"/>
+	<!--  Provider Summary -->
+	<xs:complexType name="BroadbandProviderSummaryListEntity">
+		<xs:sequence>
+			<xs:element ref="ent:broadbandProviderSummary" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BroadbandProviderSummaryEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:broadbandProvider" minOccurs="0"/>
+					<xs:element ref="ent:inFootprint" minOccurs="0"/>
+					<xs:element ref="ent:existingCustomer" minOccurs="0"/>
+					<xs:element ref="ent:broadbandSuggestedAddressList" minOccurs="0"/>
+					<xs:element ref="ent:broadbandQualifiedAddress" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="broadbandProviderSummaryList" type="ent:BroadbandProviderSummaryListEntity"/>
+	<xs:element name="broadbandProviderSummary" type="ent:BroadbandProviderSummaryEntity"/>
+	<xs:element name="broadbandProvider" type="ent:ProviderEntity"/>
+	<xs:complexType name="BroadbandSuggestedAddressListEntity">
+		<xs:sequence>
+			<xs:element name="broadbandSuggestedAddress" type="ent:BroadbandAddressEntity" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="broadbandSuggestedAddressList" type="ent:BroadbandSuggestedAddressListEntity"/>
+	<xs:element name="broadbandQualifiedAddress" type="ent:BroadbandAddressEntity"/>
+	<xs:complexType name="ProviderEntity">
+		<xs:sequence>
+			<xs:element ref="ent:providerId" minOccurs="0"/>
+			<xs:element ref="ent:providerName" minOccurs="0"/>
+			<xs:element ref="ent:providerPhoneNumber" minOccurs="0"/>
+			<xs:element ref="ent:url" minOccurs="0"/>
+			<xs:element ref="ent:largeLogo" minOccurs="0"/>
+			<xs:element ref="ent:smallLogo" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--  Available Product Entity -->
+	<xs:complexType name="BroadbandAvailableProductEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:providerId" minOccurs="0"/>
+					<xs:element ref="ent:providerPriority" minOccurs="0"/>
+					<xs:element ref="ent:brandedFlag" minOccurs="0"/>
+					<xs:element ref="ent:broadbandOfferId" minOccurs="0"/>
+					<xs:element ref="ent:providerProductCode" minOccurs="0"/>
+					<xs:element ref="ent:broadbandProductCode" minOccurs="0"/>
+					<xs:element ref="ent:displayFlag" minOccurs="0"/>
+					<xs:element ref="ent:providerName" minOccurs="0"/>
+					<xs:element ref="ent:qualifiedHardware" minOccurs="0"/>
+					<xs:element ref="ent:categoryName" minOccurs="0"/>
+					<xs:element ref="ent:categoryPriority" minOccurs="0"/>
+					<xs:element ref="ent:categorySubName" minOccurs="0"/>
+					<xs:element ref="ent:name" minOccurs="0"/>
+					<xs:element ref="ent:technicalSupport" minOccurs="0"/>
+					<xs:element ref="ent:customerRestriction" minOccurs="0"/>
+					<xs:element ref="ent:shortName" minOccurs="0"/>
+					<xs:element ref="ent:mediumName" minOccurs="0"/>
+					<xs:element ref="ent:longName" minOccurs="0"/>
+					<xs:element ref="ent:highlight" minOccurs="0"/>
+					<xs:element ref="ent:shortHighlight1" minOccurs="0"/>
+					<xs:element ref="ent:shortHighlight2" minOccurs="0"/>
+					<xs:element ref="ent:featureSummaryShort" minOccurs="0"/>
+					<xs:element ref="ent:benefitStatementShort" minOccurs="0"/>
+					<xs:element ref="ent:benefitStatementLong" minOccurs="0"/>
+					<xs:element ref="ent:disclaimer" minOccurs="0"/>
+					<xs:element ref="ent:termsAndConditions" minOccurs="0"/>
+					<xs:element ref="ent:guarantee" minOccurs="0"/>
+					<xs:element ref="ent:broadbandContract" minOccurs="0"/>
+					<xs:element ref="ent:broadbandPromotionList" minOccurs="0"/>
+					<xs:element ref="ent:broadbandBonusList" minOccurs="0"/>
+					<xs:element ref="ent:broadbandPriceList" minOccurs="0"/>
+					<xs:element ref="ent:broadbandExtensionList" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="BroadbandAvailableProductListEntity">
+		<xs:sequence>
+			<xs:element ref="ent:broadbandAvailableProduct" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="broadbandAvailableProductList" type="ent:BroadbandAvailableProductListEntity"/>
+	<xs:element name="broadbandAvailableProduct" type="ent:BroadbandAvailableProductEntity"/>
+	<!--  Broadband Contract Entity -->
+	<xs:complexType name="BroadbandContractEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element name="earlyTerminationFee" type="ent:BroadbandPriceEntity" minOccurs="0"/>
+					<xs:element ref="ent:summary" minOccurs="0"/>
+					<xs:element ref="ent:broadbandLongDescription" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Long description of the contract</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="duration" type="ent:BroadbandUnitOfMeasureEntity" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="broadbandContract" type="ent:BroadbandContractEntity"/>
+	<!--  Broadband Price Entity -->
+	<xs:complexType name="BroadbandPriceEntity">
+		<xs:sequence>
+			<xs:element ref="ent:priceClassification" minOccurs="0"/>
+			<xs:element ref="ent:amountSpecifiedFlag" minOccurs="0"/>
+			<xs:element ref="ent:priceType" minOccurs="0"/>
+			<xs:element ref="ent:customizableFlag" minOccurs="0"/>
+			<xs:element ref="ent:displayFlag" minOccurs="0"/>
+			<xs:element ref="ent:recurringFlag" minOccurs="0"/>
+			<xs:element ref="ent:recurringInterval" minOccurs="0"/>
+			<xs:element ref="ent:broadbandDescription" minOccurs="0"/>
+			<xs:element ref="ent:label" minOccurs="0"/>
+			<xs:element ref="ent:amount" minOccurs="0"/>
+			<xs:element ref="ent:text" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Describes the amount if a sepcific amount is not specified. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="term" type="ent:BroadbandUnitOfMeasureEntity" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Term of payment</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BroadbandPriceListEntity">
+		<xs:sequence>
+			<xs:element ref="ent:broadbandPrice" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="broadbandPriceList" type="ent:BroadbandPriceListEntity"/>
+	<xs:element name="broadbandPrice" type="ent:BroadbandPriceEntity"/>
+	<!--  Broadband Promotion Entity -->
+	<xs:complexType name="BroadbandPromotionEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element name="value" type="xs:decimal" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Value assigned to the promotion to signify the amount</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="ent:primaryPromotionFlag" minOccurs="0"/>
+					<xs:element ref="ent:displayFlag" minOccurs="0"/>
+					<xs:element ref="ent:broadbandPromotionId" minOccurs="0"/>
+					<xs:element ref="ent:promotionType" minOccurs="0"/>
+					<xs:element ref="ent:name" minOccurs="0"/>
+					<xs:element ref="ent:broadbandShortDescription" minOccurs="0"/>
+					<xs:element ref="ent:broadbandDescription" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Description of the promotion</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="ent:startDate" minOccurs="0"/>
+					<xs:element ref="ent:endDate" minOccurs="0"/>
+					<xs:element ref="ent:disclaimer" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="BroadbandPromotionListEntity">
+		<xs:sequence>
+			<xs:element ref="ent:broadbandPromotion" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="broadbandPromotionList" type="ent:BroadbandPromotionListEntity"/>
+	<xs:element name="broadbandPromotion" type="ent:BroadbandPromotionEntity"/>
+	<!--  Broadband Bonus Entity -->
+	<xs:complexType name="BroadbandBonusEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:primaryBonusFlag" minOccurs="0"/>
+					<xs:element ref="ent:displayFlag" minOccurs="0"/>
+					<xs:element ref="ent:broadbandBonusId" minOccurs="0"/>
+					<xs:element ref="ent:bonusType" minOccurs="0"/>
+					<xs:element ref="ent:broadbandDescription" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Description of the bonus</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="ent:name" minOccurs="0"/>
+					<xs:element ref="ent:broadbandShortDescription" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Short description of the bonus</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="ent:startDate" minOccurs="0"/>
+					<xs:element ref="ent:endDate" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="BroadbandBonusListEntity">
+		<xs:sequence>
+			<xs:element ref="ent:broadbandBonus" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="broadbandBonusList" type="ent:BroadbandBonusListEntity"/>
+	<xs:element name="broadbandBonus" type="ent:BroadbandBonusEntity"/>
+	<!--  Broadband Unit of Measure Entity -->
+	<xs:complexType name="BroadbandUnitOfMeasureEntity">
+		<xs:sequence>
+			<xs:element name="number" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Numeric value of the measure</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="measure" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Measure type</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!--  Broadband Feature Entity -->
+	<xs:complexType name="BroadbandFeatureEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:broadbandFeatureClassification" minOccurs="0"/>
+					<xs:element ref="ent:displayFlag" minOccurs="0"/>
+					<xs:element ref="ent:label" minOccurs="0"/>
+					<xs:element ref="ent:text" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Text used to describe the feature</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="unit" type="ent:BroadbandUnitOfMeasureEntity" minOccurs="0"/>
+					<xs:element name="choiceOfValue" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Text used to describe the feature</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:choice>
+								<xs:element name="booleanValue" type="xs:boolean" minOccurs="0"/>
+								<xs:element name="value" type="xs:decimal" minOccurs="0"/>
+								<xs:element name="unitValue" type="ent:BroadbandUnitOfMeasureEntity" minOccurs="0"/>
+							</xs:choice>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="BroadbandFeatureListEntity">
+		<xs:sequence>
+			<xs:element ref="ent:broadbandFeature" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="broadbandFeatureList" type="ent:BroadbandFeatureListEntity"/>
+	<xs:element name="broadbandFeature" type="ent:BroadbandFeatureEntity"/>
+	<!--  Broadband Extension Entity -->
+	<xs:complexType name="BroadbandExtensionEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:timeBetweenOrderAndInstall" minOccurs="0"/>
+					<xs:element ref="ent:billingOptions" minOccurs="0"/>
+					<xs:element ref="ent:broadbandPriceList" minOccurs="0"/>
+					<xs:element ref="ent:technicalRequirements" minOccurs="0"/>
+					<xs:element ref="ent:qualifiedHardware" minOccurs="0"/>
+					<xs:element ref="ent:broadbandExtensionDetail" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="BroadbandExtensionListEntity">
+		<xs:sequence>
+			<xs:element ref="ent:broadbandExtension" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="broadbandExtensionList" type="ent:BroadbandExtensionListEntity"/>
+	<xs:element name="broadbandExtension" type="ent:BroadbandExtensionEntity"/>
+	<!--  Broadband Extension Detail Entity -->
+	<xs:complexType name="BroadbandExtensionDetailEntity">
+		<xs:choice>
+			<xs:element name="data" type="ent:BroadbandDataExtensionEntity"/>
+			<xs:element name="voice" type="ent:BroadbandVoiceExtensionEntity"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:element name="broadbandExtensionDetail" type="ent:BroadbandExtensionDetailEntity"/>
+	<xs:complexType name="BroadbandDataExtensionEntity">
+		<xs:sequence>
+			<xs:element name="costOfAccessForAdditionalComputer" type="ent:BroadbandPriceEntity" minOccurs="0"/>
+			<xs:element ref="ent:dialUpAccessFlag" minOccurs="0"/>
+			<xs:element ref="ent:broadbandFeatureList" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BroadbandVoiceExtensionEntity">
+		<xs:sequence>
+			<xs:element ref="ent:voiceType" minOccurs="0"/>
+			<xs:element ref="ent:broadbandFeatureList" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BroadbandAddressEntity">
+		<xs:sequence>
+			<xs:element ref="ent:addressType" minOccurs="0"/>
+			<xs:element ref="ent:addressId" minOccurs="0"/>
+			<xs:element ref="ent:address1"/>
+			<xs:element ref="ent:address2" minOccurs="0"/>
+			<xs:element ref="ent:apartmentNumber" minOccurs="0"/>
+			<xs:element ref="ent:city"/>
+			<xs:element ref="ent:countyName" minOccurs="0"/>
+			<xs:element ref="ent:state"/>
+			<xs:element ref="ent:zipCode"/>
+			<xs:element ref="ent:country" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BroadbandPhoneEntity">
+		<xs:sequence>
+			<xs:element ref="ent:phoneType" minOccurs="0"/>
+			<xs:element ref="ent:phoneAreaCode" minOccurs="0"/>
+			<xs:element ref="ent:phoneNumber" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--  Broadband Customization  Entity -->
+	<xs:complexType name="BroadbandCustomizatonEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:providerId" minOccurs="0"/>
+					<xs:element ref="ent:groupedFlag" minOccurs="0"/>
+					<xs:element ref="ent:groupName" minOccurs="0"/>
+					<xs:element ref="ent:broadbandOfferId" minOccurs="0"/>
+					<xs:element ref="ent:minimumChoice" minOccurs="0"/>
+					<xs:element ref="ent:maximumChoice" minOccurs="0"/>
+					<xs:element ref="ent:displayFlag" minOccurs="0"/>
+					<xs:element ref="ent:broadbandCustomizationId" minOccurs="0"/>
+					<xs:element ref="ent:requiredFlag" minOccurs="0"/>
+					<xs:element name="depenendentCustomizationList" type="ent:BroadbandDependentCustomizationListEntity" minOccurs="0"/>
+					<xs:element name="dependentChoiceList" type="ent:BroadbandDependentChoiceListEntity" minOccurs="0"/>
+					<xs:element ref="ent:broadbandCustomizationCategory" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Indicates type of customization category such as premium, instalation, software, data feature, etc. .</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="ent:type" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Indicates type of customization such as Selection, Number, Text, List.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="ent:name" minOccurs="0"/>
+					<xs:element ref="ent:broadbandDescription" minOccurs="0"/>
+					<xs:element ref="ent:broadbandDefaultChoiceValue" minOccurs="0"/>
+					<xs:element ref="ent:broadbandChoiceList" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="BroadbandCustomizationListEntity">
+		<xs:sequence>
+			<xs:element ref="ent:broadbandCustomization" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="broadbandCustomizationList" type="ent:BroadbandCustomizationListEntity"/>
+	<xs:element name="broadbandCustomization" type="ent:BroadbandCustomizatonEntity"/>
+	<xs:complexType name="BroadbandDependentCustomizationListEntity">
+		<xs:sequence>
+			<xs:element name="customization" type="ent:BroadbandCustomizatonEntity" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--  Broadband Choice  Entity -->
+	<xs:complexType name="BroadbandChoiceEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:selectedFlag" minOccurs="0"/>
+					<xs:element ref="ent:maximumLength" minOccurs="0"/>
+					<xs:element ref="ent:requiredFlag" minOccurs="0"/>
+					<xs:element ref="ent:broadbandChoiceId" minOccurs="0"/>
+					<xs:element ref="ent:displayFlag" minOccurs="0"/>
+					<xs:element ref="ent:name" minOccurs="0"/>
+					<xs:element ref="ent:broadbandDescription" minOccurs="0"/>
+					<xs:element ref="ent:broadbandPrice" minOccurs="0"/>
+					<xs:element ref="ent:broadbandComparisonValue" minOccurs="0"/>
+					<xs:element ref="ent:broadbandComparisonMessage" minOccurs="0"/>
+					<xs:element ref="ent:broadbandValidationRule" minOccurs="0"/>
+					<xs:element ref="ent:broadbandValidationMessage" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="BroadbandChoiceListEntity">
+		<xs:sequence>
+			<xs:element ref="ent:broadbandChoice" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="broadbandChoiceList" type="ent:BroadbandChoiceListEntity"/>
+	<xs:element name="broadbandChoice" type="ent:BroadbandChoiceEntity"/>
+	<xs:complexType name="BroadbandDependentChoiceListEntity">
+		<xs:sequence>
+			<xs:element name="choice" type="ent:BroadbandChoiceEntity" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--  Broadband Provider Product Order Requirement Entity -->
+	<xs:complexType name="BroadbandProductOrderRequirementEntity">
+		<xs:sequence>
+			<xs:element ref="ent:providerId" minOccurs="0"/>
+			<xs:element ref="ent:broadbandOfferId" minOccurs="0"/>
+			<xs:element name="broadbandOrderRequiementList" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="ent:broadbandOrderRequirement" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="addressTypeList" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="ent:addressType" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="phoneTypeList" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="ent:phoneType" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BroadbandProductOrderRequirementListEntity">
+		<xs:sequence>
+			<xs:element ref="ent:broadbandProductOrderRequirement" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="broadbandProductOrderRequirementList" type="ent:BroadbandProductOrderRequirementListEntity"/>
+	<xs:element name="broadbandProductOrderRequirement" type="ent:BroadbandProductOrderRequirementEntity"/>
+	<!--  Broadband Broadband Install Window Entity -->
+	<xs:complexType name="BroadbandInstallWindowEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:providerId" minOccurs="0"/>
+					<xs:element ref="ent:broadbandOfferId" minOccurs="0"/>
+					<xs:element ref="ent:broadbandInstallWindowId" minOccurs="0"/>
+					<xs:element ref="ent:text" minOccurs="0"/>
+					<xs:element name="startTime" type="xs:dateTime" minOccurs="0"/>
+					<xs:element name="endTime" type="xs:dateTime" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="BroadbandInstallWindowListEntity">
+		<xs:sequence>
+			<xs:element ref="ent:broadbandInstallWindow" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="broadbandInstallWindowList" type="ent:BroadbandInstallWindowListEntity"/>
+	<xs:element name="broadbandInstallWindow" type="ent:BroadbandInstallWindowEntity"/>
+	<xs:complexType name="BroadbandEmailAddressEntity">
+		<xs:sequence>
+			<xs:element ref="ent:emailAddressType" minOccurs="0"/>
+			<xs:element ref="ent:emailAddress" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--  Broadband Credit Card Entity -->
+	<xs:complexType name="BroadbandCreditCardEntity">
+		<xs:sequence>
+			<xs:element ref="ent:creditCardNumber" minOccurs="0"/>
+			<xs:element ref="ent:creditCardType" minOccurs="0"/>
+			<xs:element ref="ent:creditCardExpirationDate" minOccurs="0"/>
+			<xs:element ref="ent:cVVCode" minOccurs="0"/>
+			<xs:element name="creditCardName" type="ent:NameEntity" minOccurs="0"/>
+			<xs:element name="billingInformation" type="ent:BroadbandLocationEntity" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BroadbandCreditCardActionListEntity">
+		<xs:sequence>
+			<xs:element ref="ent:creditCardAction" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--  Broadband Credit Card Summary Entity -->
+	<xs:complexType name="BroadbandCreditCardSummaryEntity">
+		<xs:sequence>
+			<xs:element ref="ent:providerId" minOccurs="0"/>
+			<xs:element ref="ent:amount" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BroadbandCreditCardSummaryListEntity">
+		<xs:sequence>
+			<xs:element name="creditCardSummary" type="ent:BroadbandCreditCardSummaryEntity" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--  Broadband Credit Card Summary Result Entity -->
+	<xs:complexType name="BroadbandCreditCardSummaryResultEntity">
+		<xs:sequence>
+			<xs:element ref="ent:providerId" minOccurs="0"/>
+			<xs:element ref="ent:amount" minOccurs="0"/>
+			<xs:element ref="ent:finalApprovalCode" minOccurs="0"/>
+			<xs:element ref="ent:finalReferenceNumber" minOccurs="0"/>
+			<xs:element ref="ent:authorizationApprovalCode" minOccurs="0"/>
+			<xs:element ref="ent:authorizationReferenceNumber" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BroadbandCreditCardSummaryResultListEntity">
+		<xs:sequence>
+			<xs:element name="creditCardSummaryResult" type="ent:BroadbandCreditCardSummaryResultEntity" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--  Broadband Employment Information Entity -->
+	<xs:complexType name="BroadbandEmploymentInformationEntity">
+		<xs:sequence>
+			<xs:element ref="ent:providerId" minOccurs="0"/>
+			<xs:element ref="ent:employedFlag" minOccurs="0"/>
+			<xs:element ref="ent:employerName" minOccurs="0"/>
+			<xs:element ref="ent:occupation" minOccurs="0"/>
+			<xs:element name="employerPhone" type="ent:BroadbandPhoneEntity" minOccurs="0"/>
+			<xs:element name="employerAddress" type="ent:BroadbandAddressEntity" minOccurs="0"/>
+			<xs:element name="hiredDate" type="xs:dateTime" minOccurs="0"/>
+			<xs:element ref="ent:employmentType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--  Broadband Residency Information Entity -->
+	<xs:complexType name="BroadbandResidencyInformationEntity">
+		<xs:sequence>
+			<xs:element ref="ent:providerId" minOccurs="0"/>
+			<xs:element ref="ent:homeRenterFlag" minOccurs="0"/>
+			<xs:element ref="ent:homeOwnerFlag" minOccurs="0"/>
+			<xs:element name="durationLivedAtResidence" type="ent:BroadbandUnitOfMeasureEntity" minOccurs="0"/>
+			<xs:element name="previousLocation" type="ent:BroadbandLocationEntity" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--  Broadband Education Information Entity -->
+	<xs:complexType name="BroadbandEducationInformationEntity">
+		<xs:sequence>
+			<xs:element ref="ent:providerId" minOccurs="0"/>
+			<xs:element ref="ent:fullTimeStudentFlag" minOccurs="0"/>
+			<xs:element ref="ent:dormitoryFlag" minOccurs="0"/>
+			<xs:element ref="ent:fraternityFlag" minOccurs="0"/>
+			<xs:element ref="ent:sororityFlag" minOccurs="0"/>
+			<xs:element ref="ent:houseName" minOccurs="0"/>
+			<xs:element ref="ent:roomName" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--  Broadband Income Information Entity -->
+	<xs:complexType name="BroadbandIncomeInformationEntity">
+		<xs:sequence>
+			<xs:element ref="ent:providerId" minOccurs="0"/>
+			<xs:element ref="ent:salary" minOccurs="0"/>
+			<xs:element ref="ent:wagesGarnishedFlag" minOccurs="0"/>
+			<xs:element ref="ent:sourceOfIncome" minOccurs="0"/>
+			<xs:element ref="ent:monthsIncomeReceived" minOccurs="0"/>
+			<xs:element ref="ent:yearsIncomeReceived" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--  Broadband Financial Information Entity -->
+	<xs:complexType name="BroadbandFinancialInformationEntity">
+		<xs:sequence>
+			<xs:element ref="ent:providerId" minOccurs="0"/>
+			<xs:element ref="ent:bankName" minOccurs="0"/>
+			<xs:element ref="ent:bankAccountNumber" minOccurs="0"/>
+			<xs:element name="bankRoutingNumber" type="xs:string" minOccurs="0"/>
+			<xs:element ref="ent:bankAccountOwner" minOccurs="0"/>
+			<xs:element ref="ent:bankruptFlag" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--  Broadband Identity Information Entity -->
+	<xs:complexType name="BroadbandIdentitynformationEntity">
+		<xs:sequence>
+			<xs:element ref="ent:providerId" minOccurs="0"/>
+			<xs:element ref="ent:driversLicenseNumber" minOccurs="0"/>
+			<xs:element ref="ent:driversLicenseState" minOccurs="0"/>
+			<xs:element name="socialSecurityNumber" type="xs:string" minOccurs="0"/>
+			<xs:element ref="ent:username" minOccurs="0"/>
+			<xs:element name="password" type="xs:string" minOccurs="0"/>
+			<xs:element name="dateOfBirth" type="xs:dateTime" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BroadbandLocationEntity">
+		<xs:sequence>
+			<xs:element name="phone" type="ent:BroadbandPhoneEntity" minOccurs="0"/>
+			<xs:element name="address" type="ent:BroadbandAddressEntity" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--  Broadband  Information Entity -->
+	<xs:complexType name="BroadbandInformationEntity">
+		<xs:choice>
+			<xs:element name="educationInformation" type="ent:BroadbandEducationInformationEntity" minOccurs="0"/>
+			<xs:element name="residencyInformation" type="ent:BroadbandResidencyInformationEntity" minOccurs="0"/>
+			<xs:element name="employmentInformation" type="ent:BroadbandEmploymentInformationEntity" minOccurs="0"/>
+			<xs:element name="identityInformation" type="ent:BroadbandIdentitynformationEntity" minOccurs="0"/>
+			<xs:element name="financialInformation" type="ent:BroadbandFinancialInformationEntity" minOccurs="0"/>
+			<xs:element name="incomeInformation" type="ent:BroadbandIncomeInformationEntity" minOccurs="0"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="BroadbandInformationListEntity">
+		<xs:sequence>
+			<xs:element name="information" type="ent:BroadbandInformationEntity" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--  Broadband  Product Result  Entity -->
+	<xs:complexType name="BroadbandProductResultEntity">
+		<xs:sequence>
+			<xs:element ref="ent:broadbandOfferId" minOccurs="0"/>
+			<xs:element ref="ent:brandedProductName" minOccurs="0"/>
+			<xs:element ref="ent:broadbandProductCode" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BroadbandOrderResultListEntity">
+		<xs:sequence>
+			<xs:element name="productResult" type="ent:BroadbandProductResultEntity" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--  Broadband  Customization Result Generic Entity -->
+	<xs:complexType name="BroadbandCustomizationResultGenericEntity">
+		<xs:sequence>
+			<xs:element ref="ent:broadbandCustomizationId" minOccurs="0"/>
+			<xs:element ref="ent:broadbandOfferId" minOccurs="0"/>
+			<xs:element name="choiceList" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="ent:broadbandChoiceId" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!--  Broadband  Customization Result  Entity -->
+	<xs:complexType name="BroadbandCustomizationResultEntity">
+		<xs:choice>
+			<xs:element name="text" minOccurs="0">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="ent:BroadbandCustomizationResultGenericEntity">
+							<xs:sequence>
+								<xs:element name="value" type="xs:string" minOccurs="0"/>
+							</xs:sequence>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="numeric" minOccurs="0">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="ent:BroadbandCustomizationResultGenericEntity">
+							<xs:sequence>
+								<xs:element name="value" type="xs:int" minOccurs="0"/>
+							</xs:sequence>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="selection" minOccurs="0">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="ent:BroadbandCustomizationResultGenericEntity"/>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="BroadbandCustomizationResultListEntity">
+		<xs:sequence>
+			<xs:element name="customizationResult" type="ent:BroadbandCustomizationResultEntity" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--  Broadband  Order  Entity -->
+	<xs:complexType name="BroadbandOrderEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:providerId" minOccurs="0"/>
+					<xs:element ref="ent:brandedProviderName" minOccurs="0"/>
+					<xs:element name="productResultList" type="ent:BroadbandOrderResultListEntity" minOccurs="0"/>
+					<xs:element name="customizationResultList" type="ent:BroadbandCustomizationResultListEntity" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="BroadbandOrderListEntity">
+		<xs:sequence>
+			<xs:element name="order" type="ent:BroadbandOrderEntity" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--  Broadband  Install Window Summary Entity -->
+	<xs:complexType name="BroadbandInstallWindowSummaryEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:broadbandInstallWindowId" minOccurs="0"/>
+					<xs:element ref="ent:installWindowConfirmationCode" minOccurs="0"/>
+					<xs:element ref="ent:followUpMessage" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="BroadbandInstallWindowSummaryListEntity">
+		<xs:sequence>
+			<xs:element name="installWindowSummary" type="ent:BroadbandInstallWindowSummaryEntity" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--  Broadband  Install Window Result  Entity -->
+	<xs:complexType name="BroadbandInstallWindowResultEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:broadbandInstallWindowId" minOccurs="0"/>
+					<xs:element ref="ent:scheduleNote" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="BroadbandInstallWindowResultListEntity">
+		<xs:sequence>
+			<xs:element name="InstallWindowResult" type="ent:BroadbandInstallWindowResultEntity" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--  Broadband  Product Confirmation  Entity -->
+	<xs:complexType name="BroadbandProductConfirmationEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:providerId" minOccurs="0"/>
+					<xs:element ref="ent:broadbandConfirmationId" minOccurs="0"/>
+					<xs:element ref="ent:broadbandOfferId" minOccurs="0"/>
+					<xs:element ref="ent:providerOrderNumber" minOccurs="0"/>
+					<xs:element ref="ent:trackingCode" minOccurs="0"/>
+					<xs:element ref="ent:providerConfirmationCode" minOccurs="0"/>
+					<xs:element name="assignedPhoneNumber" type="ent:BroadbandPhoneEntity" minOccurs="0"/>
+					<xs:element ref="ent:confirmationMessage" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="BroadbandProductConfirmationListEntity">
+		<xs:sequence>
+			<xs:element name="productConfirmation" type="ent:BroadbandProductConfirmationEntity" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NonVideoSelectionEntity">
+		<xs:sequence>
+			<xs:element ref="ent:customData" minOccurs="0"/>
+			<xs:element ref="ent:customizationId"/>
+			<xs:choice>
+				<xs:element ref="ent:value" minOccurs="0"/>
+				<xs:element ref="ent:sensitiveValue" minOccurs="0"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="selectionList">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ent:immediateSubmissionFlag"/>
+				<xs:element name="selection" type="ent:NonVideoSelectionEntity" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="customizationGroupList">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ent:questionType"/>
+				<xs:element name="customizationGroup" type="ent:NonVideoCustomizationGroupEntity" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="NonVideoAvailableProductEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element name="product" type="ent:NonVideoProductEntity"/>
+					<xs:element name="provider" type="ent:NonVideoProviderEntity"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="NonVideoProductEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:brandedFlag" minOccurs="0"/>
+					<xs:element ref="ent:productDetailHash"/>
+					<xs:element ref="ent:verticalId"/>
+					<xs:element ref="ent:verticalName"/>
+					<xs:element ref="ent:categoryId"/>
+					<xs:element ref="ent:categoryName"/>
+					<xs:element ref="ent:displayCategoryName" minOccurs="0"/>
+					<xs:element name="comparisonShoppingPriceList" minOccurs="0">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="comparisonShoppingPrice" type="ent:NonVideoComparisonShoppingPriceEntity" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="basePrice" type="ent:NonVideoBasePriceEntity"/>
+					<xs:element ref="ent:termLengthMonths" minOccurs="0"/>
+					<xs:element name="productCode" type="xs:string"/>
+					<xs:element name="productId" type="xs:long"/>
+					<xs:element name="standardAttributeList" minOccurs="0">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="standardAttribute" type="ent:NonVideoStandardAttributeEntity" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="featureList" minOccurs="0">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="feature" type="ent:NonVideoFeatureEntity" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element ref="ent:featureText" minOccurs="0"/>
+					<xs:element name="productName" type="xs:string"/>
+					<xs:element name="componentList" minOccurs="0">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="component" type="ent:NonVideoProductComponentEntity" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="promotionList" minOccurs="0">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="promotion" type="ent:NonVideoPromotionEntity" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="NonVideoComparisonShoppingPriceEntity">
+		<xs:sequence>
+			<xs:element ref="ent:priceType"/>
+			<xs:element name="priceInformationList">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="priceInformation" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element ref="ent:pricePeriodType"/>
+									<xs:element name="minimumAmount" type="xs:decimal"/>
+									<xs:element name="maximumAmount" type="xs:decimal"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NonVideoBasePriceEntity">
+		<xs:sequence>
+			<xs:element ref="ent:pricePeriodType"/>
+			<xs:element ref="ent:initialAmount"/>
+			<xs:element ref="ent:initialAmountLengthMonths" minOccurs="0"/>
+			<xs:element ref="ent:regularAmount"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NonVideoStandardAttributeEntity">
+		<xs:sequence>
+			<xs:element ref="ent:name"/>
+			<xs:element ref="ent:value"/>
+			<xs:element ref="ent:dataType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NonVideoProductComponentEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element name="productId" type="xs:long"/>
+					<xs:element ref="ent:lineItemId" minOccurs="0"/>
+					<xs:element ref="ent:verticalId"/>
+					<xs:element ref="ent:verticalName"/>
+					<xs:element ref="ent:categoryId"/>
+					<xs:element ref="ent:categoryName"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="NonVideoFeatureEntity">
+		<xs:sequence>
+			<xs:element name="id" type="xs:long"/>
+			<xs:element ref="ent:name"/>
+			<xs:element ref="ent:rank"/>
+			<xs:element ref="ent:type"/>
+			<xs:element ref="ent:value"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NonVideoPromotionEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element name="code" type="xs:string"/>
+					<xs:element ref="ent:effectiveBeginDate" minOccurs="0"/>
+					<xs:element ref="ent:expirationDate" minOccurs="0"/>
+					<xs:element name="id" type="xs:long"/>
+					<xs:element ref="ent:name"/>
+					<xs:element ref="ent:rank"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="NonVideoProviderEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element name="providerId" type="xs:long"/>
+					<xs:element ref="ent:providerName"/>
+					<xs:element ref="ent:rank" minOccurs="0"/>
+					<xs:element ref="ent:industry" minOccurs="0"/>
+					<xs:element ref="ent:industryRank" minOccurs="0"/>
+					<xs:element ref="ent:preferredProviderFlag" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="NonVideoCustomizationGroupEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:groupTitle"/>
+					<xs:element ref="ent:instructionText" minOccurs="0"/>
+					<xs:element ref="ent:rank"/>
+					<xs:element name="customizationList">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="customization" type="ent:NonVideoCustomizationEntity" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="NonVideoCustomizationEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:customizationId"/>
+					<xs:element name="code" type="xs:string"/>
+					<xs:element ref="ent:type"/>
+					<xs:element ref="ent:name"/>
+					<xs:element ref="ent:label" minOccurs="0"/>
+					<xs:element name="description" type="xs:string" minOccurs="0"/>
+					<xs:element ref="ent:helpText" minOccurs="0"/>
+					<xs:element ref="ent:helpTitle" minOccurs="0"/>
+					<xs:element ref="ent:helpType" minOccurs="0"/>
+					<xs:element name="requiredFlag" type="xs:boolean"/>
+					<xs:element name="itemList" minOccurs="0">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="item" type="ent:NonVideoCustomizationItemEntity" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element ref="ent:maximumNumericValue" minOccurs="0"/>
+					<xs:element ref="ent:maximumSelectionCount" minOccurs="0"/>
+					<xs:element ref="ent:maximumTextLength" minOccurs="0"/>
+					<xs:element ref="ent:minimumNumericValue" minOccurs="0"/>
+					<xs:element ref="ent:minimumSelectionCount" minOccurs="0"/>
+					<xs:element ref="ent:lengthValidationFlag"/>
+					<xs:element ref="ent:immediateSubmissionFlag"/>
+					<xs:element ref="ent:rangeValidationFlag"/>
+					<xs:element ref="ent:regularExpressionValidationFlag"/>
+					<xs:element ref="ent:selectionCountValidationFlag"/>
+					<xs:element ref="ent:sensitiveFlag"/>
+					<xs:element ref="ent:validFlag" minOccurs="0"/>
+					<xs:element ref="ent:rank"/>
+					<xs:element ref="ent:regularExpression" minOccurs="0"/>
+					<xs:choice minOccurs="0">
+						<xs:element ref="ent:textValue" minOccurs="0"/>
+						<xs:element ref="ent:sensitiveTextValue" minOccurs="0"/>
+					</xs:choice>
+					<xs:element ref="ent:validationErrorText" minOccurs="0"/>
+					<xs:element ref="ent:warningText" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="NonVideoCustomizationItemEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element name="code" type="xs:string"/>
+					<xs:element ref="ent:helpText" minOccurs="0"/>
+					<xs:element ref="ent:helpTitle" minOccurs="0"/>
+					<xs:element ref="ent:helpType" minOccurs="0"/>
+					<xs:element ref="ent:id"/>
+					<xs:element ref="ent:selectedFlag"/>
+					<xs:element name="priceList" minOccurs="0">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="price" type="ent:NonVideoBasePriceEntity"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="text" type="xs:string"/>
+					<xs:element ref="ent:zeroText" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="NonVideoUpdatedCartEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:omsOrderId" minOccurs="0"/>
+					<xs:element ref="ent:accountId" minOccurs="0"/>
+					<xs:element name="cartPromotionList" minOccurs="0">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="cartPromotion" maxOccurs="unbounded">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="code" type="xs:string"/>
+											<xs:element name="id" type="xs:long"/>
+											<xs:element ref="ent:name"/>
+											<xs:element ref="ent:rank"/>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element ref="ent:invoiceAmountTotal"/>
+					<xs:element ref="ent:invoiceMonthlyAmountTotal"/>
+					<xs:element ref="ent:invoiceOneTimeAmountTotal"/>
+					<xs:element name="orderStatusList" minOccurs="0">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="orderLineItem" maxOccurs="unbounded">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="productId" type="xs:long"/>
+											<xs:element name="status" type="xs:string"/>
+											<xs:element ref="ent:lineItemId" minOccurs="0"/>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="receiptInvoiceItemList" minOccurs="0">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="receiptItem" type="ent:NonVideoReceiptItemEntity" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="NonVideoReceiptItemEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element ref="ent:name"/>
+					<xs:element name="productId" type="xs:long"/>
+					<xs:element ref="ent:lineItemId" minOccurs="0"/>
+					<xs:element ref="ent:amount"/>
+					<xs:element ref="ent:pricePeriodType"/>
+					<xs:element ref="ent:priceType"/>
+					<xs:element name="providerId" type="xs:long"/>
+					<xs:element ref="ent:providerName"/>
+					<xs:element ref="ent:verticalId"/>
+					<xs:element ref="ent:verticalName"/>
+					<xs:element ref="ent:categoryId"/>
+					<xs:element ref="ent:categoryName"/>
+					<xs:element ref="ent:displayCategoryName" minOccurs="0"/>
+					<xs:element name="standardAttributeList" minOccurs="0">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="standardAttribute" type="ent:NonVideoStandardAttributeEntity" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="componentList" minOccurs="0">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="component" type="ent:NonVideoProductComponentEntity" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="childItemList" minOccurs="0">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="receiptItem" maxOccurs="unbounded">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element ref="ent:name"/>
+											<xs:element ref="ent:amount"/>
+											<xs:element ref="ent:pricePeriodTypeId" minOccurs="0"/>
+											<xs:element ref="ent:pricePeriodType" minOccurs="0"/>
+											<xs:element ref="ent:priceType" minOccurs="0"/>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="NonVideoConfirmationEntity">
+		<xs:complexContent>
+			<xs:extension base="ent:BasicEntity">
+				<xs:sequence>
+					<xs:element name="aggregatorOrderNumber" type="xs:long"/>
+					<xs:element name="confirmationNumber" type="xs:string"/>
+					<xs:element ref="ent:confirmationNumberFormatted"/>
+					<xs:element ref="ent:providerOrderNumber" minOccurs="0"/>
+					<xs:element ref="ent:providerTransactionId" minOccurs="0"/>
+					<xs:element ref="ent:providerName"/>
+					<xs:element name="confirmationMessageList" minOccurs="0">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="confirmationMessage" maxOccurs="unbounded">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element ref="ent:title"/>
+											<xs:element name="description" type="xs:string"/>
+											<xs:element ref="ent:expirationDate" minOccurs="0"/>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

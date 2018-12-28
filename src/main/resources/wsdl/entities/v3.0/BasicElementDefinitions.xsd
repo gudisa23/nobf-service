@@ -1,0 +1,2707 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2005 sp2 U (http://www.altova.com) by Directv (Directv Warehouse) -->
+<!--
+ * ENTERPRISE INTEGRATION
+ * Change Control
+ *
+ * $Log::   $
+ * 
+ *    Rev 1.47   Aug 17 2007 02:36:36   directv
+ * Added onFileCreditCardNumber and onFileEFTAccountNumber
+ * 
+ *    Rev 1.46   Sep 14 2006 11:48:26   skondaka
+ * productName field datatype was corrected
+ * 
+ *    Rev 1.45   Jul 25 2006 19:56:32   malberty
+ * Updated to reflect new changes for ebill
+ * 
+ *    Rev 1.43   Jun 20 2006 08:29:52   malberty
+ * Added billIssueDate as dateTime for use with EBill
+ * 
+ *    Rev 1.42   Jun 16 2006 09:25:26   skondaka
+ * added productName field
+ * 
+ *    Rev 1.41   May 25 2006 15:34:02   zhong
+ * Changed NILLABLE to true for phone aircode, phone number, password, language, language code, identification type and data entities.
+ * 
+ *    Rev 1.40   May 09 2006 13:43:40   skondaka
+ * product code data type was wrong..changed from string to long
+ * 
+ *    Rev 1.39   May 03 2006 10:35:48   jroberts
+ * Added for DTS project: customerInstallDate, systemInstallDate, lastLoginDate, registrationDate, loginId, propertyName, propertyModel, buildingSize, numberOfFloors, buildingLabel
+ * 
+ *    Rev 1.38   Apr 28 2006 15:25:36   sgovindarajan
+ * Added Cas Card Id
+ * 
+ *    Rev 1.37   Apr 25 2006 18:28:02   skondaka
+ * added two fields feeType, productCode
+ * 
+ *    Rev 1.34   Mar 03 2006 10:51:18   jdejesus
+ * added LastMonthFlag and LastFourMonthsFlag
+ * 
+ *    Rev 1.32   Mar 02 2006 14:59:50   jdejesus
+ * added alternateAccountFlag and priceCode
+ * 
+ *    Rev 1.31   Mar 02 2006 13:51:02   ddearman
+ * added recipientAccountId
+ * 
+ *    Rev 1.30   Feb 07 2006 12:53:42   malberty
+ * Added new paymentType method for use with GetBillingLedger
+ * 
+ *    Rev 1.29   Jan 24 2006 13:18:20   ddearman
+ * removed enumerations from proprietory segment
+ * 
+ *    Rev 1.28   Dec 19 2005 10:56:22   ddearman
+ * changed account type from length=3 to maxLength=3
+ * 
+ *    Rev 1.27   Dec 14 2005 11:59:34   ddearman
+ * changed hardwareleaseindicator to equipmentOwnership for lease project
+ * 
+ *    Rev 1.26   Dec 01 2005 16:35:36   skondaka
+ * no changes
+ * 
+ *    Rev 1.25   Nov 16 2005 09:26:18   ddearman
+ * updates for new get profile spec
+ * 
+ *    Rev 1.23   Jul 14 2005 11:13:48   ddearman
+ * changed creditcardnumber element to a string to allow encryption
+ * 
+ *    Rev 1.22   May 27 2005 11:09:34   ddearman
+ * added Home Media Center related info
+ * 
+ *    Rev 1.21   Apr 29 2005 08:55:26   ddearman
+ * added: additionalTargetsExistFlag,proprietorySegment,proprietorySegmentUpdate,totalNumberOfTargets
+ * 
+ * removed: the enumeration for systemId
+ * 
+ *    Rev 1.19   Feb 03 2005 09:56:02   ddearman
+ * added overrideAddressScrubFlag (previous version was incorrect)
+ * 
+ *    Rev 1.17   Jan 27 2005 06:43:30   ddearman
+ * change contactpointid type to 'long' instead of 'string'
+ * 
+ *    Rev 1.16   Jan 25 2005 11:16:30   ddearman
+ * added a 'type' to futureOrbitalSlot,numerOfUnits,pastDueFlag,recurringCreditExpirationDate,scheduledDateTime
+ * 
+ *    Rev 1.15   Jan 20 2005 11:36:16   ddearman
+ * added adjustment type
+ * 
+ *    Rev 1.14   Jan 12 2005 13:12:22   skovilmadam
+ * Changed following canonical entities to xsd data types due to ICAN bug. Using these entities
+ * resulted in the data types being defined as strings
+ * "ent:AmountEntity" to "xs:decimal",
+ * "ent:BankRoutingNumberEntity" to "xs:long",
+ * "ent:BillingAccountIdEntity" to "xs:long",
+ * "ent:BooleanEntity" to "xs:boolean",
+ * "ent:CamcIdEntity" to "xs:long",
+ * "ent:CodeEntity" to "xs:long",
+ * "ent:CustomerIdEntity" to "xs:long",
+ * "ent:DateEntity" to "xs:date",
+ * "ent:DateTimeEntity" to "xs:dateTime",
+ * "ent:DayOfMonthEntity" to "xs:nonNegativeInteger",
+ * "ent:TimeEntity" to "xs:time",
+ * "ent:ValidCreditCardNumberEntity" to "xs:long"
+ * 
+ *    Rev 1.13   Jan 10 2005 15:17:38   skovilmadam
+ * added recurring credit expiration date
+ * 
+ *    Rev 1.11   Jan 08 2005 01:19:28   skovilmadam
+ * Changes according to spec version 3.0
+ * 
+ *    Rev 1.10   Jan 08 2005 00:29:52   skovilmadam
+ * added WriteoffDate field
+ * 
+ *    Rev 1.9   Jan 04 2005 07:13:56   mgozaloff
+ * Updated comments for productType
+ * 
+ *    Rev 1.8   Jan 04 2005 05:43:34   mgozaloff
+ * Add productType
+ * 
+ *    Rev 1.7   Dec 31 2004 12:18:32   skovilmadam
+ * Changes to accommodate new requirements for Get Profile
+ * 
+ *    Rev 1.6   Dec 30 2004 14:25:30   skovilmadam
+ * changed shipping method to use Code Description entity
+ * 
+ *    Rev 1.5   Dec 29 2004 11:27:36   mgozaloff
+ * Added PVCS revision log, accessCardChangeDistributionMethodDescription and accessCardChangeStatusDescription.
+ * 
+ -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ent="http://ei.directv.com/schemas/entities/v3_0" targetNamespace="http://ei.directv.com/schemas/entities/v3_0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="./CoreTypes.xsd"/>
+	<xs:include schemaLocation="./CoreLists.xsd"/>
+	<xs:annotation>
+		<xs:documentation>This Schema provides element definitions for the most simple elements that make up the DIRECTV business. Any element that has to have a Complex Type should not be part of this schema</xs:documentation>
+	</xs:annotation>
+	<xs:element name="accountId" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>The Account Id is a unique system-generated numeric value which identifies a subscriber in the billing system.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="accountingPeriod" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Accounting period the transaction is/was reported in </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="accountingYear" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Accounting year the transaction is/was reported in</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="accountPastDueThreshold" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Account Past Due Threshold</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="activationDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Date this Account was activated</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="accessFeeBypassFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>The Account Fee Bypass Flag indicates that if a subscriber has this service no additional access fee should be charged</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="accessCardChangeActionTaken" type="ent:AccessCardChangeActionTakenTypesEntity">
+		<xs:annotation>
+			<xs:documentation>Action taken on the Card Change request</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="accessCardChangeDistributionMethod" type="ent:AccessCardChangeDistributionMethodTypesEntity">
+		<xs:annotation>
+			<xs:documentation>How the new card is shipped (0 - First Class; 1 - Overnight)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="accessCardChangeDistributionMethodDescription">
+		<xs:annotation>
+			<xs:documentation>How the new card is shipped</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="30"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="accessCardChangeStatusDescription">
+		<xs:annotation>
+			<xs:documentation>Description of the card change Status in CMS</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="30"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="accessCardChangeType" type="ent:AccessCardChangeTypesEntity">
+		<xs:annotation>
+			<xs:documentation>Card change request type</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="accessCardDisconnectType" type="ent:AccessCardDisconnectTypesEntity">
+		<xs:annotation>
+			<xs:documentation>Disconnection type for the Card change request.  I - Immediate (default) and C - Callback</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="accessCardId" type="ent:AccessCardIdEntity">
+		<xs:annotation>
+			<xs:documentation>	The 12-character identification of the DSS Access Card. This number is assigned to the card when it is
+manufactured, and cannot be changed. All characters in this field are significant, so leading zeros are not to be suppressed when storing or displaying this field. This character field is being treated as numeric for now.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="accessCardIndicator" type="ent:AccessCardIndicatorTypesEntity">
+		<xs:annotation>
+			<xs:documentation>Used to indicate state of the access card during a replacement. The known valid values are: B; C - Chaining has completed for DSS access card; M - DSS access card in the mail; N; S; " " (blank)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="accessCardStatus" type="ent:AccessCardStatusEntity">
+		<xs:annotation>
+			<xs:documentation>This alphanumeric field indicates the status of a subscribers access card (ACTV/DCRD etc)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="accessCardType" type="ent:AccessCardTypesEntity">
+		<xs:annotation>
+			<xs:documentation>The one character field indicating if this is the P - Primary card or a S - Secondary card. The primary card
+is the first card installed for a subscriber.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="accountBalance" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>The customer account balance</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="accessCardChangeStatus" type="ent:AccessCardChangeStatusTypesEntity">
+		<xs:annotation>
+			<xs:documentation>The status of this card change request</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="accountIndicator" type="ent:AccountIndicatorTypesEntity">
+		<xs:annotation>
+			<xs:documentation>Indicates whether the account is owned, leased, or mixed</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="accountStatus" type="ent:AccountStatusTypeEntity">
+		<xs:annotation>
+			<xs:documentation>Account Status is the alphanumeric field that indicates the status of an account.  The values are mutable and may change in the future.  Some examples of the values are: PEND - No CAMC subscriber id assigned; ACTV - At least one DSS Access Card status is ACTV; DISC - No DSS Access Cards whose status is ACTV; PDIS - Future dated disconnect subscriber request in future actions table; PSUS - Future dated suspend services request in future actions table; SUSP - All services have been suspended; COLL - Account has been placed in collections; WROF - Account scheduled for write-off as bad debt; CTOF - Services are cutoff</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="accountType" type="ent:AccountTypeEntity">
+		<xs:annotation>
+			<xs:documentation>The Type of Account field contains a max of 3 alphanumeric characters. When entered, it is used to indicate that an
+individual subscriber receives special consideration or, if this is a business account, the type of business.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="actionCode">
+		<xs:annotation>
+			<xs:documentation>Used in requests to describe the action that needs to be taken</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="30"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="actionTakenDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Date the action was taken</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="additionalTargetsExistFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>More targets exist for this account</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="address2" type="ent:StreetNameEntity">
+		<xs:annotation>
+			<xs:documentation>Address Line 2</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="address3" type="ent:StreetNameEntity">
+		<xs:annotation>
+			<xs:documentation>Address Line 3</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="address4" type="ent:StreetNameEntity">
+		<xs:annotation>
+			<xs:documentation>Address Line 4</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="adjustmentType" type="ent:AdjustmentTypesEntity">
+		<xs:annotation>
+			<xs:documentation>Adjustment type. Values can be product or account</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="airDate" type="xs:dateTime">
+		<xs:annotation>
+			<xs:documentation>Date this programming product airs or aired</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="airDateTime" type="xs:dateTime">
+		<xs:annotation>
+			<xs:documentation>Date/Time this programming product airs or aired</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="allowIPPVFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Indicator if IPPV is allowed on this account/card</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="allowOPPVFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Indicator if OPPV is allowed on this account/card</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="alternateAccountFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Alternate Account Flag</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="alternateServicerFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Indicator if the account has an alternate servicer</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="amount" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Indicates an amount</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="apartmentNumber">
+		<xs:annotation>
+			<xs:documentation>Apartment Number</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="5"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="authorizedCreditScore" type="xs:boolean"/>
+	<xs:element name="autoRenewFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Indicates if this programming product should be renewed automatically once it expires</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="bankAccountNumber" type="ent:BankAccountNumberEntity">
+		<xs:annotation>
+			<xs:documentation>Bank Account Number</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="bankRoutingNumber" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>ABA Routing Code </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="basePrice" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Base Price</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="batchSequenceNumber" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Batch Sequence Number. Used as Confirmation Number for one-time payments</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="beginDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Begin Date</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="beginSuspensionDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Date suspension begins</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="billDueDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>The Date the subscribers Bill is Due.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="billEventFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>A flag which indicates whether dollars are to be posted for the event</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="billingCycleDay">
+		<xs:annotation>
+			<xs:documentation>The Bill Cycle Day indicates the day within the monthly billing cycle that this subscribers statement is processed</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:int">
+				<xs:minInclusive value="0"/>
+				<xs:maxInclusive value="31"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="billsRemaining" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>The Bill Remaining field indicates the number of months that remain outstanding via a payment plan, i.e. a products's cost is to be spread out over several payments</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="billToAlternateAccountId" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>The Alternate Account number is an account who is associated with the subscribers account. The account being billed for a
+subscriber's services</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="billToAlternateAccountFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Indicates if the bill should be sent to the billing address on file rather than the service address</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="billToBillingAddressFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Indicates if the bill should be sent to the billing address on file rather than the service address</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="broadcastAreaFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>The Broadcast Area Flag indicates whether or not the subscriber can receive any over the air network stations</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="cableAvailableFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>This flag is true if cable TV is available at this service address</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="cableStatusFlag" type="ent:CableStatusTypesEntity">
+		<xs:annotation>
+			<xs:documentation>Various cable status's</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="callbackDay" type="xs:nonNegativeInteger">
+		<xs:annotation>
+			<xs:documentation>The CAMC callback Day. The day of the month that the subscriber's Card reports its information to the CAMC.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="callbackThreshold" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>The Callback Dollar Amount Threshold is the amount of purchases that must be reached by a card to activate a callback to the CAMC.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="callBackTime" type="xs:time">
+		<xs:annotation>
+			<xs:documentation>Access card call back time</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="callBackType">
+		<xs:annotation>
+			<xs:documentation>A one-character alphanumeric field indicating the Last CAMC Callback Type, either normal periodic
+callback or immediate callback. Immediate callbacks can be manually requested or are
+automatically requested as a result of some online action.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="1"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="camcId" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>The subscriber ID assigned by the CAMC.  Used for all references to CAMC subscrber Id (CAMC SUBID)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="campaignCode">
+		<xs:annotation>
+			<xs:documentation>Campaign code</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="4"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="carrierRoute">
+		<xs:annotation>
+			<xs:documentation>The system generated postal route.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="4"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="censusBlockGp">
+		<xs:annotation>
+			<xs:documentation>The Census Block Group is a 1 character alphanumeric value of information obtained from the census bureau.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="1"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="censusTract">
+		<xs:annotation>
+			<xs:documentation>The Census Tract has a value of integer 9(6) and is obtained from the census bureau.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:long">
+				<xs:totalDigits value="6"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="chainOpCode" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Chain Op Code</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="channel" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Channel on which the viewer is receiving this product</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="channelForLegacyReceivers" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Channel number for Legacy receivers</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="chargeFeeFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Should a fee be charged because of this order</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="city" type="ent:CityEntity">
+		<xs:annotation>
+			<xs:documentation>City</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="cityTax" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>City Tax</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="cityTaxCode">
+		<xs:annotation>
+			<xs:documentation>The 1 character alphanumeric field indicating the that this service or event was taxed by the subscribers city. Values are C, if taxed or blank, if not.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="1"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="code" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Codes are generic longs used by various entities in the model</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="commentCode" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>The Comment Reason Code for subscriber comments.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="commentAddedOnDateTime" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>The Date and Time the Comment was entered.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="commentText">
+		<xs:annotation>
+			<xs:documentation>The Comment Text</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="1000"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="commentType">
+		<xs:annotation>
+			<xs:documentation>A 4 character alphanumeric field indicating a Type of Comment.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="4"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="commissionRate" type="xs:double">
+		<xs:annotation>
+			<xs:documentation>The commission percentage rate payable to a dealer or chain.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="commissionPaidCount" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Number of times a commission has been paid</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="commissionPaidFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Indicates if commission is paid</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="commissionStartDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Commission start date</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="commitmentExpirationDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Commitment Expiration date</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="commitmentValue" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Commitment value in dollars (no cents)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="commitmentDescription" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>“standard hardware” or “advanced hardware”</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="commitmentDuration" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>Commitment Duration in months</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="commitmentStatus" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>“begin” or “end”</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="contactName" type="ent:GenericNameEntity">
+		<xs:annotation>
+			<xs:documentation>Contact Person</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="contactPointId" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Identifies the contact point</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="copyFromTargetId" type="ent:TargetIdEntity">
+		<xs:annotation>
+			<xs:documentation>Identifies the Target from which mirroring Products are copied from</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="coreFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Indicates if the account has a core service for the chain</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="coreServiceStartDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Indicates the start date of core service.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="coreServiceEndDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Indicates the end date of core service.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="corporateId">
+		<xs:annotation>
+			<xs:documentation>Corporation identification</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="30"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="country" type="ent:CountryTypesEntity">
+		<xs:annotation>
+			<xs:documentation>Country</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="countyCode" type="ent:CountyCodeEntity">
+		<xs:annotation>
+			<xs:documentation>The 3 character alphanumeric field indicating a County's Federal Information Processing Standard (FIPS) Code.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="countyName" type="ent:CountyNameEntity">
+		<xs:annotation>
+			<xs:documentation>County Name</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="countyTax" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>County Taxes</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="countyTaxCode">
+		<xs:annotation>
+			<xs:documentation>The 1 character alphanumeric field indicating the that this service or event was taxed by the subscribers county. Values are C, if taxed or blank, if not.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="1"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="createShowroomAccountFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Create showroom account flag</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="creationDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Date this account was created</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="createdByDealerFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Was this account created by a dealer</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="creditCardExpirationDate" type="ent:MonthYearEntity">
+		<xs:annotation>
+			<xs:documentation>Expiration date</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="creditCardIndicator">
+		<xs:annotation>
+			<xs:documentation> If a Credit Card is to be used as the payment method for the service or event. Indicates use of credit card on the most recent (or pending) charge. Values: P - Primary credit card was used; A - Alternate credit card was used; G - Gift billed to the givers card; N - Credit card not used</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="1"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="creditCardNumber" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Valid Credit Card Number</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="creditCardType">
+		<xs:annotation>
+			<xs:documentation>A 2 character alphanumeric field indicating the Type of Credit Card (VI,MC,AX)</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="2"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="creditScoreRequestId" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>credit Score Request Id</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="creditScoreResultText">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="2000"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="creditSegment" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Credit segment this consumer belongs to</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="creditSegmentCalculatedOnDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Date the credit segment was calculated</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="customerId" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Unique identifier for a customer.  Customers represent persons or organizations that consume or pay for products.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="customerExistsFlag" type="xs:boolean"/>
+	<xs:element name="customerInstallDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>The date the customer was installed</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="customerSinceDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Customer with DIRECTV Since date</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="customerStatus" type="ent:CustomerStatusTypesEntity">
+		<xs:annotation>
+			<xs:documentation>Status of the customer (prospect or customer)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="customerType" type="ent:CustomerTypesEntity">
+		<xs:annotation>
+			<xs:documentation>Type of the Customer (residentialSubscriber or nonResidentialSubscriber)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="customerValue" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>Customer Value. Two digit integer</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="cutoffDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Service non-pay Cutoff Date</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="cutoffLevel">
+		<xs:annotation>
+			<xs:documentation>	A 1 character alphanumeric field indicating the Cutoff Level for a subscribers account. Services with a matching cut off level will be cut off on the subscribers cutoff date. </xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="1"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="date" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>A date entity</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="daylightSavingsFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Indicates Daylight Savings</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="dayOfMonth" type="xs:nonNegativeInteger">
+		<xs:annotation>
+			<xs:documentation>Indicates day of the Month</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="daysWithoutserviceInMth" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Indicates the number of days the customer has not had service in the month</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="dealerAccountId" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Account id of the Dealer</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="dealerChainName" type="ent:GenericNameEntity">
+		<xs:annotation>
+			<xs:documentation>Name of the store chain</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="dealerChainNumber" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Dealer Chain Id</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="dealerEquipmentSalesFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Does this dealer deal with equipment sales ?</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="dealerFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Indicates if this customer is a dealer</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="dealerId" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Dealer Id</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="dealerInstallationFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Does this dealer deal with installation</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="dealerName" type="ent:GenericNameEntity">
+		<xs:annotation>
+			<xs:documentation>Name of the dealer</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="dealerOtherFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Does this dealer deal with other services ?</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="dealerProgrammingFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Does this dealer deal with programming ?</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="dealerRepairsFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Does this dealer deal with repairs</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="description">
+		<xs:annotation>
+			<xs:documentation>Description of the Item in Context</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="30"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="disconnectDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Date this product was disconnected</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="disconnectReason" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Reason why this product was disconnected </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="disconnectType" type="ent:DisconnectTypeEntity">
+		<xs:annotation>
+			<xs:documentation>Type of the Disconnect</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="discountAmount" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Amount offerred as discount</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="districtTax" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>The District Tax Amount is the amount of tax levied by a subscribers district.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="districtTaxCode">
+		<xs:annotation>
+			<xs:documentation>A 1 character field to indicate the District Tax Code. If present, the subscriber or event has been charged a
+district tax.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="1"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="dmaAfflCallLetters">
+		<xs:annotation>
+			<xs:documentation>Call letters of the Designated Marketing Area (DMA) affiliate</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="7"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="dmaAfflNetworkAssociatedWith">
+		<xs:annotation>
+			<xs:documentation>Network the Designated Marketing Area (DMA) affiliate is associated with</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="3"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="dmaCode" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Designated Marketing Area in which the service is being offered.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="dmaPromotionalMessage">
+		<xs:annotation>
+			<xs:documentation>Promotional Message for a Designated Marketing Area (DMA)</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="80"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="domainId" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Media Center domain ID</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="effectiveBeginDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Effective begin date of the item in context</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="effectiveDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Effective date for the item in context</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="effectiveEndDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Effective end date for the item in context</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="eftFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Indicates if this product is paid using EFT</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="eftTransDays" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Number of days from subscriber's bill cycle date until EFT due date.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="eftDueDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Day on or about that the subscriber's account will be debited</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="emailAddress" type="ent:EmailAddressEntity">
+		<xs:annotation>
+			<xs:documentation>Email Address</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="endAirDateTime" type="xs:dateTime">
+		<xs:annotation>
+			<xs:documentation>Date/Time this programming product completes airing</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="endDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>End date</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="endOfMonthBalance" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>End of month Balance</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="endSuspensionDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Date Suspension ends</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="estimatedViewingOccupancy" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Estimated Viewing Occupancy</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="eventCode" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Identifies a Programming Event</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="eventPrefix">
+		<xs:annotation>
+			<xs:documentation>Event Prefix</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="1"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="eventRptBackDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Report back Date and time</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="eventsAiredStatus">
+		<xs:annotation>
+			<xs:documentation>Indicator whether the Event has aired, or will air in future</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="6"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="eventSource">
+		<xs:annotation>
+			<xs:documentation>A 7 character alphanumeric indicating the contract reference number of the program provider of an Event.
+</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="7"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="eventStatusCriteria" type="xs:integer">
+		<xs:annotation>
+			<xs:documentation>Criteria for searching based on the Event Status</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="expirationDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Expiration Date</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="extendCutoffDays" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>The Cutoff Extended by Days field has an integer value of 9(2). This is the number of days to be added to the cutoff date to give subscriber more time to remit before cut-off occurs. This field is set manually by a CSR.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="federalTaxIdentification" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Federal Tax ID Number</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="feeCode" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Identifies a Fee</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="feePrefix">
+		<xs:annotation>
+			<xs:documentation>Prefix for a Fee</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="1"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="feeType">
+		<xs:annotation>
+			<xs:documentation>Type of a Fee</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="1"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="fipsCountyCode" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>The 3 character alphanumeric field indicating a County's Federal Information Processing Standard (FIPS) Code. </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="fipsStateCode">
+		<xs:annotation>
+			<xs:documentation>The 2 character alphanumeric field indicating a State's Federal Information Processing Standard (FIPS) Code. </xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="2"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="fireCodeOccupancy" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Fire Code Occupancy</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="firstName" type="ent:FirstNameEntity">
+		<xs:annotation>
+			<xs:documentation>First Name</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="freezeOrderDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Freeze order date. Date represents when service was frozen or suspended.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="fullName" type="ent:GenericNameEntity">
+		<xs:annotation>
+			<xs:documentation>Full Customer Name</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="futureOrbitalSlot" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Orbital slot where a programming will be served from in future</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="equipmentOwnership" type="ent:EquipmentOwnershipTypesEntity">
+		<xs:annotation>
+			<xs:documentation>Indicates whether the hardware is owned or leased</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="hardwareIdRequiredFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Indicates if an ID is required for this hardware type</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="hardwareType" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Indicates the type of the Hardware (e.g. IRD)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="hasCableTVFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Does Subscriber have Cable TV installed at this Service Address</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="howOrdered" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>How was this product ordered?</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="identificationData" nillable="true">
+		<xs:annotation>
+			<xs:documentation>The value for the identification (see identificationType)</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="32"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="identificationType" nillable="true">
+		<xs:annotation>
+			<xs:documentation>The type of Identification; identificationData contains the value.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="6"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="initialActivationDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Date this product was activated initially</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="installationReschedulableFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Is this installation reschedulable</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="installationWindow" type="ent:InstallationWindowTypesEntity"/>
+	<xs:element name="installedDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Installed Date</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="installerId">
+		<xs:annotation>
+			<xs:documentation>The 12 character alphanumeric identifier for the Installer.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="12"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="lastBillAmount" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Amount of the last bill</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="lastBillDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>When was the last bill generated</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="lastBillDueDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>The Date the subscribers Last Bill is Due.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="lastBillPaymentDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Date last bill was paid</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="lastCallbackDate" type="xs:dateTime">
+		<xs:annotation>
+			<xs:documentation>Last time the receiver called back the CAMC</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="lastCallbackType">
+		<xs:annotation>
+			<xs:documentation>A one-character alphanumeric field indicating the Last CAMC Callback Type, either normal periodic
+callback (P) or immediate callback (I). Immediate callbacks can be manually requested from the online, or are
+automatically requested as a result of some online action.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="1"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="lastLoginDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Last time the user logged in to the system</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="lastName" type="ent:LastNameEntity">
+		<xs:annotation>
+			<xs:documentation>Last Name</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="lastPaymentAmount" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Amount of the last payment</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="paymentConfirmationNumber" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Confirmation Number for the last Payment</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="lastStatusChangeDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Date status of this product last changed on</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="latitude">
+		<xs:annotation>
+			<xs:documentation>This integer value 9(7) field is the Latitude location of the subscribers or dealers address. This field will be used for demographic profiles.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:long">
+				<xs:totalDigits value="7"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="latitudeDirection">
+		<xs:annotation>
+			<xs:documentation>A one-character alphanumeric field indicating the subscribers home Latitude Direction. For North America, the value is always N.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="1"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="language" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Used to indicate the primary language of a subscriber. This is used to determine the preferred language the subscriber wishes to be correspondended with. </xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="20"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="languageCode" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Preferred Language Code</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="5"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="localChannelMarketName">
+		<xs:annotation>
+			<xs:documentation>Name of the Local Channel Market</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="50"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="location">
+		<xs:annotation>
+			<xs:documentation>This 10-character free-form field identifies the room or location of the DSS Access Card and equipment
+within the subscribers home or dealers showroom.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="10"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="longDescription" type="xs:string"/>
+	<xs:element name="longitude">
+		<xs:annotation>
+			<xs:documentation>This integer value is the longitude location of the subscriber or dealers address. This field will be used for demographic profiles.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:long">
+				<xs:totalDigits value="7"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="longitudeDirection">
+		<xs:annotation>
+			<xs:documentation>A one-character alphanumeric field indicating the subscribers home Longitude Direction. For North America the value is always W.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="1"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="lostDamaged" type="ent:LostDamagedTypesEntity">
+		<xs:annotation>
+			<xs:documentation>Indicates the Lost/Damaged status for the Access Card</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="mailAddressFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Mail Address Flag</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="mailDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Mail Date</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="mailGroupCode">
+		<xs:annotation>
+			<xs:documentation>Mail Group Code</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="9"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="manufacturer">
+		<xs:annotation>
+			<xs:documentation>Identifies the Manufacturer of the equipment</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="12"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="makePaymentsAutomaticallyFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Indicates if the payment method registered with the account should be used for making payments automatically</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="mediaResponseFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>A Flag that, when true, indicates media responses need to be captured when a subscriber purchases a service using this price.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="mediaType" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Represent a media types, which are used to group media responses. Some media types would be Newspaper, Television, Radio, etc.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="mediaCenterDeviceType" type="ent:MediaCenterDeviceTypesEntity">
+		<xs:annotation>
+			<xs:documentation>Device types contained in a Domain</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="messageCategory" type="ent:MessageCategoryTypesEntity">
+		<xs:annotation>
+			<xs:documentation>Category of the message returned</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="messageCode" type="ent:MessageCodeEntity">
+		<xs:annotation>
+			<xs:documentation>Message Code</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="messageDataState" type="ent:MessageDataStateTypesEntity">
+		<xs:annotation>
+			<xs:documentation>Data State after processing; Indicator for retries</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="messageSeverity" type="ent:MessageSeverityTypesEntity">
+		<xs:annotation>
+			<xs:documentation>Severity of the message returned</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="messageStatus" type="ent:MessageStatusTypesEntity">
+		<xs:annotation>
+			<xs:documentation>Status of the message returned</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="messageText" type="ent:MessageTextEntity">
+		<xs:annotation>
+			<xs:documentation>Message Text</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="middleInitial" type="ent:MiddleInitialEntity">
+		<xs:annotation>
+			<xs:documentation>Middle Initial</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="mirroredFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>A flag used to indicate if this access card has another (mirrored) access card owned by the subscriber.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="mirrorFeeFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Indicates if mirroring fee should be charged to this account</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="miscTax" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Miscellaneous Taxes assessed</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="miscTaxCode">
+		<xs:annotation>
+			<xs:documentation>A one-character alphanumeric field indicating a Miscellaneous Tax Code. When present, indicates that the subscriber or dealer has been charged a miscellaneous tax for the service or event.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="1"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="model">
+		<xs:annotation>
+			<xs:documentation>Model of the equipment</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="10"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="month">
+		<xs:annotation>
+			<xs:documentation>Month of year</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:int">
+				<xs:minInclusive value="1"/>
+				<xs:maxInclusive value="12"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="monthsBetnBills" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>The number of Months Between billings for a service.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="msaCode">
+		<xs:annotation>
+			<xs:documentation>The four alphanumeric characters that indicate the Metropolitan Statistical Area demographic grouping of
+subscribers or dealers based on address.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="4"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="nationalPBSFeedBlackedOutFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Indicates if National PBS feed is blacked out in this DMA</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="newCardMsgDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Date when new card message was received by the CAS. </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="nextBillDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>The Date when this event will be billed again. Used for installment payments of events.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="nonPaymentCode">
+		<xs:annotation>
+			<xs:documentation>A code that is set by the cutoff process to indicate the non-pay status of the subscriber when processed. Values are V for never pay, L for non-pay low and H for non-pay high.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="1"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="numberOfBills" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Indicates how many times the product should be billed at this price and using the number and the numbers of months between billing value</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="numberOfCardsInMailing">
+		<xs:annotation>
+			<xs:documentation>Number of cards that have been mailed (between 1 and 255 inclusive)</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:int">
+				<xs:minInclusive value="1"/>
+				<xs:maxInclusive value="255"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="numberOfUnits" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Number of Units</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="offerDurationType">
+		<xs:annotation>
+			<xs:documentation>This one-character alphanumeric field represents the duration of the price, either D for days or M for months.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="1"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="oppvLimit" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>The OPPV limit set on this account</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="orbitalSlot" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Indicates the Satellite IDs from which the manufacturer/model is capable of receiving a signal. Each byte
+relates to a different satellite slot.			
+			Orbital slot where this programming is served from</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="orderRequestedAction" type="ent:ValidOrderActionTypesEntity">
+		<xs:annotation>
+			<xs:documentation>Indicates the type of the order (Add/Remove/update)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="orderDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Date of the order</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="orderId" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>DIRECTV Order Id</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="orderLineItemID" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>DIRECTV Order line item ID</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="orderLineItemSequenceNumber" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>Order line item Sequence Number</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="orderQuantity" type="xs:double">
+		<xs:annotation>
+			<xs:documentation>Quantity Ordered</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="orderStatusChangeDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Date the Order status was last modified</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="originatorOrderId" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Order id of the Originating System</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="originatorOrderLineItemId" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Order Line item id of the Originating System</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="originatorSystem">
+		<xs:annotation>
+			<xs:documentation>The System originating this request</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="50"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="overrideAddressScrubFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Override the scrub address functionality</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="packageTrackingNumber">
+		<xs:annotation>
+			<xs:documentation>Tracking number for the mailing</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="20"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="parentCSS">
+		<xs:annotation>
+			<xs:documentation>Used for identifying parent of DSS Access Card.  Valid Values: 1 - owner is the parent;  3 - owner already the parent; 2 - owner is not the parent; 0 - owner parent unknown</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="1"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="password" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Password associated with the Account</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="10"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="pastDueAmount" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>The amount past due on this account</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="pastDueFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Indicates if the account is in past due or in good standing</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="paymentPriority" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Priority at which partial payments will be applied to services and events purchased by and to fees assessed to a subscriber. Used for aging of account balances.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="paymentProcessor" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>EFT, CreditCard, or remittance processor id</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="paymentType" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Type of payment used for a billing transacton - Used for viewing detail ledger transactions</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="payPerViewLimit" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Pay-per-view limit set on this account</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="periodID" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Identifies the generation period or version of the DSS access card</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="phoneAreaCode" type="ent:PhoneAreaCodeEntity" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Telephone - Area Code</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="phoneConnectionFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Is the receiver connected to a phone line</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="phoneNumber" type="ent:PhoneNumberEntity" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Telephone - number</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="phoneExtension" type="ent:PhoneExtensionEntity" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Telephone - extension</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="postToAlternateAccountFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Indicates if an alternate account is to be used</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="prefix">
+		<xs:annotation>
+			<xs:documentation>The Prefix of this item</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="1"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="priceCode" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Price code</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="primaryOwner" type="ent:PrimaryOwnerTypesEntity">
+		<xs:annotation>
+			<xs:documentation>Primary Owner of the service area</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="priorAccessCardId" type="ent:AccessCardIdEntity">
+		<xs:annotation>
+			<xs:documentation>Id of the Card prior to the access card in context (before the swap)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="priorPeriodUnearned" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>The Money Un-earned for the period (month)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="productClassification" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Classification of this Product</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="productCode" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Code of a Product</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="productName" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Name of a Product</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="productStatus" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Status of this Product</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="productType" type="ent:ProductTypesEntity">
+		<xs:annotation>
+			<xs:documentation>Indicates the type of the product (e.g: F, B, E, P, R)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="programmingStatus" type="ent:ProgrammingStatusEntity">
+		<xs:annotation>
+			<xs:documentation>Programming Status</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="promotionCode">
+		<xs:annotation>
+			<xs:documentation>The 10-character alphanumeric assigned as the Promotion Code. Promotion code entered when offer codes are established for products. This is an unedited field used for reference and reporting only.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="10"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="proprietorySegment" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Proprietory Segment</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="proratedAmount" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Prorated Amount</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="proratedTax" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Prorated Tax</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="prorateFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Indicates if amounts need to be prorated</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="provideLastFourMonthsFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Indicates to return last four months of history</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="provideLastMonthFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Indicates to return last month of history</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="provider" type="ent:SystemTypeEntity">
+		<xs:annotation>
+			<xs:documentation>The provider that populated this message</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="purchLimit" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>The dollar amount that a subscriber may spend for IPPV purchases from one period to the next. The
+default amount is sent to the CAMC when the DSS Access Card is activated.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="purchThreshold" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Purchase Threshold</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="purchaseLimitPeriod" type="ent:PurchaseLimitPeriodTypesEntity">
+		<xs:annotation>
+			<xs:documentation>The period which sets the boundaries governing the purchase_limit amount. Default Value is M. Valid Values: M - Monthly; C - Callback; L - Long-term</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="queueOnCamcLinkDownFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation> Indicates whether to queue the request for later processing if the link to the CAMC is down. A value of false indicates not to queue the request for later processing; the client system is then responsible for sending the request later. True causes the provider system to store the request on a queue for later automatic re-processing once the link to the CAMC is re-established.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="rateCeiling" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>The maximum rating code for which events may be ordered for the access card. The event selection
+process evaluates this code and will display for purchase selection only those events with a rating code equal to or less than the rating ceiling for the card.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="rating" type="ent:RatingTypesEntity">
+		<xs:annotation>
+			<xs:documentation>Rating</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="ratingCode">
+		<xs:annotation>
+			<xs:documentation>This field holds the rating code associated with the product. This rating code is provided by
+traffic but may be changed when selections are reviewed.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="6"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="ratingLevel">
+		<xs:annotation>
+			<xs:documentation>The numeric representation of the rating code for the event which is used by the system for comparison.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="1"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="rebateAmount" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>The Dollar amount of the rebate amount that is standard for the dealer.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="receivePromoCallsFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Indicates whether the subscriber wants to receive outbound marketing calls.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="receivePromoPostalMailFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Indicates whether the subscriber wants to receive additional marketing material other than messages on their bill.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="receivePromoEmailFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Does the customer want to receive Promo Email from DIRECTV</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="receivePromoEmailFromPartnersFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Does the customer wish to receive Promo Emails from DIRECTV's Partners</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="receiverId">
+		<xs:annotation>
+			<xs:documentation>Unique Receiver ID assigned by Conditional Access Management Center CAMC.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="25"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="receiverIdRequiredFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Is Receiver ID required for this hardware</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="receiverStatus" type="ent:ReceiverStatusEntity">
+		<xs:annotation>
+			<xs:documentation>Status of the receiver</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="recipientAccountId" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>The Recipient Account Id is a unique system-generated numeric value which identifies a subscriber in the billing system.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="recurringCreditAmount" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Amount of recurring Credit</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="recurringCreditCount" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>Number of times to issue credit</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="recurringCreditCreateDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Date recurring credit was defined for the customer</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="recurringCreditCreatedBy">
+		<xs:annotation>
+			<xs:documentation>Credit created by</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="12"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="recurringCreditDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Date to issue recurring credit</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="recurringCreditExpirationDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Date recurring credit expires</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="recurringCreditLastIssuedBy">
+		<xs:annotation>
+			<xs:documentation>User id that issued this credit last</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="12"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="recurringCreditLastIssueDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Date the credit was last issued on this account</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="recurringCreditReasonCode" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Reason this recurring credit was issued</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="recurringCreditReasonCodeDescription">
+		<xs:annotation>
+			<xs:documentation>Recurring Credit Reason Code Description</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="30"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="recurringCreditType" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Type of recurring credit</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="recurringCreditStatus" type="ent:RecurringCreditStatusEntity">
+		<xs:annotation>
+			<xs:documentation>Type of recurring credit</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="refundableFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Are refunds allowed </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="refundAmount" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Refund Amount</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="refundDescription">
+		<xs:annotation>
+			<xs:documentation>Refund Description</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="30"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="refundRequestDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Date refund was requested</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="refundStatus">
+		<xs:annotation>
+			<xs:documentation>Refund Status</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="4"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="regionBits">
+		<xs:annotation>
+			<xs:documentation>Personal Region Bit indicator</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="1"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="registerNumber">
+		<xs:annotation>
+			<xs:documentation>The Register Number field is the cash register number from point of sale. USed only for reporting purposes.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="10"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="registrationDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Date the user registered with the system</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="reinstallDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Date that services were reinstalled after expiration.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="reinstateServicesAutomaticallyFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Indicates if services should be reinstated automatically upon payment</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="relationStartDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Date when dealer chain relationship for subscriber begins</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="relationEndDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Date when dealer chain relationship for subscriber ends; If this field is empty, the relationship is ongoing</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="renewCount" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Number of times to renew the service</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="renewExpirationDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Date to stop renewing automatically</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="renewStartDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Date to start renewing automatically</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="replacementDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Replacement date</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="replacementReason">
+		<xs:annotation>
+			<xs:documentation>Reason for replacement</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="40"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="reportedOnBillingStatement" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Was this service/event reported on a billing statement</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="requireSignature" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Is a Signature required for delivery</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="restrictedFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Is the card restricted</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="retryAllowed" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Based on the message returned, is it recommended to retry the request</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="satelliteAvailable" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Is the satellite available </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="satelliteId">
+		<xs:annotation>
+			<xs:documentation>Indicates the Satellite IDs from which the manufacturer/model is capable of receiving a signal. Each byte relates to a different satellite slot. </xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="3"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="scheduledDateTime" type="xs:dateTime">
+		<xs:annotation>
+			<xs:documentation>Scheduled date time for Service Calls</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="secondaryOwner" type="ent:SecondaryOwnerEntity">
+		<xs:annotation>
+			<xs:documentation>Secondary owner of the Service Area</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="salesAgentCreateDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Date this sales agent was activated</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="salesAgentId" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Sales Agent (Dealer ID) </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="salesAgentName" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Sales Agent Name </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="salesAgentStatus">
+		<xs:annotation>
+			<xs:documentation>Status of this sales agent </xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="4"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="seasonalFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Is this product a seasonal product</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="selectionTitle">
+		<xs:annotation>
+			<xs:documentation>Title of the product used in selection lists</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="18"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="sellNameToMailingListFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Indicates whether the subscriber will allow his name and address information to be distributed outside of DIRECTV.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="serialNumber">
+		<xs:annotation>
+			<xs:documentation>Hardware Serial Number</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="20"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="serviceCycleDay" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>The day on which services begin for the subscriber. This is the date that the subscribers first Access Card was activated on the system. Charges for subsequently ordered services may be pro-rated to this date to allow for alignment of service charges.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="serviceDescription">
+		<xs:annotation>
+			<xs:documentation>Service Description</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="30"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="servicedByDealerFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Is this account serviced by the dealer?</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="serviceLength" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>The length of the service, either in months or days depending on ???  qqqq.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="servicePrefix">
+		<xs:annotation>
+			<xs:documentation>Prefix of this Service</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="1"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="servicerFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Indicates if this account is serviced by a servicer</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="servicerId" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Id of the Servicer</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="servicerName" type="ent:GenericNameEntity">
+		<xs:annotation>
+			<xs:documentation>Name of the Servicer of an account</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="servicesSuspendedDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Date the services on this account were suspended</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="serviceTax" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Service Tax</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="shipmentCarrier">
+		<xs:annotation>
+			<xs:documentation>The carrier shipping this order</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="255"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="shortDescription">
+		<xs:annotation>
+			<xs:documentation>The shortened description of the product. Used for display on the bill ledger.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="30"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="socialSecurityNumber">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:pattern value="\d{9}"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="specialEventCode">
+		<xs:annotation>
+			<xs:documentation>Indicates that this field has been marked as a special event. This field will be used in setting up an immediate callback of the DSS Cards of the subscribers who purchased this event.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="1"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="startAirDateTime" type="xs:dateTime">
+		<xs:annotation>
+			<xs:documentation>	The Date and Time the Event will start. It correlates to the Traffic System scheduled calendar date and
+viewer air time.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="state" type="ent:StateTypesEntity">
+		<xs:annotation>
+			<xs:documentation>State</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="statementDeliveryOption" type="ent:StatementDeliveryOptionTypesEntity">
+		<xs:annotation>
+			<xs:documentation>How Should statements be mailed to the Customer.  Some options include: paper, electronic, both, none</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="stateTax" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>State Tax</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="stateTaxCode">
+		<xs:annotation>
+			<xs:documentation>The 1 character alphanumeric field indicating the that this service or event was taxed by the subscribers state. Values are S, if taxed or blank, if not</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="1"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="stateTaxIdentification">
+		<xs:annotation>
+			<xs:documentation>State Tax Id Number</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="9"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="storeNumber" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Dealer's Store Number</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="streetName" type="ent:StreetNameEntity">
+		<xs:annotation>
+			<xs:documentation>Street Name</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="streetNumber" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Street Number</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="subjectLevel0" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>The Main Subject-level to which services and events are associated</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="subjectLevel1" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Subject level 1 to which services and events are associated. Subject levels are hierarchical descriptions used to select services and packages by subject.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="subjectLevel2" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Subject level 2 to which services and events are associated. Subject levels are hierarchical descriptions used to select services and packages by subject.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="subjectLevel3" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Subject level 3 to which services and events are associated. Subject levels are hierarchical descriptions used to select services and packages by subject.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="subjectLevel4" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Subject level 4 to which services and events are associated. Subject levels are hierarchical descriptions used to select services and packages by subject.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="subscriberAccountIndicator" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>?</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="systemInstallDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>The date the system was installed</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="systemType" type="ent:SystemTypeEntity">
+		<xs:annotation>
+			<xs:documentation>Indicates the provider system that logged the message returned.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="systemId" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>System which returned the information for this sales agent</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="targetId" type="ent:TargetIdEntity">
+		<xs:annotation>
+			<xs:documentation>Identifies the target</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="terminateAgentFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Agent Termination flag</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="territoryOwner" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>territory owner</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="timezone" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Time zone</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="totalTax" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Total Tax</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="totalOrderCharges" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Total charges for this order</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="totalOrderDiscounts" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Total Discounts applied</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="totalOrderFees" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Total Fees applied</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="totalShippingCharges" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Total Shipping Charges applied</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="totalNumberOfTargets" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>Total number of targets for this account</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="transactionDateTime" type="xs:dateTime">
+		<xs:annotation>
+			<xs:documentation>Date and time of the transaction</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="transactionFromDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Period Start Date for a Charged Transaction; Bill issue date for a billed transaction</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="transactionReasonCode" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Transaction reason code</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="transactionTicketNumber">
+		<xs:annotation>
+			<xs:documentation>The Transaction Ticket Number field indicates a specific sale for a given register number. This field together with the register number uniquely identifies a sale. It is stored only for reporting purposes.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="15"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="transactionToDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Period To Date for a charged Transaction; Bill due date for a billed transaction</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="transactionType">
+		<xs:annotation>
+			<xs:documentation>The Transaction Type</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="3"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="transactionTypeFilter" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Filter used for querying specific transaction reason codes back</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="transactionSequenceNumber" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Sequence Number of the transaction</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="unitPrefix" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Prefix for the unit.  Values may include: A - Apartment; S - Suite. etc. </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="unitNumber" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Unit number.  This element works in conjunction with the unitPrefix.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="verifyEFTFlag" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>?</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="vertexGeoCode" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>This is the geographic code assigned to the subscriber or dealer when their address is entered or changed. This field is used for calculating the tax to be charged.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="writeOffAmount" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Amount written off</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="writeOffDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Date account was written off</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="year">
+		<xs:annotation>
+			<xs:documentation>Year</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:int">
+				<xs:totalDigits value="4"/>
+				<xs:fractionDigits value="0"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="zipCode" type="ent:ZipCodeEntity">
+		<xs:annotation>
+			<xs:documentation>Zip Code of the address (US ZIP)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="casCardId" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>The Card ID assigned by the CAMC.  Used for all references to CAMC card Id (CAMC Card ID)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="loginId" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>A login identification for a particular system</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="propertyName" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>The name of a property</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="propertyModel" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>The model type of a Property</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="buildingSize" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>The size of a building</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="numberOfFloors" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>The number of floors in a building</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="buildingLabel" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>The label of a building</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="billIssueDate" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>The Bill Issue Date in Date format</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="statementNumber" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>statement identification number</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="paymentMessage" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>The payment message for the bill</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="cycleGroupNumber" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>group number for billing cycle</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="customerAssignedRank" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>assigned rank of customer from statement prep component</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="underMinimumBillThreshold" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>indicates whether bill amount is under minimum threshold for a paper bill</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="taxCategory" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>the tax type category from the statement prep component</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="remittanceCenterId" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>unique id for remittance center</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="remittanceCenterReferenceId" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>reference id for remittance center</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="remittanceCenterVersionNumber" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>version number for remittance center</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="retailerName" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>retailer name associated with the account</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="onFileCreditCardNumber" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Payment method is made with credit card  that is on file.  Only the last four digits of the credit card number is entered for verification </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="onFileEFTAccountNumber" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Payment method is made with eft information that is on file.  Only the last four digits of the bank account is entered for verification </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="attributeName" type="xs:string"/>
+	<xs:element name="attributeCode" type="xs:string"/>
+	<xs:element name="restrictedPropertyFlag">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="Y"/>
+				<xs:enumeration value="N"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="exclusivePropertyFlag">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="Y"/>
+				<xs:enumeration value="N"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="operatorId" type="xs:string"/>
+	<xs:element name="operatorName" type="xs:string"/>
+	<xs:element name="primaryCompetitor" type="xs:string"/>
+	<xs:element name="bmuAccountId" type="xs:long"/>
+	<xs:element name="name" type="xs:string"/>
+	<xs:element name="value" type="xs:string"/>
+	<xs:element name="appliedBeginDate" type="xs:date"/>
+	<xs:element name="appliedEndDate" type="xs:date"/>
+	<xs:element name="lockBeginDate" type="xs:date"/>
+	<xs:element name="lockEndDate" type="xs:date"/>
+	<xs:element name="lockOverrideFlag" type="xs:boolean"/>
+		<xs:element name="validFlag" type="xs:boolean"/>
+		<xs:element name="type" type="xs:string"/>
+</xs:schema>
